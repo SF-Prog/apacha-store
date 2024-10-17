@@ -50,16 +50,23 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         beige: {
-          50: '#f8f7f4',
-          100: '#f2efea',
-          // ... other shades as needed
+          50: '#E7DECC',
+          100: '#EB9E33',
         },
-        brown: {
-          500: '#8B4513',
-          700: '#5D3A1A',
-          800: '#4A2E14',
-          // ... other shades as needed
+        bone: {
+          500: '#E7DECC',
+          700: '#DED2BA',
+          800: '#B19359',
         },
+        orange: {
+          100: '#EA7E55'
+        },
+        green: {
+          100: '#849f87'
+        },
+        purple: {
+          100: '#7a4b7f'
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
