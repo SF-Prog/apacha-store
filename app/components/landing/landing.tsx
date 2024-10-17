@@ -1,7 +1,7 @@
 import { ClientWrapper } from './client-wrapper'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card"
 
-export default function PaginaAterrizaje() {
+export default function Landing() {
   return (
     <ClientWrapper>
       <main>
@@ -21,7 +21,7 @@ export default function PaginaAterrizaje() {
 
         <section id="sobre-nosotros" className="py-20">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 text-brown-700">Conoce a los Chefs</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-brown-700">Sobre Nosotros</h2>
             <div className="flex flex-col md:flex-row justify-center items-center md:space-x-12">
               {[
                 { name: 'Manuel', role: 'El genio culinario detrás de nuestras deliciosas comidas' },
