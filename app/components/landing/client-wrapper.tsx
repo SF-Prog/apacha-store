@@ -21,6 +21,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/app/components/ui/carousel"
+import Image from 'next/image'
 
 interface ClientWrapperProps {
   children: React.ReactNode
@@ -38,13 +39,13 @@ export function ClientWrapper({ children }: ClientWrapperProps) {
       <div className="min-h-screen bg-beige-50">
         <header className="bg-white shadow-sm sticky top-0 z-50">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            <motion.h1 
+            <motion.h1
               className="text-2xl font-bold text-brown-700"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              Emilia & Manuel
+              <Image alt="apacha-logo" src="/identity/logo_black.png" width={140} height={50} />
             </motion.h1>
             <nav className="hidden md:flex space-x-4">
               {['Sobre Nosotros', 'Menú', 'Eventos', 'Contacto'].map((item, index) => (
