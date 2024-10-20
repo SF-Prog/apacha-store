@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronDown, Mail, Phone, MapPin, Menu, Calendar, Clock, MapPin as Location } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from "@/app/components/ui/button"
@@ -14,20 +14,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/app/components/ui/sheet"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/app/components/ui/carousel"
 import Image from 'next/image'
 
-interface ClientWrapperProps {
+interface LayoutProps {
   children: React.ReactNode
 }
 
-export function ClientWrapper({ children }: ClientWrapperProps) {
+export function Layout({ children }: LayoutProps) {
   const [menuAbierto, setMenuAbierto] = useState(false)
 
   return (
@@ -37,7 +30,7 @@ export function ClientWrapper({ children }: ClientWrapperProps) {
       transition={{ duration: 0.5 }}
     >
       <div className="min-h-screen bg-beige-50">
-        <header className="bg-white shadow-sm sticky top-0 z-50">
+        <header className="bg-bone-500 shadow-sm sticky top-0 z-50">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
             <motion.h1
               className="text-2xl font-bold text-brown-700"
@@ -45,7 +38,7 @@ export function ClientWrapper({ children }: ClientWrapperProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Image alt="apacha-logo" src="/identity/logo_black.png" width={140} height={50} />
+              <Image alt="apacha-logo" src="/logo-black.png" width={140} height={50} />
             </motion.h1>
             <nav className="hidden md:flex space-x-4">
               {['Sobre Nosotros', 'Menú', 'Eventos', 'Contacto'].map((item, index) => (
