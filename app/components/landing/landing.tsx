@@ -2,6 +2,19 @@ import { ClientWrapper } from './client-wrapper'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card"
 
 export default function Landing() {
+  const carouselImages = [
+    '/carousel-1.jpg',
+    '/carousel-2.jpg',
+    '/carousel-3.jpg',
+  ];
+
+  const teamMembers = [
+    { name: 'Manu', role: 'El genio culinario detrás de nuestras deliciosas comidas' },
+    { name: 'Emi', role: 'La maga de la organización que mantiene todo funcionando sin problemas' }
+  ];
+
+
+
   return (
     <ClientWrapper>
       <main>
@@ -23,18 +36,15 @@ export default function Landing() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 text-brown-700">Sobre Nosotros</h2>
             <div className="flex flex-col md:flex-row justify-center items-center md:space-x-12">
-              {[
-                { name: 'Manuel', role: 'El genio culinario detrás de nuestras deliciosas comidas' },
-                { name: 'Emilia', role: 'La maga de la organización que mantiene todo funcionando sin problemas' }
-              ].map((chef, index) => (
-                <div key={chef.name} className="mb-8 md:mb-0">
+              {teamMembers.map((member, index) => (
+                <div key={member.name} className="mb-8 md:mb-0">
                   <Card>
                     <CardHeader>
-                      <CardTitle>{chef.name}</CardTitle>
-                      <CardDescription>{chef.role}</CardDescription>
+                      <CardTitle>{member.name}</CardTitle>
+                      <CardDescription>{member.role}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <img src={`/placeholder.svg?height=200&width=200&text=${chef.name}`} alt={chef.name} className="rounded-full mb-4 mx-auto" />
+                      <img src={`/placeholder.svg?height=200&width=200&text=${member.name}`} alt={member.name} className="rounded-full mb-4 mx-auto" />
                     </CardContent>
                   </Card>
                 </div>
