@@ -1,11 +1,39 @@
-import { ClientWrapper } from './client-wrapper'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card"
+'use client'
+
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { Layout } from './layout'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/app/components/ui/card"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/app/components/ui/carousel";
+import { Button } from '@/app/components/ui/button';
+import Autoplay from "embla-carousel-autoplay";
 
 export default function Landing() {
+  const [api, setApi] = useState<any>(null)
+
+  useEffect(() => {
+    if (api) {
+      console.log('api', api);
+      api.plugins().autoplay.play()
+    }
+  }, [api]);
+
   const carouselImages = [
-    '/carousel-1.jpg',
-    '/carousel-2.jpg',
-    '/carousel-3.jpg',
+    '/carousel-1.png',
+    '/carousel-2.png',
+    '/carousel-3.png',
+    '/carousel-4.png',
+    '/carousel-5.png',
   ];
 
   const teamMembers = [
@@ -13,22 +41,37 @@ export default function Landing() {
     { name: 'Emi', role: 'La maga de la organización que mantiene todo funcionando sin problemas' }
   ];
 
-
-
   return (
-    <ClientWrapper>
+    <Layout>
       <main>
-        <section className="bg-brown-700 text-white py-20">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl md:text-6xl font-bold mb-4">
-              Comida Saludable, Vida Feliz
-            </h2>
-            <p className="text-xl mb-8">
-              Descubre el sabor del bienestar con nuestras comidas nutritivas y deliciosas
-            </p>
-            <button className="bg-white text-brown-700 px-6 py-3 rounded-full font-semibold hover:bg-beige-100 transition-colors">
-              Pedir Ahora
-            </button>
+      <section className="relative h-screen">
+          <Carousel
+            opts={{ loop: true }}
+            plugins={[ Autoplay({ delay: 5000 }) ]}
+            setApi={setApi}
+            className="h-full"
+          >
+            <CarouselContent className="h-full">
+              {carouselImages.map((image, index) => {
+                return (
+                  <CarouselItem key={index} className="h-full w-full">
+                    <div
+                        className="h-full w-full bg-cover bg-center transition-opacity duration-500"
+                        style={{ backgroundImage: `url(${image})` }}
+                      />
+                  </CarouselItem>
+              )})}
+            </CarouselContent>
+          </Carousel>
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+            <div className="text-center text-bone-700 z-10">
+              <h2 className="text-4xl md:text-6xl font-bold mb-4 font-serif">
+                Cocina Consciente Plant Based
+              </h2>
+              <p className="text-xl mb-8 font-sans">
+                Descubre el sabor y el bienestar con nuestros platos nutritivos y deliciosos, 100% vegetales
+              </p>
+            </div>
           </div>
         </section>
 
@@ -75,7 +118,6 @@ export default function Landing() {
         <section id="eventos" className="py-20 bg-beige-100">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 text-brown-700">Nuestros Eventos</h2>
-            
             <div className="mb-16">
               <h3 className="text-2xl font-semibold mb-6 text-brown-600">Próximos Eventos</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -132,6 +174,6 @@ export default function Landing() {
           </div>
         </section>
       </main>
-    </ClientWrapper>
+    </Layout>
   )
 }
