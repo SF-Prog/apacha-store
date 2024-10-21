@@ -35,12 +35,6 @@ export default function Landing() {
     '/carousel-4.png',
     '/carousel-5.png',
   ];
-
-  const teamMembers = [
-    { name: 'Manu', role: 'El genio culinario detrás de nuestras deliciosas comidas' },
-    { name: 'Emi', role: 'La maga de la organización que mantiene todo funcionando sin problemas' }
-  ];
-
   return (
     <Layout>
       <main>
@@ -75,26 +69,37 @@ export default function Landing() {
           </div>
         </section>
 
-        <section id="sobre-nosotros" className="py-20">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 text-brown-700">Sobre Nosotros</h2>
-            <div className="flex flex-col md:flex-row justify-center items-center md:space-x-12">
-              {teamMembers.map((member, index) => (
-                <div key={member.name} className="mb-8 md:mb-0">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>{member.name}</CardTitle>
-                      <CardDescription>{member.role}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <img src={`/placeholder.svg?height=200&width=200&text=${member.name}`} alt={member.name} className="rounded-full mb-4 mx-auto" />
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
+        <section id="sobre-nosotros" className="py-20 bg-white">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold text-center mb-12 text-apacha-green">Conócenos</h2>
+              <Card className="overflow-hidden">
+                <CardContent className="p-0 h-">
+                  <div className="flex flex-col md:flex-row">
+                    <div className="md:w-1/3 relative h-80 md:h-auto">
+                      <Image
+                        src="/sobre-nosotros.png"
+                        alt="Emi y Manu"
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+                    <div className="md:w-2/3 p-6 md:p-8">
+                      <h3 className="text-2xl font-semibold mb-4 text-apacha-brown">Emi y Manu</h3>
+                      <p className="text-apacha-black mb-4">
+                        Juntos, Emi y Manu forman el corazón y el alma de Apacha. Con su pasión compartida por la cocina consciente y plant-based, han creado un espacio donde la innovación culinaria se encuentra con la sostenibilidad.
+                      </p>
+                      <p className="text-apacha-black mb-4">
+                        Emi, con su experiencia en nutrición, asegura que cada plato sea tan nutritivo como delicioso. Manu, por su parte, aporta su creatividad culinaria, transformando ingredientes simples en experiencias gastronómicas únicas.
+                      </p>
+                      <p className="text-apacha-black">
+                        Juntos, están redefiniendo lo que significa comer de manera consciente y deliciosa, invitándote a unirte a su viaje hacia un estilo de vida más saludable y sostenible.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
-          </div>
-        </section>
+          </section>
 
         <section id="menú" className="bg-white py-20">
           <div className="container mx-auto px-4">
