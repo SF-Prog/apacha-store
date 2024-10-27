@@ -89,7 +89,7 @@ export function Layout({ children }: LayoutProps) {
 
         <footer className="bg-brown-800 text-white py-8">
           <div className="container mx-auto px-4 text-center">
-            <p>&copy; 2023 Emilia & Manuel Comida Saludable. Todos los derechos reservados.</p>
+            <p>&copy; 2024/25 Apacha Comida Saludable. Todos los derechos reservados.</p>
           </div>
         </footer>
       </div>
