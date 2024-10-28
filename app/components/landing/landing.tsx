@@ -15,7 +15,6 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/app/components/ui/carousel";
-import { Button } from '@/app/components/ui/button';
 import Autoplay from "embla-carousel-autoplay";
 import Link from 'next/link';
 
@@ -24,7 +23,6 @@ export default function Landing() {
 
   useEffect(() => {
     if (api) {
-      console.log('api', api);
       api.plugins().autoplay.play()
     }
   }, [api]);
