@@ -36,13 +36,48 @@ export default function Landing() {
     '/carousel-4.png',
     '/carousel-5.png',
   ];
+
+  const renderProducts = () => {
+    const products = [{
+        image: '/desayunos-producto.png',
+        name: 'Desayunos Energizantes',
+        description: 'Empieza tu día con un estallido de frescura y sabor. Nuestros desayunos son jugos 100% naturales, llenos de frutas y vegetales frescos, cargados de vitaminas y antioxidantes para revitalizarte. Cada sorbo es un impulso energético y una manera deliciosa de cuidar tu cuerpo desde el amanecer. ¡Prueba uno y siente la diferencia!'
+      },
+      {
+        image: '/almuerzo-producto.png',
+        name: 'Almuerzos que Satisfacen',
+        description: 'Nuestros almuerzos son una celebración de sabores y nutrición. Platos veganos y libres de gluten que no solo llenan, sino que nutren con ingredientes cuidadosamente seleccionados. Desde ensaladas vibrantes hasta guisos reconfortantes, cada opción te deja saciado sin sentirte pesado, para que disfrutes tu día con energía renovada. ¡Ideal para probar la variedad y deleitar tu paladar!'
+      },
+      {
+        image: '/cena-producto.png',
+        name: 'Cenas Nutritivas y Livianas',
+        description: 'Termina tu jornada con nuestras sopas nutritivas, diseñadas para reconfortarte y nutrirte. Cada cena es ligera, pero cargada de ingredientes que tu cuerpo agradecerá al final del día. El equilibrio perfecto entre sabor y bienestar, para que te sientas satisfecho sin preocupaciones. Una opción que seguro querrás incorporar en tu rutina nocturna.'
+      }
+    ];
+    return (
+      <>
+        {products.map((product) => (
+          <Card key={product.name}>
+            <CardHeader>
+              <CardTitle>{product.name}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-md mb-4" />
+              <CardDescription>{product.description}</CardDescription>
+            </CardContent>
+          </Card>
+        ))}
+      </>
+    )
+  };
+
   return (
     <Layout>
       <main>
       <section className="relative h-screen">
           <Carousel
             opts={{ loop: true }}
-            plugins={[ Autoplay({ delay: 5000 }) ]}
+            plugins={[ Autoplay({ delay: 3000 }) ]}
             setApi={setApi}
             className="h-full"
           >
@@ -106,17 +141,7 @@ export default function Landing() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 text-brown-700">Nuestros Platos Destacados</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {['Ensalada de Quinoa', 'Bowl de Pollo a la Parrilla', 'Salteado de Verduras'].map((plato, index) => (
-                <Card key={plato}>
-                  <CardHeader>
-                    <CardTitle>{plato}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <img src={`/placeholder.svg?height=200&width=300&text=${plato}`} alt={plato} className="w-full h-48 object-cover rounded-md mb-4" />
-                    <CardDescription>Una comida deliciosa y nutritiva llena de sabores y bondad.</CardDescription>
-                  </CardContent>
-                </Card>
-              ))}
+              {renderProducts()}
             </div>
           </div>
         </section>
