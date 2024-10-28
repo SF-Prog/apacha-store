@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Emilia & Manuel - Comida Saludable',
+  title: 'Apacha - Cocina consciente',
   description: 'Descubre el sabor del bienestar con nuestras comidas nutritivas y deliciosas',
 }
 
