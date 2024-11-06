@@ -231,7 +231,7 @@ export default function Landing() {
           </div>
         </section>
         </ScrollAnimatedBackground>
-        <section id="eventos" className="py-20 bg-beige-100">
+        {/* <section id="eventos" className="py-20 bg-beige-100">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 text-brown-700">Nuestros Eventos</h2>
             <div className="mb-16">
@@ -272,7 +272,7 @@ export default function Landing() {
             </div>
           </div>
         </section>
-        
+         */}
 
         <section id="contacto" className="bg-brown-700 text-white py-20">
           <div className="container mx-auto px-4">
