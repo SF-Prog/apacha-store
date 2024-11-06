@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle
 } from "@/app/components/ui/card"
@@ -15,8 +16,12 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/app/components/ui/carousel";
+import ScrollAnimatedBackground from "@/app/components/landing/scroll-animation/scroll-animation";
+import { PhoneCallIcon as WhatsappIcon, Utensils, Coffee, Sun } from 'lucide-react';
 import Autoplay from "embla-carousel-autoplay";
 import Link from 'next/link';
+import { Button } from '../ui/button';
+import { motion } from 'framer-motion';
 
 export default function Landing() {
   const [api, setApi] = useState<any>(null)
@@ -33,6 +38,33 @@ export default function Landing() {
     '/carousel-3.png',
     '/carousel-4.png',
     '/carousel-5.png',
+  ];
+
+  const mealPacks = [
+    {
+      title: "Desayuno",
+      description: "Comienza tu día con energía y sabor",
+      price: "$10.99",
+      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno",
+      icon: Coffee,
+      image: "/breakfast.jpg"
+    },
+    {
+      title: "Desayuno y Almuerzo",
+      description: "Mantén tu energía hasta la tarde",
+      price: "$18.99",
+      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%20y%20Almuerzo",
+      icon: Sun,
+      image: "/lunch.jpg"
+    },
+    {
+      title: "Desayuno, Almuerzo y Cena",
+      description: "Alimentación completa y balanceada todo el día",
+      price: "$24.99",
+      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%2C%20Almuerzo%20y%20Cena",
+      icon: Utensils,
+      image: "/dinner.jpg"
+    }
   ];
 
   const renderProducts = () => {
@@ -102,8 +134,10 @@ export default function Landing() {
             </div>
           </div>
         </section>
-
-        <section id="sobre-nosotros" className="py-20 bg-white">
+      <ScrollAnimatedBackground
+        imageSrc="/background-mid-section.png"
+        imageAlt="background-mid-section">
+        <section id="sobre-nosotros" className="py-20 bg-gradient-to-b">
             <div className="container mx-auto px-4">
               <h2 className="text-3xl font-bold text-center mb-12 text-apacha-green">Conócenos</h2>
               <Card className="overflow-hidden">
@@ -135,7 +169,7 @@ export default function Landing() {
             </div>
           </section>
 
-        <section id="menú" className="bg-white py-20">
+        <section id="menú" className="bg-gradient-to-b py-20">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 text-brown-700">Nuestros Platos Destacados</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -144,6 +178,59 @@ export default function Landing() {
           </div>
         </section>
 
+        <section className="py-16 bg-gradient-to-b from-apacha-beige to-white">
+          <div className="container mx-auto px-4">
+            <motion.div 
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-4xl font-bold text-apacha-green mb-4">Nuestros Packs de Comida</h2>
+              <p className="text-xl text-apacha-brown max-w-2xl mx-auto">Descubre nuestras opciones de alimentación saludable y deliciosa para todo el día</p>
+            </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {mealPacks.map((pack, index) => (
+                <motion.div
+                  key={pack.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Card className="h-full flex flex-col overflow-hidden">
+                    <div className="relative h-48">
+                      <Image
+                        src={pack.image}
+                        alt={pack.title}
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                      <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                        <pack.icon className="text-white w-16 h-16" />
+                      </div>
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="text-2xl font-semibold text-apacha-brown">{pack.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-apacha-black mb-4">{pack.description}</p>
+                      <p className="text-3xl font-bold text-apacha-green">{pack.price}</p>
+                    </CardContent>
+                    <CardFooter className="mt-auto">
+                      <Button 
+                        className="w-full bg-green-500 hover:bg-green-600 text-white transition-all duration-300 transform hover:scale-105"
+                        onClick={() => window.open(pack.whatsappLink, '_blank')}
+                      >
+                        <WhatsappIcon className="mr-2 h-5 w-5" /> Pedir por WhatsApp
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+        </ScrollAnimatedBackground>
         <section id="eventos" className="py-20 bg-beige-100">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 text-brown-700">Nuestros Eventos</h2>
@@ -185,6 +272,7 @@ export default function Landing() {
             </div>
           </div>
         </section>
+        
 
         <section id="contacto" className="bg-brown-700 text-white py-20">
           <div className="container mx-auto px-4">
