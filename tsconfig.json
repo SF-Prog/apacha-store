@@ -19,6 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
+      "@/sections/*": ["./app/components/sections/*"]
     },
     "plugins": [
       {
