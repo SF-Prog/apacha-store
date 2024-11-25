@@ -3,7 +3,7 @@ import Image from 'next/image';
 import {
   Card,
   CardContent,
-} from "@/app/components/ui/card"
+} from "@/components/ui/card"
 
 export default function AboutUs() {
   return (
