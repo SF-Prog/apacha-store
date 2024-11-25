@@ -4,21 +4,28 @@ import Image from 'next/image';
 import { PhoneCallIcon as WhatsappIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-import { Button } from '@/app/components/ui/button';
-import { Checkbox } from "@/app/components/ui/checkbox"
+import { Button } from '@/components/ui/button';
+import { Checkbox } from "@/components/ui/checkbox"
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle
-} from "@/app/components/ui/card"
+} from "@/components/ui/card"
 
-export default function MakeYourOrder(props) {
+interface MakeYourOrderProps {
+  selectedMeals: string[],
+  totalPrice: number,
+  mealPacks: MealPack[],
+  toggleMeal: (id: string) => void,
+};
+
+const MakeYourOrder: React.FC<MakeYourOrderProps> = (props) => {
   const { selectedMeals, toggleMeal, totalPrice, mealPacks } = props;
 
 
   const generateWhatsAppMessage = () => {
-    const selectedMealTitles = selectedMeals.map(mealId => 
+    const selectedMealTitles = selectedMeals.map(mealId =>
       mealPacks.find(m => m.id === mealId)?.title
     ).join(', ')
     return `Hola, me interesa ordenar el pack de comida que incluye: ${selectedMealTitles}. El total es $${totalPrice.toFixed(2)}.`
@@ -86,4 +93,6 @@ export default function MakeYourOrder(props) {
       </div>
     </section>
   );
-}
+};
+
+export default MakeYourOrder;
