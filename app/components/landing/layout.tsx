@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
 
-import { Button } from "@/app/components/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Sheet,
   SheetContent,
@@ -13,7 +13,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/app/components/ui/sheet"
+} from "@/components/ui/sheet"
 import Image from 'next/image'
 
 interface LayoutProps {
