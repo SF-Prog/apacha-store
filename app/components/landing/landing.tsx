@@ -35,11 +35,10 @@ export default function Landing() {
   }, [api]);
 
   const carouselImages = [
-    '/carousel-1.png',
-    '/carousel-2.png',
-    '/carousel-3.png',
-    '/carousel-4.png',
-    '/carousel-5.png',
+    '/hero-1.jpg',
+    '/hero-2.jpg',
+    '/hero-3.jpg',
+    '/hero-4.jpg',
   ];
 
   const ourProducts = [{
