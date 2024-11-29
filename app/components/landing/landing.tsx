@@ -17,8 +17,8 @@ import {
 } from "@/components/ui/carousel";
 
 import ScrollAnimatedBackground from "./scroll-animation/scroll-animation";
-import MakeYourOrder from "@/sections/make-your-order/make-your-order";
 import AboutUs from "@/sections/about-us/about-us";
+import AboutApacha from "@/sections/about-apacha/about-apacha";
 import ContactUs from "@/sections/contact-us/contact-us";
 import OurServices from "@/sections/our-services/our-services";
 
@@ -157,6 +157,7 @@ export default function Landing() {
         imageSrc="/background-mid-section.png"
         imageAlt="background-mid-section">
         <AboutUs />
+        <AboutApacha />
 
         {/* <section id="menú" className="bg-gradient-to-b py-20">
           <div className="container mx-auto px-4">
