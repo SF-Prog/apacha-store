@@ -58,13 +58,13 @@ module.exports = {
           700: '#DED2BA',
           800: '#B19359',
         },
-        orange: {
+        apacha_orange: {
           100: '#EA7E55'
         },
-        green: {
+        apacha_green: {
           100: '#849f87'
         },
-        purple: {
+        apacha_purple: {
           100: '#7a4b7f'
         }
       },
