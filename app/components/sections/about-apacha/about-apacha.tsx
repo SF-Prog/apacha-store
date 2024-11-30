@@ -85,27 +85,28 @@ const ApachaStory: React.FC = () => {
               </motion.div>
             </AnimatePresence>
           </motion.div>
-          <motion.div 
-            className="lg:w-1/2 relative"
+          <motion.div
+            className="lg:w-1/2 relative w-full h-[300px]"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="relative h-96 w-full rounded-lg overflow-hidden shadow-xl">
+            <div className="relative w-full h-[400px] rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/apacha-story.jpg"
+                src="/about-apacha-hands.jpg"
                 alt="Apacha Story"
                 layout="fill"
-                objectFit="cover"
+                objectFit="contain"
+                priority
               />
             </div>
             <motion.div 
-              className="absolute -bottom-10 -left-10 w-48 h-48 bg-apacha-green rounded-full opacity-10"
+              className="absolute -bottom-10 -left-10 w-48 h-48 bg-white rounded-full opacity-10"
               animate={{ scale: [1, 1.1, 1], rotate: [0, 10, 0] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             ></motion.div>
             <motion.div 
-              className="absolute -top-10 -right-10 w-32 h-32 bg-apacha-brown rounded-full opacity-10"
+              className="absolute -top-10 -right-10 w-32 h-32 bg-white rounded-full opacity-10"
               animate={{ scale: [1, 1.2, 1], rotate: [0, -10, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             ></motion.div>
