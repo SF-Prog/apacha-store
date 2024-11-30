@@ -10,28 +10,28 @@ const services = [
     icon: Utensils,
     title: "Sistema de viandas Semanales",
     description: "Crea tu plan de comidas ideal con opciones que se adaptan a tus preferencias y necesidades dietéticas.",
-    image: "/menu-page-background.jpg",
+    image: "/lunch-fridge-2.jpg",
     url: '/menu'
   },
   {
     icon: Truck,
     title: "Productos para el día a día",
     description: "Recibe tus comidas frescas directamente en tu puerta, sin preocupaciones ni estrés.",
-    image: "/products-page-background.jpg",
+    image: "/products-dips-2.jpg",
     url: '/products'
   },
   {
     icon: Calendar,
     title: "Talleres de cocina",
     description: "Organiza tu alimentación con anticipación y ahorra tiempo en la preparación de comidas.",
-    image: "/events-page-background.jpg",
+    image: "/result-hands-on.jpg",
     url: '/events'
   },
   {
     icon: Leaf,
     title: "Caterings",
     description: "Disfruta de platos preparados con ingredientes orgánicos y de origen local siempre que sea posible.",
-    image: "/catering-page-background.jpg",
+    image: "/catering-focaccia.jpg",
     url: "/catering"
   }
 ];

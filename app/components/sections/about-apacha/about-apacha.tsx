@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { Heart, Utensils, Users } from 'lucide-react'
+import { Card, CardContent } from "@/components/ui/card"
 
 type TabKey = 'origin' | 'family' | 'philosophy'
 
@@ -35,82 +36,57 @@ const ApachaStory: React.FC = () => {
   }
 
   return (
-    <section className="py-24 overflow-hidden">
+    <section id="sobre-apacha" className="py-20">
       <div className="container mx-auto px-4">
-        <motion.h2
-          className="text-5xl font-bold text-center mb-12 text-apacha-green font-serif"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Sobre Apacha
-        </motion.h2>
-        <div className="flex flex-col lg:flex-row items-center lg:items-start">
-          <motion.div 
-            className="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="flex flex-wrap justify-center mb-8">
-              {(Object.keys(tabContent) as TabKey[]).map((tab) => {
-                const IconComponent = tabContent[tab].icon
-                return (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`px-4 py-2 m-2 rounded-full transition-colors duration-300 flex items-center ${
-                      activeTab === tab 
-                        ? 'bg-apacha-green text-white' 
-                        : 'bg-apacha-beige text-apacha-green hover:bg-apacha-green hover:text-white'
-                    }`}
+        <h2 className="text-3xl font-bold text-center mb-12 text-apacha-purple-100">Sobre Apacha</h2>
+        <Card className="overflow-hidden h-min-[600px]">
+          <CardContent className="p-0">
+            <div className="flex flex-col md:flex-row min-h-[450px]">
+              <div className="md:w-1/2 p-6 md:p-8">
+                <div className="flex flex-wrap justify-start mb-8">
+                  {(Object.keys(tabContent) as TabKey[]).map((tab) => {
+                    const IconComponent = tabContent[tab].icon
+                    return (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab)}
+                        className={`px-4 py-2 m-2 rounded-full transition-colors duration-300 flex items-center ${
+                          activeTab === tab
+                            ? 'bg-apacha_orange-100'
+                            : 'bg-beige text-apacha-apacha_green-bg-apacha_green-100 hover:text-bone-500'
+                        }`}
+                      >
+                        <IconComponent className="inline-block mr-2" size={18} />
+                        {tabContent[tab].title}
+                      </button>
+                    )
+                  })}
+                </div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
                   >
-                    <IconComponent className="inline-block mr-2" size={18} />
-                    {tabContent[tab].title}
-                  </button>
-                )
-              })}
+                    <h3 className="text-2xl font-semibold mb-4 text-apacha-brown">{tabContent[activeTab].title}</h3>
+                    <p className="text-apacha-black leading-relaxed">{tabContent[activeTab].content}</p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+              <div className="md:w-1/2 relative h-80 md:h-auto">
+                <Image
+                  src="/about-apacha-hands.jpg"
+                  alt="Apacha Story"
+                  layout="fill"
+                  objectFit="cover"
+                  priority
+                />
+              </div>
             </div>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="bg-apacha-beige rounded-lg p-6 shadow-lg"
-              >
-                <h3 className="text-2xl font-bold mb-4 text-apacha-brown">{tabContent[activeTab].title}</h3>
-                <p className="text-lg text-apacha-black leading-relaxed">{tabContent[activeTab].content}</p>
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
-          <motion.div 
-            className="lg:w-1/2 relative"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="relative h-96 w-full rounded-lg overflow-hidden shadow-xl">
-              <Image
-                src="/apacha-story.jpg"
-                alt="Apacha Story"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <motion.div 
-              className="absolute -bottom-10 -left-10 w-48 h-48 bg-apacha-green rounded-full opacity-10"
-              animate={{ scale: [1, 1.1, 1], rotate: [0, 10, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            ></motion.div>
-            <motion.div 
-              className="absolute -top-10 -right-10 w-32 h-32 bg-apacha-brown rounded-full opacity-10"
-              animate={{ scale: [1, 1.2, 1], rotate: [0, -10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            ></motion.div>
-          </motion.div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
     </section>
   )
