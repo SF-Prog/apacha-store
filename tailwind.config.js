@@ -49,9 +49,6 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        brown: {
-          700: "#000"
-        },
         beige: {
           50: '#E7DECC',
           100: '#EB9E33',
