@@ -84,7 +84,7 @@ const ApachaStory: React.FC = () => {
                   priority
                   style={{
                     objectFit: 'cover',
-                    objectPosition: '20px -400px',
+                    objectPosition: '0 -400px',
                   }}
                 />
               </div>

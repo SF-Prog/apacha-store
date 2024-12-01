@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Instagram, Mail, Phone, MapPin } from 'lucide-react'
 
+const APACHA_COCINA_EMAIL = "apachacocina@gmail.com";
+
 export default function ContactUs() {
   return (
     <section id="contacto" className=" py-20 relative overflow-hidden">
@@ -47,7 +49,7 @@ export default function ContactUs() {
             whileTap={{ scale: 0.95 }}
           >
             <Mail className="w-5 h-5" />
-            <span>contacto@apacha.com.uy</span>
+            <span>{APACHA_COCINA_EMAIL}</span>
           </motion.div>
           <motion.div
             className="flex items-center space-x-2"
@@ -75,8 +77,8 @@ export default function ContactUs() {
             whileTap={{ scale: 0.95 }}
           >
             <Instagram className="w-5 h-5" />
-            <Link target="_blank" href="https://www.instagram.com/apacha.uy/">
-              <span>@apacha.uy</span>
+            <Link target="_blank" href="https://www.instagram.com/apacha_cocina/">
+              <span>@apacha_cocina</span>
             </Link>
           </motion.div>
         </div>
