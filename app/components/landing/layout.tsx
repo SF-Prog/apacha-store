@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { Button } from "@/components/ui/button"
 import {
@@ -14,7 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import Image from 'next/image'
+import Footer from '@/sections/footer/footer';
 
 interface LayoutProps {
   children: React.ReactNode
@@ -87,11 +88,7 @@ export function Layout({ children }: LayoutProps) {
 
         {children}
 
-        <footer className="bg-brown-800 text-white py-8">
-          <div className="container mx-auto px-4 text-center">
-            <p>&copy; 2024/25 Apacha Comida Saludable. Todos los derechos reservados.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </motion.div>
   )
