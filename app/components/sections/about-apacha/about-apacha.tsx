@@ -77,11 +77,15 @@ const ApachaStory: React.FC = () => {
               </div>
               <div className="md:w-1/2 relative h-80 md:h-auto">
                 <Image
-                  src="/about-apacha-hands.jpg"
+                  src="/kitchen-hands-on.jpg"
                   alt="Apacha Story"
                   layout="fill"
                   objectFit="cover"
                   priority
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: '20px -400px',
+                  }}
                 />
               </div>
             </div>
