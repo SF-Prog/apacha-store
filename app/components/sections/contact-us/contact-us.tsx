@@ -3,7 +3,8 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Instagram, Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin } from 'lucide-react';
+import InstagramIcon from '@/components/ui/instagram-icon'
 
 const APACHA_COCINA_EMAIL = "apachacocina@gmail.com";
 
@@ -76,7 +77,7 @@ export default function ContactUs() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Instagram className="w-5 h-5" />
+            <InstagramIcon />
             <Link target="_blank" href="https://www.instagram.com/apacha_cocina/">
               <span>@apacha_cocina</span>
             </Link>
