@@ -50,7 +50,9 @@ export default function ContactUs() {
             whileTap={{ scale: 0.95 }}
           >
             <Mail className="w-5 h-5" />
-            <span>{APACHA_COCINA_EMAIL}</span>
+            <Link href="mailto:apachacocina@gmail.com" >
+              <span>{APACHA_COCINA_EMAIL}</span>
+            </Link>
           </motion.div>
           <motion.div
             className="flex items-center space-x-2"
