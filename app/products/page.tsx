@@ -10,7 +10,7 @@ export default function ProductsPage() {
       <PageHeader
         title="Nuestros Productos"
         description="Descubre nuestra selección de comidas saludables y deliciosas"
-        imageSrc="/products-header.jpg"
+        imageSrc="/products-dips-2.jpg"
       />
       <PageContent>
         <section className="py-12">
