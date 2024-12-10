@@ -14,14 +14,14 @@ export default function ProductsPage() {
       />
       <PageContent>
         <section className="py-12">
-          <h2 className="text-3xl font-bold text-center mb-8 text-apacha-green">Menú de la Semana</h2>
+          <h2 className="text-3xl font-bold text-center mb-8 text-apacha-green">Armá tu pack</h2>
           <ProductGrid />
         </section>
         <section className="py-12 bg-apacha-beige">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-8 text-apacha-brown">Proceso de Preparación</h2>
             <p className="text-center text-apacha-black max-w-2xl mx-auto">
-              Nuestros chefs expertos preparan cada plato con ingredientes frescos y de alta calidad. 
+              Nuestros chefs preparan cada plato con ingredientes frescos y de alta calidad.
               Utilizamos técnicas de cocina que preservan el máximo sabor y valor nutricional de cada ingrediente.
             </p>
           </div>
