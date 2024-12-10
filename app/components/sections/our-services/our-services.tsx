@@ -40,8 +40,8 @@ const OurServices: React.FC = () => {
   return (
     <section className="py-24 bg-apacha-beige min-h-screen flex items-center">
       <div className="container mx-auto px-4">
-        <motion.h2 
-          className="text-5xl font-bold text-center mb-16 text-apacha-green"
+        <motion.h2
+          className="text-3xl font-bold text-center mb-16 text-apacha-green"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
