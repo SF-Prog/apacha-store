@@ -50,6 +50,7 @@ const MakeYourOrder: React.FC<MakeYourOrderProps> = (props) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              onClick={() => toggleMeal(meal.id)}
             >
               <Card className={`h-full flex flex-col overflow-hidden transition-all duration-300 ${selectedMeals.includes(meal.id) ? 'ring-2 ring-apacha-green' : ''}`}>
                 <div className="relative h-48">
@@ -80,7 +81,7 @@ const MakeYourOrder: React.FC<MakeYourOrderProps> = (props) => {
         <div className="text-center">
           <p className="text-2xl font-bold text-apacha-brown mb-4">${totalPrice.toFixed(2)} / Semana</p>
           <Button
-            className="px-8 py-3 bg-apacha-brown hover:bg-apacha-brown/90 text-white transition-all duration-300 transform hover:scale-105"
+            className="px-8 py-3 bg-apacha_green-100 hover:bg-apacha_green-100/90 text-white transition-all duration-300 transform hover:scale-105"
             onClick={() => window.open(`https://wa.me/1234567890?text=${encodeURIComponent(generateWhatsAppMessage())}`, '_blank')}
             disabled={selectedMeals.length === 0}
           >
