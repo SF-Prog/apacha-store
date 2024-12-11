@@ -24,8 +24,8 @@ export default function MenuPage() {
   const mealPacks: MealPack[] = [
     {
       id: 'breakfast-prod',
-      title: "Desayuno",
-      description: "Empieza tu día con un estallido de frescura y sabor.",
+      title: "Desayunos",
+      description: "Jugos y licuados a base de frutas y verduras. Es una gran manera de comenzar el día hidratado e incorporando nutrientes, vitaminas y antioxidantes.",
       price: 1000,
       whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno",
       image: "/desayunos-producto.png",
@@ -33,7 +33,7 @@ export default function MenuPage() {
     {
       id: 'lunch-prod',
       title: "Almuerzo",
-      description: "Nuestros almuerzos son una celebración de sabores y nutrición.",
+      description: "El plato principal es una celebración de sabores y nutrición. Desde ensaladas vibrantes hasta guisos reconfortantes, cada opción ofrece un mundo de sabores y nutrientes. Ideales para solucionar tus almuerzos de una manera diferente y así no caer en el aburrimiento y monotonía.",
       price: 400,
       whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%20y%20Almuerzo",
       image: "/lunch-preview.jpg"
@@ -41,7 +41,7 @@ export default function MenuPage() {
     {
       id: 'dinner-prod',
       title: "Cena",
-      description: "Cada cena es ligera, pero cargada de ingredientes que tu cuerpo agradecerá al final del día.",
+      description: "sopa liviana y nutritiva. Al terminar el día y la rutina, muchas veces buscamos opciones prácticas para solucionar la cena. Las distintas variedades de sopas son ideales para incorporar a la rutina nocturna, ya que favorecerá a que te vayas a dormir liviano y de esta manera descansar mejor.",
       price: 800,
       whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%2C%20Almuerzo%20y%20Cena",
       image: "/dinner-soup-1.jpg"
