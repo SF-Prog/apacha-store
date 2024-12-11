@@ -1,15 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import { Utensils, Coffee, Sun } from 'lucide-react';
 import { Layout } from './layout'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card"
 import {
   Carousel,
   CarouselContent,
@@ -26,7 +18,6 @@ import Autoplay from "embla-carousel-autoplay";
 
 export default function Landing() {
   const [api, setApi] = useState<any>(null);
-  const [selectedMeals, setSelectedMeals] = useState<string[]>([])
 
   useEffect(() => {
     if (api) {
@@ -56,67 +47,6 @@ export default function Landing() {
       description: 'Termina tu jornada con nuestras sopas nutritivas, diseñadas para reconfortarte y nutrirte. Cada cena es ligera, pero cargada de ingredientes que tu cuerpo agradecerá al final del día. El equilibrio perfecto entre sabor y bienestar, para que te sientas satisfecho sin preocupaciones. Una opción que seguro querrás incorporar en tu rutina nocturna.'
     }
   ];
-
-  const mealPacks: MealPack[] = [
-    {
-      id: 'breakfast-prod',
-      title: "Desayuno",
-      description: "Empieza tu día con un estallido de frescura y sabor.",
-      price: 1000,
-      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno",
-      icon: Coffee,
-      image: "/desayunos-producto.png",
-    },
-    {
-      id: 'lunch-prod',
-      title: "Almuerzo",
-      description: "Nuestros almuerzos son una celebración de sabores y nutrición.",
-      price: 400,
-      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%20y%20Almuerzo",
-      icon: Sun,
-      image: "/almuerzo-producto.png"
-    },
-    {
-      id: 'dinner-prod',
-      title: "Cena",
-      description: "Cada cena es ligera, pero cargada de ingredientes que tu cuerpo agradecerá al final del día.",
-      price: 800,
-      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%2C%20Almuerzo%20y%20Cena",
-      icon: Utensils,
-      image: "/cena-producto.png"
-    }
-  ];
-
-  const renderProducts = () => {
-    return (
-      <>
-        {ourProducts.map((product) => (
-          <Card key={product.name}>
-            <CardHeader>
-              <CardTitle>{product.name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-md mb-4" />
-              <CardDescription>{product.description}</CardDescription>
-            </CardContent>
-          </Card>
-        ))}
-      </>
-    )
-  };
-
-  const toggleMeal = (mealId: string) => {
-    setSelectedMeals(prev => 
-      prev.includes(mealId) 
-        ? prev.filter(id => id !== mealId)
-        : [...prev, mealId]
-    )
-  }
-
-  const totalPrice = selectedMeals.reduce((sum, mealId) => {
-    const meal = mealPacks.find(m => m.id === mealId)
-    return sum + (meal?.price || 0)
-  }, 0)
 
   return (
     <Layout>
