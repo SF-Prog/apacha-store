@@ -59,9 +59,6 @@ const MakeYourOrder: React.FC<MakeYourOrderProps> = (props) => {
                     layout="fill"
                     objectFit="cover"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                    <meal.icon className="text-white w-16 h-16" />
-                  </div>
                 </div>
                 <CardHeader>
                   <CardTitle className="text-2xl font-semibold text-apacha-brown flex items-center justify-between">
