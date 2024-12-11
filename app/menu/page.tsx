@@ -1,14 +1,16 @@
 'use client'
-import React from "react"
+import React , { useState} from "react"
 import { motion } from 'framer-motion'
 import { Leaf, Truck } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import SecondaryPageLayout from "@/components/secondary-page/layout/layout";
 import PageHeader from "@/components/secondary-page/page-header/page-header";
 import PageContent from "@/components/secondary-page/page-content/page-content"
-
+import MakeYourOrder from "../components/sections/make-your-order/make-your-order"
 
 export default function MenuPage() {
+  const [selectedMeals, setSelectedMeals] = useState<string[]>([])
+
   const weeklyMenu = [
     { day: 'Lunes', dish: 'Curry de garbanzos y espinacas', description: 'Un plato reconfortante y nutritivo con garbanzos, espinacas frescas y una mezcla de especias aromáticas.' },
     { day: 'Martes', dish: 'Lasaña de verduras', description: 'Capas de vegetales de temporada, salsa de tomate casera y una cremosa bechamel vegana.' },
@@ -16,6 +18,46 @@ export default function MenuPage() {
     { day: 'Jueves', dish: 'Tacos de jackfruit', description: 'Tacos rellenos de jackfruit guisada al estilo "pulled pork", con una fresca ensalada de col y salsa de aguacate.' },
     { day: 'Viernes', dish: 'Risotto de hongos', description: 'Cremoso risotto de arroz integral con una mezcla de hongos silvestres y queso parmesano vegano.' },
   ];
+
+  const mealPacks: MealPack[] = [
+    {
+      id: 'breakfast-prod',
+      title: "Desayuno",
+      description: "Empieza tu día con un estallido de frescura y sabor.",
+      price: 1000,
+      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno",
+      image: "/desayunos-producto.png",
+    },
+    {
+      id: 'lunch-prod',
+      title: "Almuerzo",
+      description: "Nuestros almuerzos son una celebración de sabores y nutrición.",
+      price: 400,
+      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%20y%20Almuerzo",
+      image: "/lunch-preview.jpg"
+    },
+    {
+      id: 'dinner-prod',
+      title: "Cena",
+      description: "Cada cena es ligera, pero cargada de ingredientes que tu cuerpo agradecerá al final del día.",
+      price: 800,
+      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%2C%20Almuerzo%20y%20Cena",
+      image: "/dinner-soup-1.jpg"
+    }
+  ];
+
+  const toggleMeal = (mealId: string) => {
+    setSelectedMeals(prev => 
+      prev.includes(mealId) 
+        ? prev.filter(id => id !== mealId)
+        : [...prev, mealId]
+    )
+  };
+
+  const totalPrice = selectedMeals.reduce((sum, mealId) => {
+    const meal = mealPacks.find(m => m.id === mealId)
+    return sum + (meal?.price || 0)
+  }, 0);
 
   return (
     <SecondaryPageLayout>
@@ -81,6 +123,11 @@ export default function MenuPage() {
                 </Card>
               </motion.div>
             ))}
+            <MakeYourOrder
+              selectedMeals={selectedMeals}
+              totalPrice={totalPrice}
+              mealPacks={mealPacks}
+              toggleMeal={toggleMeal} />
           </motion.div>
         </div>
       </PageContent>
