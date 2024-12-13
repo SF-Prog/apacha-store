@@ -66,10 +66,7 @@ const OurServices: React.FC = () => {
                     objectFit="cover"
                     className="transition-transform duration-300 ease-in-out transform hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                    <div className="bg-apacha-green rounded-full p-6 transition-all duration-300 ease-in-out transform hover:rotate-12">
-                      <service.icon className="w-12 h-12 text-white" />
-                    </div>
+                  <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
                   </div>
                 </div>
                 <div className="p-8 flex flex-col flex-grow">
