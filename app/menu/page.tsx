@@ -28,7 +28,7 @@ export default function MenuPage() {
       description: "Jugos y licuados a base de frutas y verduras. Es una gran manera de comenzar el día hidratado e incorporando nutrientes, vitaminas y antioxidantes.",
       price: 1000,
       whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno",
-      image: "/desayunos-producto.png",
+      image: "/breakfast-serving.png",
     },
     {
       id: 'lunch-prod',
@@ -123,8 +123,13 @@ export default function MenuPage() {
                 </CardContent>
               </Card>
 
-              <h2 className="text-3xl font-semibold text-apacha-brown text-center mb-6">Ejemplo de Menú Semanal</h2>
+              <MakeYourOrder
+                selectedMeals={selectedMeals}
+                totalPrice={totalPrice}
+                mealPacks={mealPacks}
+                toggleMeal={toggleMeal} />
               
+              <h2 className="text-3xl font-semibold text-apacha-brown text-center mb-6">Ejemplo de Menú Semanal</h2>
               {weeklyMenu.map((item, index) => (
                 <motion.div
                   key={item.day}
@@ -142,11 +147,6 @@ export default function MenuPage() {
                   </Card>
                 </motion.div>
               ))}
-              <MakeYourOrder
-                selectedMeals={selectedMeals}
-                totalPrice={totalPrice}
-                mealPacks={mealPacks}
-                toggleMeal={toggleMeal} />
             </motion.div>
           </div>
         </ScrollAnimatedBackground>
