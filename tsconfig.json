@@ -20,7 +20,9 @@
     "paths": {
       "@/*": ["./*"],
       "@/components/*": ["./app/components/*"],
-      "@/sections/*": ["./app/components/sections/*"]
+      "@/sections/*": ["./app/components/sections/*"],
+      "@/context/*": ["./app/context/*"],
+      "@/constants/*": ["./lib/constants/*"],
     },
     "plugins": [
       {

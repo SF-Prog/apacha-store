@@ -10,8 +10,10 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "@/components",
     "utils": "@/lib/utils",
-    "sections": "@/sections"
+    "components": "@/components",
+    "sections": "@/sections",
+    "context": "@/context",
+    "constants": "@/constants"
   }
 }
