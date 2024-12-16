@@ -66,7 +66,6 @@ const MakeYourOrder: React.FC<MakeYourOrderProps> = (props) => {
                     {meal.title}
                     <Checkbox
                       checked={selectedMeals.includes(meal.id)}
-                      onCheckedChange={() => toggleMeal(meal.id)}
                     />
                   </CardTitle>
                 </CardHeader>
