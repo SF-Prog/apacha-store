@@ -6,8 +6,11 @@ import { products } from "@/lib/constants";
 const StoreContext = createContext<StoreContextType | null>(null)
 
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [selectedMeals, setSelectedMeals] = useState<string[]>([])
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [total, setTotal] = useState(0)
+
+  // Products page logic
 
   const calculateTotal = (items: CartItem[]): number => {
     return items.reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -60,8 +63,52 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
         .join('\n')}\n\nTotal: $${total.toFixed(2)}`
     )}`;
     window.open(whatsappLink);
-  }
+  };
 
+  // Menu page logic
+
+  const mealPacks: MealPack[] = [
+    {
+      id: 'breakfast-prod',
+      title: "Desayunos",
+      description: "Jugos y licuados a base de frutas y verduras. Es una gran manera de comenzar el día hidratado e incorporando nutrientes, vitaminas y antioxidantes.",
+      price: 1000,
+      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno",
+      image: "/breakfast-preview.jpg",
+    },
+    {
+      id: 'lunch-prod',
+      title: "Almuerzo",
+      description: "El plato principal es una celebración de sabores y nutrición. Desde ensaladas vibrantes hasta guisos reconfortantes, cada opción ofrece un mundo de sabores y nutrientes. Ideales para solucionar tus almuerzos de una manera diferente y así no caer en el aburrimiento y monotonía.",
+      price: 400,
+      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%20y%20Almuerzo",
+      image: "/lunch-preview.jpg"
+    },
+    {
+      id: 'dinner-prod',
+      title: "Cena",
+      description: "sopa liviana y nutritiva. Al terminar el día y la rutina, muchas veces buscamos opciones prácticas para solucionar la cena. Las distintas variedades de sopas son ideales para incorporar a la rutina nocturna, ya que favorecerá a que te vayas a dormir liviano y de esta manera descansar mejor.",
+      price: 800,
+      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%2C%20Almuerzo%20y%20Cena",
+      image: "/dinner-preview.jpg"
+    }
+  ];
+
+  const toggleMeal = (mealId: string) => {
+    setSelectedMeals(prev =>
+      prev.includes(mealId)
+        ? prev.filter(id => id !== mealId)
+        : [...prev, mealId]
+    );
+  };
+
+  const totalMealsPrice = selectedMeals.reduce((sum, mealId) => {
+    const meal = mealPacks.find(m => m.id === mealId)
+    return sum + (meal?.price || 0)
+  }, 0);
+
+
+  // Mantain cart on local storage to improve user retention
 
   useEffect(() => {
     updateCartFromStorage()
@@ -81,6 +128,10 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     emptyCart,
     updateCartFromStorage,
     onCartCheckout,
+    selectedMeals,
+    totalMealsPrice,
+    mealPacks,
+    toggleMeal,
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

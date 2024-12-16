@@ -11,24 +11,18 @@ import {
   CardContent,
   CardHeader,
   CardTitle
-} from "@/components/ui/card"
+} from "@/components/ui/card";
+import { useStore } from '@/context/store-context';
 
-interface MakeYourOrderProps {
-  selectedMeals: string[],
-  totalPrice: number,
-  mealPacks: MealPack[],
-  toggleMeal: (id: string) => void,
-};
-
-const MakeYourOrder: React.FC<MakeYourOrderProps> = (props) => {
-  const { selectedMeals, toggleMeal, totalPrice, mealPacks } = props;
+const MakeYourOrder: React.FC = () => {
+  const { selectedMeals, toggleMeal, totalMealsPrice, mealPacks } = useStore();
 
 
   const generateWhatsAppMessage = () => {
     const selectedMealTitles = selectedMeals.map(mealId =>
       mealPacks.find(m => m.id === mealId)?.title
     ).join(', ')
-    return `Hola, me interesa ordenar el pack de comida que incluye: ${selectedMealTitles}. El total es $${totalPrice.toFixed(2)}.`
+    return `Hola, me interesa ordenar el pack de comida que incluye: ${selectedMealTitles}. El total es $${totalMealsPrice.toFixed(2)}.`
   };
 
   return (
@@ -78,7 +72,7 @@ const MakeYourOrder: React.FC<MakeYourOrderProps> = (props) => {
           ))}
         </div>
         <div className="text-center">
-          <p className="text-2xl font-bold text-apacha-brown mb-4">${totalPrice.toFixed(2)} / Semana</p>
+          <p className="text-2xl font-bold text-apacha-brown mb-4">${totalMealsPrice.toFixed(2)} / Semana</p>
           <Button
             className="px-8 py-3 bg-apacha_purple-100 hover:bg-apacha_purple-100/90 text-white transition-all duration-300 transform hover:scale-105"
             onClick={() => window.open(`https://wa.me/1234567890?text=${encodeURIComponent(generateWhatsAppMessage())}`, '_blank')}
