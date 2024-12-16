@@ -1,17 +1,9 @@
 'use client'
 
 import React, { createContext, useState, useContext, useEffect, ReactNode } from "react"
+import { products } from "@/lib/constants";
 
 const StoreContext = createContext<StoreContextType | null>(null)
-
-const products: ProductItem[] = [
-  { id: '1', title: "Ensalada Mediterránea", price: 12.99, image: "/product1.jpg" },
-  { id: '2', title: "Bowl de Quinoa y Vegetales", price: 14.99, image: "/product2.jpg" },
-  { id: '3', title: "Wrap de Pollo y Aguacate", price: 11.99, image: "/product3.jpg" },
-  { id: '4', title: "Salmón al Horno con Espárragos", price: 16.99, image: "/product4.jpg" },
-  { id: '5', title: "Pasta Integral con Pesto", price: 13.99, image: "/product5.jpg" },
-  { id: '6', title: "Tofu Salteado con Verduras", price: 12.99, image: "/product6.jpg" },
-];
 
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
@@ -30,7 +22,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   }
 
-  const addCartItem = (mealPack: MealPack) => {
+  const addCartItem = (mealPack: ProductItem) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === mealPack.id)
       if (existingItem) {
@@ -59,7 +51,17 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const emptyCart = () => {
     setCartItems([])
     setTotal(0)
+  };
+
+  const onCartCheckout = () => {
+    const whatsappLink = `https://wa.me/1234567890?text=${encodeURIComponent(
+      `Hola, me gustaría hacer un pedido:\n\n${cartItems
+        .map((item) => `${item.title} x${item.quantity}`)
+        .join('\n')}\n\nTotal: $${total.toFixed(2)}`
+    )}`;
+    window.open(whatsappLink);
   }
+
 
   useEffect(() => {
     updateCartFromStorage()
@@ -78,6 +80,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     removeCartItem,
     emptyCart,
     updateCartFromStorage,
+    onCartCheckout,
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
