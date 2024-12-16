@@ -64,9 +64,9 @@ export default function MenuPage() {
   return (
     <SecondaryPageLayout>
       <PageHeader
-        title="Nuestro plato principal"
-        description="Descubre nuestra nuestro menu de viandas"
-        imageSrc="/hero-4.jpg"
+        title="Te ayudamos a organizarte en tus comidas diarias"
+        description="Proponemos un menú diferente cada semana para no caer en el aburrimiento y monotonía"
+        imageSrc="/menu-hero.jpg"
       />
       <PageContent>
         <ScrollAnimatedBackground
@@ -79,46 +79,47 @@ export default function MenuPage() {
               transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto"
             >
-              <h1 className="text-4xl font-bold text-apacha-brown text-center mb-8">Menú Semanal</h1>
+              <h1 className="text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
               <Card className="mb-8">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-2xl text-apacha-green">
+                  <CardTitle className="flex items-center text-2xl text-apacha_purple-100">
                     <Truck className="mr-2" />
                     Entregas
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-apacha-black">
-                  <p className="mb-4">Ofrecemos un menú semanal con entregas dos veces por semana para asegurar la frescura de nuestros platos:</p>
+                  <p className="mb-4">Ofrecemos un menú semanal con solo dos entregas por semana:</p>
                   <ul className="list-disc list-inside mb-4">
                     <li><strong>Domingo:</strong> Entregamos 3 almuerzos (para Lunes, Martes y Miércoles)</li>
                     <li><strong>Miércoles:</strong> Entregamos 2 almuerzos (para Jueves y Viernes)</li>
                   </ul>
-                  <p className="mb-4">Las entregas se realizan entre las 17:00 y las 20:00 horas, utilizando nuestro propio método de entrega para garantizar que la comida llegue segura a tu puerta.</p>
+                  <p className="mb-4">Las entregas se realizan dichos días entre las 17:00 y las 20:00 horas, utilizando nuestro propio método de entrega para garantizar que la comida llegue segura a tu puerta. También puedes retirar el pedido en nuestro local.</p>
+                  <p className="mb-4 text-apacha_purple-100">Te recordamos que debes hacer tu pedido de forma anticipada.</p>
                 </CardContent>
               </Card>
 
               <Card className="mb-8">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-2xl text-apacha-green">
+                  <CardTitle className="flex items-center text-2xl text-apacha_purple-100">
                     <Leaf className="mr-2" />
-                    Nuestra motivacion
+                    Nuestra cocina
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-apacha-black">
-                  <p>Todas nuestras comidas son libres de gluten y basadas en alimentos de la tierra. Este desafío es la razón por la que nuestros platos contienen tantos nutrientes y sabores innovadores. Nos esforzamos por crear opciones saludables y deliciosas que satisfagan todas las necesidades dietéticas.</p>
+                  <p>Todo lo que elaboramos es con ingredientes naturales a base de plantas (excluimos ingredientes de origen animal) y sin gluten. Es un gran desafío y motivación introducirnos en este tipo de gastronomía, para lograr alimentos inclusivos que la mayoría pueda disfrutar.</p>
                 </CardContent>
               </Card>
 
               <Card className="mb-8">
                 <CardHeader>
-                  <CardTitle className="flex items-center text-2xl text-apacha-green">
+                  <CardTitle className="flex items-center text-2xl text-apacha_purple-100">
                     <Recycle className="mr-2" />
                     Compromiso Ambiental
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-apacha-black">
                   <p>
-                    En Apacha, nos preocupamos por el medio ambiente tanto como por tu salud. Nuestros almuerzos se entregan en contenedores reutilizables diseñados para ser devueltos y reutilizados, contribuyendo así a la reducción de residuos plásticos. Estos contenedores, fabricados con plástico reciclado gracias a nuestra colaboración con RECICLATE, son aptos para microondas, permitiéndote calentar nuestros platos de manera segura y conveniente. Al devolver estos contenedores, estás participando activamente en nuestro esfuerzo por combatir la crisis ambiental. ¡Juntos, podemos hacer la diferencia!
+                  Nuestro proyecto se basa en elaborar y ofrecer productos de alta calidad nutricional y que a la vez estén en armonía con el medio ambiente. Para ello la incorporación de viandas retornables fue clave. Deseamos minimizar los residuos y generar el menor impacto posible en el ambiente.
                   </p>
                 </CardContent>
               </Card>
@@ -139,7 +140,7 @@ export default function MenuPage() {
                 >
                   <Card className="mb-4">
                     <CardHeader>
-                      <CardTitle className="text-xl text-apacha-green">{item.day}: {item.dish}</CardTitle>
+                      <CardTitle className="text-xl text-apacha_purple-100">{item.day}: {item.dish}</CardTitle>
                     </CardHeader>
                     <CardContent className="text-apacha-black">
                       <p>{item.description}</p>

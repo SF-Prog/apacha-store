@@ -6,8 +6,8 @@ import Link from 'next/link';
 
 const services = [
   {
-    title: "Sistema de viandas Semanales",
-    description: "Crea tu plan de comidas ideal con opciones que se adaptan a tus preferencias y necesidades dietéticas.",
+    title: "Viandas Semanales",
+    description: "Te ayudamos a organizarte y disfrutar de una alimentación nutritiva durante la semana. Contamos con opciones de desayuno, almuerzo y cena para que tengas cubiertas las comidas de lunes a viernes.",
     image: "/lunch-fridge-2.jpg",
     url: '/menu'
   },
