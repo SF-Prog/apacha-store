@@ -13,6 +13,7 @@
     "utils": "@/lib/utils",
     "components": "@/components",
     "sections": "@/sections",
-    "context": "@/context"
+    "context": "@/context",
+    "constants": "@/constants"
   }
 }
