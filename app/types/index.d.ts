@@ -11,8 +11,14 @@ interface ProductItem {
   id: string
   title: string
   image: string
+  price: number,
   description?: string
-  price: number
+  meassure?: string
+}
+
+interface ProductListByCategory {
+  name: string,
+  products: ProductItem[]
 }
 
 interface CartItem extends ProductItem {
@@ -20,11 +26,12 @@ interface CartItem extends ProductItem {
 }
 
 interface StoreContextType {
-  products: ProductItem[],
+  products: ProductListByCategory[],
   cartItems: CartItem[]
   total: number
   addCartItem: (item: ProductItem) => void
   removeCartItem: (itemId: string) => void
   emptyCart: () => void
-  updateCartFromStorage: () => void
+  updateCartFromStorage: () => void,
+  onCartCheckout: () => void
 }
