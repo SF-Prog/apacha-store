@@ -2,7 +2,8 @@
 
 import React, { createContext, useState, useContext, useEffect, ReactNode } from "react"
 import { products } from "@/lib/constants";
-
+import { displayToaster } from "@/lib/utils";
+import { sendMenuEmail } from "@/actions/sendWeeklyMenu";
 const StoreContext = createContext<StoreContextType | null>(null)
 
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -107,6 +108,18 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     return sum + (meal?.price || 0)
   }, 0);
 
+  const sendWeeklyMenuToEmail = async (email: string) => {
+    try {
+      const result = await sendMenuEmail(email);
+      if (result.success) {
+        displayToaster('SUCCESS', '¡Menú enviado! Revisa tu correo.');
+      } else {
+        displayToaster('ERROR', 'Error al enviar el menú. Por favor, intenta de nuevo.');
+      };
+    } catch (error) {
+      displayToaster('ERROR', 'Ocurrió un error. Por favor, intenta de nuevo más tarde.');
+    };
+  };
 
   // Mantain cart on local storage to improve user retention
 
@@ -132,6 +145,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     totalMealsPrice,
     mealPacks,
     toggleMeal,
+    sendWeeklyMenuToEmail
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

@@ -38,4 +38,12 @@ interface StoreContextType {
   totalMealsPrice: number,
   mealPacks: MealPack[],
   toggleMeal: (id: string) => void,
+  sendWeeklyMenuToEmail: (email: string) => void
+}
+
+interface ToasterType {
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR',
+  WARNING: 'WARNING',
+  INFO: 'INFO'
 }

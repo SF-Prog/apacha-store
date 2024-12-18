@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
+import { Toaster } from 'react-hot-toast';
 import { StoreProvider } from '@/context/store-context';
 
 const roboto = Roboto({
@@ -12,7 +13,7 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: 'Apacha - Cocina consciente',
   description: 'Descubre el sabor del bienestar con nuestras comidas nutritivas y deliciosas',
-}
+};
 
 export default function RootLayout({
   children,
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         <StoreProvider>
           {children}
+          <Toaster />
         </StoreProvider>
       </body>
     </html>

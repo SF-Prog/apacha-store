@@ -12,14 +12,6 @@ import ScrollAnimatedBackground from "@/components/landing/scroll-animation/scro
 import MenuExample from "@/components/sections/menu-example/menu-example";
 
 export default function MenuPage() {
-  const weeklyMenu = [
-    { day: 'Lunes', dish: 'Curry de garbanzos y espinacas', description: 'Un plato reconfortante y nutritivo con garbanzos, espinacas frescas y una mezcla de especias aromáticas.' },
-    { day: 'Martes', dish: 'Lasaña de verduras', description: 'Capas de vegetales de temporada, salsa de tomate casera y una cremosa bechamel vegana.' },
-    { day: 'Miércoles', dish: 'Bowl de quinoa y vegetales asados', description: 'Quinoa con una variedad de vegetales asados, semillas tostadas y aderezo de tahini.' },
-    { day: 'Jueves', dish: 'Tacos de jackfruit', description: 'Tacos rellenos de jackfruit guisada al estilo "pulled pork", con una fresca ensalada de col y salsa de aguacate.' },
-    { day: 'Viernes', dish: 'Risotto de hongos', description: 'Cremoso risotto de arroz integral con una mezcla de hongos silvestres y queso parmesano vegano.' },
-  ];
-
   return (
     <SecondaryPageLayout>
       <PageHeader
@@ -85,24 +77,6 @@ export default function MenuPage() {
 
               <MakeYourOrder />
 
-              <h2 className="text-3xl font-semibold text-apacha-brown text-center mb-6">Ejemplo de Menú Semanal</h2>
-              {weeklyMenu.map((item, index) => (
-                <motion.div
-                  key={item.day}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card className="mb-4">
-                    <CardHeader>
-                      <CardTitle className="text-xl text-apacha_purple-100">{item.day}: {item.dish}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="text-apacha-black">
-                      <p>{item.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
               <MenuExample />
             </motion.div>
           </div>
