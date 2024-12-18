@@ -33,5 +33,17 @@ interface StoreContextType {
   removeCartItem: (itemId: string) => void
   emptyCart: () => void
   updateCartFromStorage: () => void,
-  onCartCheckout: () => void
+  onCartCheckout: () => void,
+  selectedMeals: string[],
+  totalMealsPrice: number,
+  mealPacks: MealPack[],
+  toggleMeal: (id: string) => void,
+  sendWeeklyMenuToEmail: (email: string) => void
+}
+
+interface ToasterType {
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR',
+  WARNING: 'WARNING',
+  INFO: 'INFO'
 }
