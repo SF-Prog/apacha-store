@@ -1,14 +1,15 @@
 'use client'
 
-import React , { useState} from "react"
+import React from "react"
 import { motion } from 'framer-motion'
 import { Leaf, Truck, Recycle } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import SecondaryPageLayout from "@/components/secondary-page/layout/layout";
 import PageHeader from "@/components/secondary-page/page-header/page-header";
 import PageContent from "@/components/secondary-page/page-content/page-content"
-import MakeYourOrder from "../components/sections/make-your-order/make-your-order"
-import ScrollAnimatedBackground from "../components/landing/scroll-animation/scroll-animation"
+import MakeYourOrder from "@/components/sections/make-your-order/make-your-order"
+import ScrollAnimatedBackground from "@/components/landing/scroll-animation/scroll-animation"
+import MenuExample from "@/components/sections/menu-example/menu-example";
 
 export default function MenuPage() {
   const weeklyMenu = [
@@ -102,6 +103,7 @@ export default function MenuPage() {
                   </Card>
                 </motion.div>
               ))}
+              <MenuExample />
             </motion.div>
           </div>
         </ScrollAnimatedBackground>
