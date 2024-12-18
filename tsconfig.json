@@ -22,6 +22,7 @@
       "@/components/*": ["./app/components/*"],
       "@/sections/*": ["./app/components/sections/*"],
       "@/context/*": ["./app/context/*"],
+      "@/actions/*": ["./app/actions/*"],
       "@/constants/*": ["./lib/constants/*"],
     },
     "plugins": [
