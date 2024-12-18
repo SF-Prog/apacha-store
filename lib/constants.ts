@@ -349,6 +349,49 @@ const products: ProductListByCategory[] = [
   }
 ];
 
+const weeklyMenuExample: WeeklyMenuItem[] = [
+  { 
+    day: 'Lunes', 
+    meals: {
+      breakfast: 'Avena con frutas y nueces',
+      lunch: 'Curry de garbanzos y espinacas',
+      dinner: 'Ensalada de quinoa con verduras asadas'
+    }
+  },
+  { 
+    day: 'Martes', 
+    meals: {
+      breakfast: 'Tostadas de aguacate y tomate',
+      lunch: 'Lasaña de verduras',
+      dinner: 'Sopa de lentejas con pan integral'
+    }
+  },
+  { 
+    day: 'Miércoles', 
+    meals: {
+      breakfast: 'Smoothie bowl de açaí',
+      lunch: 'Bowl de quinoa y vegetales asados',
+      dinner: 'Tacos de jackfruit'
+    }
+  },
+  { 
+    day: 'Jueves', 
+    meals: {
+      breakfast: 'Pancakes de banana y avena',
+      lunch: 'Ensalada mediterránea con falafel',
+      dinner: 'Pasta primavera'
+    }
+  },
+  { 
+    day: 'Viernes', 
+    meals: {
+      breakfast: 'Yogur vegano con granola y frutas',
+      lunch: 'Wrap de hummus y vegetales',
+      dinner: 'Risotto de hongos'
+    }
+  },
+];
 export {
-  products
-}
+  products,
+  weeklyMenuExample
+};

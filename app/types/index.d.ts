@@ -11,13 +11,13 @@ interface ProductItem {
   id: string
   title: string
   image: string
-  price: number,
+  price: number
   description?: string
   meassure?: string
 }
 
 interface ProductListByCategory {
-  name: string,
+  name: string
   products: ProductItem[]
 }
 
@@ -37,13 +37,25 @@ interface StoreContextType {
   selectedMeals: string[],
   totalMealsPrice: number,
   mealPacks: MealPack[],
-  toggleMeal: (id: string) => void,
-  sendWeeklyMenuToEmail: (email: string) => void
+  toggleMeal: (id: string) => void
+  sendWeeklyMenuToEmail: (email: string) => void,
+  weeklyMenuExample: WeeklyMenuItem[]
 }
 
 interface ToasterType {
-  SUCCESS: 'SUCCESS',
-  ERROR: 'ERROR',
-  WARNING: 'WARNING',
+  SUCCESS: 'SUCCESS'
+  ERROR: 'ERROR'
+  WARNING: 'WARNING'
   INFO: 'INFO'
+}
+
+interface Meals {
+  breakfast: string
+  lunch: string
+  dinner: string
+}
+
+interface WeeklyMenuItem {
+  day: string
+  meals: Meals
 }

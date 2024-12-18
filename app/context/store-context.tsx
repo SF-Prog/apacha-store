@@ -1,9 +1,10 @@
 'use client'
 
 import React, { createContext, useState, useContext, useEffect, ReactNode } from "react"
-import { products } from "@/lib/constants";
+import { products, weeklyMenuExample } from "@/lib/constants";
 import { displayToaster } from "@/lib/utils";
 import { sendMenuEmail } from "@/actions/sendWeeklyMenu";
+
 const StoreContext = createContext<StoreContextType | null>(null)
 
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -145,7 +146,8 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     totalMealsPrice,
     mealPacks,
     toggleMeal,
-    sendWeeklyMenuToEmail
+    sendWeeklyMenuToEmail,
+    weeklyMenuExample
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

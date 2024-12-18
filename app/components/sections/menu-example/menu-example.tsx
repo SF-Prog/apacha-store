@@ -9,16 +9,8 @@ import { Label } from "@/components/ui/label"
 import { ChevronRight, Send } from 'lucide-react'
 import { useStore } from '@/context/store-context'
 
-const exampleMenu = [
-  { day: 'Lunes', dish: 'Curry de garbanzos y espinacas' },
-  { day: 'Martes', dish: 'Lasaña de verduras' },
-  { day: 'Miércoles', dish: 'Bowl de quinoa y vegetales asados' },
-  { day: 'Jueves', dish: 'Tacos de jackfruit' },
-  { day: 'Viernes', dish: 'Risotto de hongos' },
-]
-
 export default function MenuExample() {
-  const { sendWeeklyMenuToEmail } = useStore();
+  const { sendWeeklyMenuToEmail, weeklyMenuExample } = useStore();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false)
 
@@ -54,28 +46,40 @@ export default function MenuExample() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {exampleMenu.map((item, index) => (
+          {weeklyMenuExample.map((item, index) => (
             <motion.div
-              key={item.day}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
+            key={item.day}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
             >
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">
+                  <CardTitle className="text-xl font-bold text-apacha_purple-100">
                     {item.day}
                   </CardTitle>
-                  <ChevronRight className="h-4 w-4 text-muted-foreground" />
+                  <ChevronRight className="h-5 w-5 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{item.dish}</div>
+                  <div className="grid gap-4">
+                    <div>
+                      <h3 className="font-semibold text-apacha-brown">Desayuno</h3>
+                      <p className="text-lg">{item.meals.breakfast}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-apacha-brown">Almuerzo</h3>
+                      <p className="text-lg">{item.meals.lunch}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-apacha-brown">Cena</h3>
+                      <p className="text-lg">{item.meals.dinner}</p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </motion.div>
-        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

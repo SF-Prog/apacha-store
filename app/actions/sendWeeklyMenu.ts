@@ -20,7 +20,7 @@ export async function sendMenuEmail(recipientEmail: string) {
   })
 
   // Read the image file
-  const imagePath = path.join(process.cwd(), 'public', 'menu-example.pdf')
+  const imagePath = path.join(process.cwd(), 'public', 'menu-hero.jpg')
   const imageContent = await fs.readFile(imagePath)
 
   // Create the email options
