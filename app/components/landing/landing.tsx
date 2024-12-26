@@ -29,7 +29,7 @@ export default function Landing() {
     '/hero-4.jpg',
     '/catering-cake.jpg',
     '/soup-hero.jpg',
-    '/breakfast-serving.png'
+    '/desayunos-producto.png'
   ];
 
   return (
