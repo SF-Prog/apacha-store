@@ -39,7 +39,8 @@ interface StoreContextType {
   mealPacks: MealPack[],
   toggleMeal: (id: string) => void
   sendWeeklyMenuToEmail: (email: string) => void,
-  weeklyMenuExample: WeeklyMenuItem[]
+  weeklyMenuExample: WeeklyMenuItem[],
+  services: Service[]
 }
 
 interface ToasterType {
@@ -58,4 +59,11 @@ interface Meals {
 interface WeeklyMenuItem {
   day: string
   meals: Meals
+}
+
+interface Service {
+  title: string,
+  description: string,
+  image: string,
+  url: string,
 }
