@@ -1,37 +1,12 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useStore } from '@/context/store-context';
 import Image from 'next/image'
 import Link from 'next/link';
 
 
-const services = [
-  {
-    title: "Viandas Semanales",
-    description: "Te ayudamos a organizarte y disfrutar de una alimentación nutritiva durante la semana. Contamos con opciones de desayuno, almuerzo y cena para que tengas cubiertas las comidas de lunes a viernes.",
-    image: "/lunch-fridge-2.jpg",
-    url: '/menu'
-  },
-  {
-    title: "Productos para el día a día",
-    description: "Recibe tus comidas frescas directamente en tu puerta, sin preocupaciones ni estrés.",
-    image: "/products-dips-2.jpg",
-    url: '/products'
-  },
-  {
-    title: "Talleres de cocina",
-    description: "Organiza tu alimentación con anticipación y ahorra tiempo en la preparación de comidas.",
-    image: "/result-hands-on.jpg",
-    url: '/events'
-  },
-  {
-    title: "Caterings",
-    description: "Disfruta de platos preparados con ingredientes orgánicos y de origen local siempre que sea posible.",
-    image: "/catering-focaccia.jpg",
-    url: "/catering"
-  }
-];
-
 const OurServices: React.FC = () => {
+  const { services } = useStore();
   return (
     <section className="py-24 bg-apacha-beige min-h-screen flex items-center">
       <div className="container mx-auto px-4">
