@@ -10,7 +10,7 @@ const APACHA_COCINA_EMAIL = "apachacocina@gmail.com";
 
 export default function ContactUs() {
   return (
-    <section id="contacto" className=" py-20 relative overflow-hidden">
+    <section id="contactanos" className=" py-20 relative overflow-hidden">
       <motion.div
         className="absolute inset-0 z-0"
         initial={{ opacity: 0 }}
@@ -71,7 +71,7 @@ export default function ContactUs() {
           >
             <MapPin className="w-5 h-5" />
             <Link target="_blank" href="https://www.google.com/maps/place/Apacha/@-34.8876343,-56.1543239,17z/data=!4m16!1m9!3m8!1s0x959f81897c9e77e5:0xa3c2343cf687d69b!2sApacha!8m2!3d-34.8876387!4d-56.151749!9m1!1b1!16s%2Fg%2F11td4cfrs3!3m5!1s0x959f81897c9e77e5:0xa3c2343cf687d69b!8m2!3d-34.8876387!4d-56.151749!16s%2Fg%2F11td4cfrs3?entry=ttu&g_ep=EgoyMDI0MTAyMy4wIKXMDSoASAFQAw%3D%3D">
-              <span>Dr. Pedro Escuder Núñez 2245-2199, 11600 Montevideo</span>
+              <span>Ramón Ortiz 2952 esq Escuder Núñez, 11600 Montevideo</span>
             </Link>
           </motion.div>
           <motion.div
