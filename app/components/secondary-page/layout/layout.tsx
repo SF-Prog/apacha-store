@@ -21,6 +21,13 @@ interface SecondaryPageLayoutProps {
   children: React.ReactNode
 };
 
+const navPages = [
+  {label: 'Viandas', href: '/'},
+  {label: 'Productos', href: '/'},
+  {label: 'Talleres', href: '/'},
+  {label: 'Caterings y eventos', href: '/events'},
+];
+
 const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen">
@@ -30,16 +37,16 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
             <Image alt="apacha-logo" src="/logo-black.png" width={140} height={50} />
           </Link>
           <nav className="hidden md:flex space-x-4">
-            {['Productos', 'Sobre Nosotros', 'Eventos', 'Contacto'].map((item, index) => (
+            {navPages.map((item, index) => (
               <motion.a
-                key={item}
-                href={`/${item.toLowerCase().replace(' ', '-')}`}
+                key={item.label}
+                href={item.href}
                 className="text-apacha-brown hover:text-apacha-green transition-colors"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {item}
+                {item.label}
               </motion.a>
             ))}
           </nav>
