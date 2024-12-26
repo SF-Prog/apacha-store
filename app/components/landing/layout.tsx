@@ -19,7 +19,14 @@ import Footer from '@/sections/footer/footer';
 
 interface LayoutProps {
   children: React.ReactNode
-}
+};
+
+const options = [
+  { label: 'Sobre Nosotros', href: '/about-us'},
+  { label: 'Servicios y Productos', href: '/#sobre-nosotros'},
+  { label: 'Vlog', href: '/vlog'},
+  { label: 'Contacto', href: '/#contactanos'}
+];
 
 export function Layout({ children }: LayoutProps) {
   const [menuAbierto, setMenuAbierto] = useState(false)
@@ -42,16 +49,16 @@ export function Layout({ children }: LayoutProps) {
               <Image alt="apacha-logo" src="/logo-black.png" width={140} height={50} />
             </motion.h1>
             <nav className="hidden md:flex space-x-4">
-              {['Sobre Nosotros', 'Menú', 'Eventos', 'Contacto'].map((item, index) => (
+              {options.map((item, index) => (
                 <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase().replace(' ', '-')}`}
+                  key={item.label}
+                  href={item.href}
                   className="text-brown-700 hover:text-brown-500"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  {item}
+                  {item.label}
                 </motion.a>
               ))}
             </nav>
