@@ -7,8 +7,11 @@ import Link from 'next/link';
 
 const OurServices: React.FC = () => {
   const { services } = useStore();
+
+  const defaultImageStyle = { objectFit: 'cover' };
+
   return (
-    <section className="py-24 bg-apacha-beige min-h-screen flex items-center">
+    <section id="nuestros-servicios" className="py-24 bg-apacha-beige min-h-screen flex items-center">
       <div className="container mx-auto px-4">
         <motion.h2
           className="text-3xl font-bold text-center mb-16 text-apacha-green"
@@ -16,7 +19,7 @@ const OurServices: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Nuestros Servicios
+          Servicios
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {services.map((service, index) => (
@@ -32,8 +35,8 @@ const OurServices: React.FC = () => {
                   <Image
                     src={service.image}
                     alt={service.title}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={service.customStyle ?? defaultImageStyle} 
                     className="transition-transform duration-300 ease-in-out transform hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
