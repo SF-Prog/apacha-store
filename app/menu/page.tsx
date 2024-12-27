@@ -41,8 +41,8 @@ export default function MenuPage() {
                 <CardContent className="text-apacha-black">
                   <p className="mb-4">Ofrecemos un menú semanal con solo dos entregas por semana:</p>
                   <ul className="list-disc list-inside mb-4">
-                    <li><strong>Domingo:</strong> Entregamos 3 almuerzos (para Lunes, Martes y Miércoles)</li>
-                    <li><strong>Miércoles:</strong> Entregamos 2 almuerzos (para Jueves y Viernes)</li>
+                    <li><strong>Domingo:</strong> Entregamos lo que corresponda al menú de Lunes, Martes y Miércoles</li>
+                    <li><strong>Miércoles:</strong> Entregamos lo que corresponda al menú de Jueves y Viernes</li>
                   </ul>
                   <p className="mb-4">Las entregas se realizan dichos días entre las 17:00 y las 20:00 horas, utilizando nuestro propio método de entrega para garantizar que la comida llegue segura a tu puerta. También puedes retirar el pedido en nuestro local.</p>
                   <p className="mb-4 text-apacha_purple-100">Te recordamos que debes hacer tu pedido de forma anticipada.</p>
