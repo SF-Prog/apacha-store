@@ -11,8 +11,9 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: 'Apacha - Cocina consciente',
-  description: 'Descubre el sabor del bienestar con nuestras comidas nutritivas y deliciosas',
+  title: 'Apacha Cocina Consciente',
+  description: 'Tienda online de alimentos nutritivos, sin gluten y a base de plantas.',
+  keywords: ['viandas nutritivas', 'productos sin gluten', 'productos veganos', 'montevideo']
 };
 
 export default function RootLayout({
