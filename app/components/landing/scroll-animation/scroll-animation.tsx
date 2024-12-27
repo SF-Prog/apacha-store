@@ -38,8 +38,8 @@ const ScrollAnimatedBackground: React.FC<ScrollAnimatedBackgroundProps> = ({ chi
         <Image
           src={imageSrc}
           alt={imageAlt}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }} 
           quality={100}
           priority
         />

@@ -79,8 +79,8 @@ const ApachaStory: React.FC = () => {
                 <Image
                   src="/about-apacha.jpg"
                   alt="Apacha Story"
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: 'cover' }} 
                   priority
                   style={{
                     objectFit: 'cover',

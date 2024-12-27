@@ -22,9 +22,9 @@ interface SecondaryPageLayoutProps {
 };
 
 const navPages = [
-  {label: 'Viandas', href: '/'},
-  {label: 'Productos', href: '/'},
-  {label: 'Talleres', href: '/'},
+  {label: 'Viandas', href: '/menu'},
+  {label: 'Productos', href: '/products'},
+  {label: 'Talleres', href: '/workshops'},
   {label: 'Caterings y eventos', href: '/events'},
 ];
 

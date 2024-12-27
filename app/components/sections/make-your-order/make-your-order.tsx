@@ -35,7 +35,7 @@ const MakeYourOrder: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-4xl font-bold  mb-4">¿Qué estás necesitando?</h2>
-          <p className="text-xl text-apacha-brown max-w-2xl mx-auto">Proba mas de uno de nuestros platos por dia y obtene precios promocionales!</p>
+          <p className="text-xl text-apacha-brown max-w-2xl mx-auto">Puedes escribirnos para que te asesoremos y así saber cuál es el pack ideal para ti</p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {mealPacks.map((meal, index) => (
@@ -51,8 +51,8 @@ const MakeYourOrder: React.FC = () => {
                   <Image
                     src={meal.image}
                     alt={meal.title}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: 'cover' }} 
                   />
                 </div>
                 <CardHeader>

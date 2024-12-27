@@ -66,4 +66,5 @@ interface Service {
   description: string,
   image: string,
   url: string,
+  customStyle?: unknown
 }

@@ -1,38 +1,11 @@
 'use client'
 
 import React, { createContext, useState, useContext, useEffect, ReactNode } from "react"
-import { products, weeklyMenuExample } from "@/lib/constants";
+import { products, services, weeklyMenuExample } from "@/lib/constants";
 import { displayToaster } from "@/lib/utils";
 import { sendMenuEmail } from "@/actions/sendWeeklyMenu";
 
 const StoreContext = createContext<StoreContextType | null>(null)
-
-const services = [
-  {
-    title: "Viandas Semanales",
-    description: "Te ayudamos a organizarte y disfrutar de una alimentación nutritiva durante la semana. Contamos con opciones de desayuno, almuerzo y cena para que tengas cubiertas las comidas de lunes a viernes.",
-    image: "/lunch-fridge-2.jpg",
-    url: '/menu'
-  },
-  {
-    title: "Productos para el día a día",
-    description: "Recibe tus comidas frescas directamente en tu puerta, sin preocupaciones ni estrés.",
-    image: "/products-dips-2.jpg",
-    url: '/products'
-  },
-  {
-    title: "Talleres de cocina",
-    description: "Organiza tu alimentación con anticipación y ahorra tiempo en la preparación de comidas.",
-    image: "/result-hands-on.jpg",
-    url: '/events'
-  },
-  {
-    title: "Caterings",
-    description: "Disfruta de platos preparados con ingredientes orgánicos y de origen local siempre que sea posible.",
-    image: "/catering-focaccia.jpg",
-    url: "/catering"
-  }
-];
 
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [selectedMeals, setSelectedMeals] = useState<string[]>([])

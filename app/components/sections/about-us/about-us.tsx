@@ -9,7 +9,7 @@ export default function AboutUs() {
   return (
     <section id="sobre-nosotros" className="py-20 bg-gradient-to-b">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-apacha-green">Quiénes somos</h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-apacha-green">Sobre nosotrxs</h2>
         <Card className="overflow-hidden">
           <CardContent className="p-0 h-">
             <div className="flex flex-col md:flex-row">
@@ -17,8 +17,8 @@ export default function AboutUs() {
                 <Image
                   src="/sobre-nosotros.png"
                   alt="Emi y Manu"
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: 'cover' }} 
                 />
               </div>
               <div className="md:w-2/3 p-6 md:p-8">

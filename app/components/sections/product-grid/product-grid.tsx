@@ -33,12 +33,12 @@ const ProductGrid: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Card className="overflow-hidden h-full flex flex-col">
-                  <div className="relative h-48">
+                  <div className="relative h-80">
                     <Image
                       src={product.image}
                       alt={product.title}
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      style={{ objectFit: 'cover' }} 
                     />
                   </div>
                   <CardContent className="p-4 flex-grow">

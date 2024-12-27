@@ -13,13 +13,13 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, description, imageSrc })
       <Image
         src={imageSrc}
         alt={title}
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: 'cover' }} 
         className="brightness-50"
       />
       <div className="absolute inset-0 flex flex-col justify-center items-center text-white">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center">{title}</h1>
-        <p className="text-xl md:text-2xl text-center max-w-2xl px-4">{description}</p>
+        <p className="text-xl md:text-l text-center max-w-4xl px-4">{description}</p>
       </div>
     </div>
   )
