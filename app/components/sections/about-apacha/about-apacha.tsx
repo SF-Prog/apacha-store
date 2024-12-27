@@ -80,7 +80,6 @@ const ApachaStory: React.FC = () => {
                   src="/about-apacha.jpg"
                   alt="Apacha Story"
                   fill
-                  style={{ objectFit: 'cover' }} 
                   priority
                   style={{
                     objectFit: 'cover',
