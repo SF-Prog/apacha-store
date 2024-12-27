@@ -69,35 +69,35 @@ const products: ProductListByCategory[] = [
       {
         id: "queso-untable-caju",
         title: "Queso untable de cajú fermentado",
-        image: "/placeholder.svg",
+        image: "/product-caju-cheese.jpg",
         price: 300,
         meassure: "200 mL"
       },
       {
         id: "dip-verde-caju",
         title: "Dip verde de cajú",
-        image: "/placeholder.svg",
+        image: "/product-green-dip.jpg",
         price: 300,
         meassure: "200 mL"
       },
       {
         id: "hummus-aceitunas-negras",
         title: "Hummus de aceitunas negras",
-        image: "/placeholder.svg",
+        image: "/product-black-olives-hummus.jpg",
         price: 300,
         meassure: "200 mL"
       },
       {
         id: "pate-girasol",
         title: "Paté de girasol",
-        image: "/placeholder.svg",
+        image: "/product-sunflower-pate.jpg",
         price: 250,
         meassure: "200 mL"
       },
       {
         id: "babaganoush",
         title: "Babaganoush",
-        image: "/placeholder.svg",
+        image: "/product-babaganoush.jpg",
         price: 260,
         meassure: "200 mL"
       },
@@ -394,7 +394,7 @@ const weeklyMenuExample: WeeklyMenuItem[] = [
 
 const services: Service[] = [
   {
-    title: "Viandas Semanales",
+    title: "Sistema de viandas",
     description: "Te ayudamos a organizarte y disfrutar de una alimentación nutritiva durante la semana. Contamos con opciones de desayuno, almuerzo y cena para que tengas cubiertas las comidas de lunes a viernes.",
     image: "/lunch-fridge-2.jpg",
     url: '/menu'
@@ -406,16 +406,17 @@ const services: Service[] = [
     url: '/products'
   },
   {
-    title: "Talleres de cocina",
-    description: "Organiza tu alimentación con anticipación y ahorra tiempo en la preparación de comidas.",
-    image: "/result-hands-on.jpg",
-    url: '/events'
+    title: "Talleres",
+    description: "Parte de nuestro disfrute es poder compartir el conocimiento y herramientas que hemos aprendido y adquirido en todo este tiempo. Queremos compartirlo para que puedas disfrutar cocinar alimentos ricos y nutritivos en tu casa con tu familia y amigo",
+    image: "/workshop-people.png",
+    url: '/events',
+    customStyle: { objectFit: 'cover', objectPosition: 'center -600px' }
   },
   {
-    title: "Caterings",
-    description: "Disfruta de platos preparados con ingredientes orgánicos y de origen local siempre que sea posible.",
-    image: "/catering-focaccia.jpg",
-    url: "/catering"
+    title: "Caterings y Eventos",
+    description: "Ofrecemos un servicio de catering personalizado y diseñado para cada cliente. Es ideal para agasajar a los invitados con comida deliciosa, novedosa y nutritiva. Al ser sin gluten y sin ingredientes de origen animal también la consideramos inclusiva, ya que todos los invitados podrán disfrutar.",
+    image: "/caterings-table.jpg",
+    url: "/catering",
   }
 ];
 
