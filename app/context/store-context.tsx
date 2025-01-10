@@ -1,18 +1,35 @@
 'use client'
 
-import React, { createContext, useState, useContext, useEffect, ReactNode } from "react"
-import { products, services, weeklyMenuExample } from "@/lib/constants";
+import React, { createContext, useState, useContext, useEffect, ReactNode, useMemo } from "react"
+import { toasterStatus, services, weeklyMenuExample } from "@/lib/constants";
 import { displayToaster } from "@/lib/utils";
 import { sendMenuEmail } from "@/actions/sendWeeklyMenu";
+import { getProducts } from "@/actions/getProducts";
 
 const StoreContext = createContext<StoreContextType | null>(null)
 
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [selectedMeals, setSelectedMeals] = useState<string[]>([])
   const [cartItems, setCartItems] = useState<CartItem[]>([])
-  const [total, setTotal] = useState(0)
+  const [total, setTotal] = useState<number>(0);
+  const [products, setProducts] = useState<ProductsByCategory[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Products page logic
+
+  const loadProducts = async () => {
+    try {
+      setIsLoading(true);
+      const data = await getProducts();
+      console.log('FATRA', data);
+      setIsLoading(false);
+      setProducts(data);
+    } catch (error) {
+      console.log('FERROR', error);
+      setIsLoading(false);
+      displayToaster(toasterStatus.ERROR, error.details);
+    };
+  };
 
   const calculateTotal = (items: CartItem[]): number => {
     return items.reduce((sum, item) => sum + item.price * item.quantity, 0)
@@ -148,7 +165,8 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     toggleMeal,
     sendWeeklyMenuToEmail,
     weeklyMenuExample,
-    services
+    services,
+    loadProducts,
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
