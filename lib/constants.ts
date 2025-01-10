@@ -1,4 +1,4 @@
-const products: ProductListByCategory[] = [
+const products: ProductsByCategory[] = [
   {
     name: "PANIFICADOS",
     products: [
@@ -420,8 +420,14 @@ const services: Service[] = [
   }
 ];
 
+const toasterStatus = {
+  ERROR: 'Error',
+  SUCCESS: 'Success',
+}
+
 export {
   products,
   weeklyMenuExample,
-  services
+  services,
+  toasterStatus
 };

@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
@@ -8,7 +8,11 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { useStore } from '@/context/store-context';
 
 const ProductGrid: React.FC = () => {
-  const { addCartItem, products } = useStore()
+  const { addCartItem, loadProducts, products } = useStore();
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
 
   const handleAddCartItem = (product: ProductItem) => {
     addCartItem(product)

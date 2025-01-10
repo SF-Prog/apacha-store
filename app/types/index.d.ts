@@ -16,7 +16,7 @@ interface ProductItem {
   meassure?: string
 }
 
-interface ProductListByCategory {
+interface ProductsByCategory {
   name: string
   products: ProductItem[]
 }
@@ -25,23 +25,6 @@ interface CartItem extends ProductItem {
   quantity: number
 }
 
-interface StoreContextType {
-  products: ProductListByCategory[],
-  cartItems: CartItem[]
-  total: number
-  addCartItem: (item: ProductItem) => void
-  removeCartItem: (itemId: string) => void
-  emptyCart: () => void
-  updateCartFromStorage: () => void,
-  onCartCheckout: () => void,
-  selectedMeals: string[],
-  totalMealsPrice: number,
-  mealPacks: MealPack[],
-  toggleMeal: (id: string) => void
-  sendWeeklyMenuToEmail: (email: string) => void,
-  weeklyMenuExample: WeeklyMenuItem[],
-  services: Service[]
-}
 
 interface ToasterType {
   SUCCESS: 'SUCCESS'
@@ -67,4 +50,33 @@ interface Service {
   image: string,
   url: string,
   customStyle?: unknown
+}
+
+interface StoreContextType {
+  products: ProductsByCategory[],
+  cartItems: CartItem[]
+  total: number
+  addCartItem: (item: ProductItem) => void
+  removeCartItem: (itemId: string) => void
+  emptyCart: () => void
+  updateCartFromStorage: () => void,
+  onCartCheckout: () => void,
+  selectedMeals: string[],
+  totalMealsPrice: number,
+  mealPacks: MealPack[],
+  toggleMeal: (id: string) => void
+  sendWeeklyMenuToEmail: (email: string) => void,
+  weeklyMenuExample: WeeklyMenuItem[],
+  services: Service[],
+  loadProducts: () => void
+}
+
+// Auth context types
+interface UserCredential {
+  email: string,
+  password: string,
+}
+
+interface AuthContextType {
+  loginUser: (data: UserCredential) => void,
 }
