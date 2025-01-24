@@ -23,7 +23,7 @@ const OurServices: React.FC = () => {
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {services.map((service, index) => (
-            <Link href={service.url}>
+            <Link href={service.url} key={service.title}>
               <motion.div
                 key={service.title}
                 className="bg-white cursor-pointer rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
