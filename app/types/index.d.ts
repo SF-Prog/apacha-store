@@ -71,7 +71,7 @@ interface StoreContextType {
   loadProducts: () => void
 }
 
-// Auth context types
+// Admin context interfaces
 interface UserCredential {
   email: string,
   password: string,
@@ -79,4 +79,12 @@ interface UserCredential {
 
 interface AuthContextType {
   loginUser: (data: UserCredential) => void,
+}
+
+// Admin context interfaces
+
+interface AdminContextType {
+  addProduct: () => void,
+  removeProduct: () => void,
+  editProduct: () => void,
 }
