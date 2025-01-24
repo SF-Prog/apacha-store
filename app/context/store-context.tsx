@@ -21,11 +21,9 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     try {
       setIsLoading(true);
       const data = await getProducts();
-      console.log('FATRA', data);
       setIsLoading(false);
       setProducts(data);
     } catch (error) {
-      console.log('FERROR', error);
       setIsLoading(false);
       displayToaster(toasterStatus.ERROR, error.details);
     };
