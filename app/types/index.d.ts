@@ -84,7 +84,8 @@ interface AuthContextType {
 // Admin context interfaces
 
 interface AdminContextType {
-  addProduct: () => void,
-  removeProduct: () => void,
-  editProduct: () => void,
+  addProduct: (product: ProductItem) => void,
+  removeProduct: (index: number) => void,
+  editProduct: (prod: ProductItem) => void,
+  productsList: ProductItem[]
 }
