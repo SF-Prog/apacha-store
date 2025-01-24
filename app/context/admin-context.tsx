@@ -1,17 +1,25 @@
 'use client'
 
 import React, { createContext, useState, useContext, useEffect, ReactNode, useMemo } from "react"
-import { loginAdmin } from "@/actions/loginAdmin";
 import { useStore } from "./store-context";
 const AdminContext = createContext<AdminContextType | null>(null)
 
 export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [ productsList, setProductsList ] = useState<ProductsByCategory[]>([]);
-  const { products } = useStore();
+  const [ productsList, setProductsList ] = useState<ProductItem[]>([]);
+  const { products, loadProducts } = useStore();
 
   useEffect(() => {
-    setProductsList(products);
-  });
+    if (!!products.length) return;
+    loadProducts();
+  }, []);
+
+  useEffect(() => {
+    const productItems = [...products].reduce((acc, cur) => {
+      return [].concat(acc, cur.products);
+    }, []);
+
+    setProductsList(productItems);
+  }, [products]);
 
   const addProduct = () => {
 
@@ -26,18 +34,23 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const value = {
+    productsList,
     addProduct,
     removeProduct,
     editProduct
   };
 
-  return <AdminContext.Provider value={value}>{children}</AdminContext.Provider>
-}
+  return (
+    <AdminContext.Provider value={value}>
+      {children}
+    </AdminContext.Provider>
+  );
+};
 
-export const useAuth = (): AdminContextType => {
+export const useAdmin = (): AdminContextType => {
   const context = useContext(AdminContext);
   if (!context) {
-    throw new Error('useAuth must be used within a AdminProvider')
+    throw new Error('useAdmin must be used within a AdminProvider')
   };
   return context;
 }
