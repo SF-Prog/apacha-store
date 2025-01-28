@@ -165,6 +165,8 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     weeklyMenuExample,
     services,
     loadProducts,
+    isLoading,
+    setIsLoading,
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
