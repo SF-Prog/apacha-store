@@ -1,78 +1,59 @@
 'use client'
 
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { AddProductForm } from '@/components/admin-panel/add-product-form/add-product-form';
 import { useAdmin } from '@/context/admin-context';
-
-interface Product {
-  id: number
-  name: string
-  price: number
-}
+import { emptyProduct } from '@/lib/constants'
 
 export function ProductsPanel() {
   const {
     productsList,
-    addProduct,
     removeProduct,
-    editProduct
   } = useAdmin();
 
-  const [newProduct, setNewProduct] = useState({ name: '', price: 0 })
-  const [editingProduct, setEditingProduct] = useState<ProductItem | null>(null)
-
-  const handleAddProduct = (product) => {
-    const newProductsList = [
-      ...productsList,
-      { ...product, id: Date.now() }
-    ];
-
-    addProduct(product);
-  };
+  const [showAddProductModal, setShowAddProductModal] = useState<boolean>(false);
+  const [showEditProductModal, setShowEditProductModal] = useState<boolean>(false);
 
   const onEdit = () => {
-    if (!editingProduct) return;
-    editProduct(editingProduct);
-    setEditingProduct(null)
+    setShowEditProductModal(true);
+  };
+
+  const onAdd = () => {
+    setShowAddProductModal(true);
   };
 
   const handleRemoveProduct = (index: number) => {
-    removeProduct(index);
+    const product = productsList[index];
+    const { id } = product;
+    removeProduct(id);
   };
 
-  const renderEditProduct = () => {
-    if (!editingProduct) return;
+  const renderEditProductModal = () => {
+    if (!showEditProductModal) return;
     return (
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline" className="mr-2">Edit</Button>
-        </DialogTrigger>
+      <Dialog open={true} onOpenChange={() => setShowEditProductModal(false)}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Edit Product</DialogTitle>
           </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <Input
-              placeholder="Product Name"
-              value={editingProduct?.title || ''}
-              onChange={(e) => setEditingProduct({ ...editingProduct!, title: e.target.value })}
-            />
-            <Input
-              placeholder="Product Description"
-              value={editingProduct?.description || ''}
-              onChange={(e) => setEditingProduct({ ...editingProduct!, description: e.target.value })}
-            />
-            <Input
-              type="number"
-              placeholder="Price"
-              value={editingProduct?.price || 0}
-              onChange={(e) => setEditingProduct({ ...editingProduct!, price: Number(e.target.value) })}
-            />
-            <Button onClick={onEdit}>Save Changes</Button>
-          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  };
+
+  const renderAddProductModal = () => {
+    if (!showAddProductModal) return;
+    return (
+      <Dialog open={true} onOpenChange={() => setShowAddProductModal(false)}>
+        <DialogContent className="sm:max-h-[720px] overflow-auto">
+          <DialogHeader>
+            <DialogTitle>Add New Product</DialogTitle>
+          </DialogHeader>
+          <AddProductForm />
         </DialogContent>
       </Dialog>
     );
@@ -80,31 +61,10 @@ export function ProductsPanel() {
 
   return (
     <div>
+      {renderAddProductModal()}
+      {renderEditProductModal()}
       <h2 className="text-2xl font-bold mb-4">Products</h2>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button className="mb-4">Add Product</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Add New Product</DialogTitle>
-          </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <Input
-              placeholder="Product Name"
-              value={newProduct.name}
-              onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-            />
-            <Input
-              type="number"
-              placeholder="Price"
-              value={newProduct.price}
-              onChange={(e) => setNewProduct({ ...newProduct, price: Number(e.target.value) })}
-            />
-            <Button onClick={handleAddProduct}>Add Product</Button>
-          </div>
-        </DialogContent>
-      </Dialog>
+      <Button className="mb-4" onClick={onAdd}>Add Product</Button>
       <Table>
         <TableHeader>
           <TableRow>
@@ -120,9 +80,16 @@ export function ProductsPanel() {
                 <TableCell>{product.title}</TableCell>
                 <TableCell>${product.price}</TableCell>
                 <TableCell>
-                  {renderEditProduct()}
-                  <Button variant="destructive" onClick={() => handleRemoveProduct(index)}>
-                    Remove
+                  <Button
+                    variant="outline"
+                    className="mr-2"
+                    onClick={onEdit}>
+                      Edit
+                  </Button>
+                  <Button
+                    variant="destructive"
+                    onClick={() => handleRemoveProduct(index)}>
+                      Remove
                   </Button>
                 </TableCell>
               </TableRow>
