@@ -74,8 +74,19 @@ const toasterStatus = {
   SUCCESS: 'Success',
 }
 
+const emptyProduct = {
+  id: '',
+  title: '',
+  image: '',
+  price: 0,
+  description: '',
+  meassures: '',
+  category: ''
+}
+
 export {
   weeklyMenuExample,
   services,
-  toasterStatus
+  toasterStatus,
+  emptyProduct
 };

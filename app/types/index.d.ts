@@ -13,7 +13,8 @@ interface ProductItem {
   image: string
   price: number
   description?: string
-  meassure?: string
+  meassures?: string,
+  category?: string
 }
 
 interface ProductsByCategory {
@@ -68,7 +69,9 @@ interface StoreContextType {
   sendWeeklyMenuToEmail: (email: string) => void,
   weeklyMenuExample: WeeklyMenuItem[],
   services: Service[],
-  loadProducts: () => void
+  loadProducts: () => void,
+  isLoading: boolean,
+  setIsLoading: (is: boolean) => void
 }
 
 // Admin context interfaces
@@ -84,9 +87,9 @@ interface AuthContextType {
 // Admin context interfaces
 
 interface AdminContextType {
-  addProduct: (product: FormData) => void,
-  removeProduct: (index: number) => void,
-  editProduct: (prod: FormData) => void,
+  addProduct: (newProduct: FormData) => void,
+  removeProduct: (id: string) => void,
+  editProduct: (editedProduct: FormData) => void,
   productsList: ProductItem[],
   isLoading: boolean
 }
