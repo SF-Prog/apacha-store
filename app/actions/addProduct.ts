@@ -7,8 +7,7 @@ import { cookies } from 'next/headers';
 export async function createProduct(formData: FormData) {
   const supabase = createServerActionClient({ cookies })
 
-  const { data: { user } } = await supabase.auth.getUser()
-
+  const { data: { session }, error: authError } = await supabase.auth.getSession()
   const title = formData.get('title') as string
   const description = formData.get('description') as string
   const price = parseFloat(formData.get('price') as string)
@@ -30,7 +29,7 @@ export async function createProduct(formData: FormData) {
   try {
 
     const { data, error } = await supabase.from('products').insert({...newProduct,
-      user_id: user.id
+      user_id: session.user.id
     });
 
     // TODO: Add your database logic here
