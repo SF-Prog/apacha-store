@@ -2,12 +2,10 @@
 
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { AddProductForm } from '@/components/admin-panel/add-product-form/add-product-form';
 import { useAdmin } from '@/context/admin-context';
-import { emptyProduct } from '@/lib/constants'
 
 export function ProductsPanel() {
   const {
@@ -59,6 +57,32 @@ export function ProductsPanel() {
     );
   };
 
+  const renderProductsList = () => {
+    if (!productsList.length) return;
+
+    return productsList.map((product, index) => {
+        return (
+          <TableRow key={product.id}>
+            <TableCell>{product.title}</TableCell>
+            <TableCell>${product.price}</TableCell>
+            <TableCell>
+              <Button
+                variant="outline"
+                className="mr-2"
+                onClick={onEdit}>
+                  Edit
+              </Button>
+              <Button
+                variant="destructive"
+                onClick={() => handleRemoveProduct(index)}>
+                  Remove
+              </Button>
+            </TableCell>
+          </TableRow>
+        )
+      });
+  };
+
   return (
     <div>
       {renderAddProductModal()}
@@ -74,27 +98,7 @@ export function ProductsPanel() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {productsList.map((product, index) => {
-            return (
-              <TableRow key={product.id}>
-                <TableCell>{product.title}</TableCell>
-                <TableCell>${product.price}</TableCell>
-                <TableCell>
-                  <Button
-                    variant="outline"
-                    className="mr-2"
-                    onClick={onEdit}>
-                      Edit
-                  </Button>
-                  <Button
-                    variant="destructive"
-                    onClick={() => handleRemoveProduct(index)}>
-                      Remove
-                  </Button>
-                </TableCell>
-              </TableRow>
-            )
-          })}
+          {renderProductsList()}
         </TableBody>
       </Table>
     </div>
