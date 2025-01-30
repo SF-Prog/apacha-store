@@ -82,6 +82,13 @@ interface UserCredential {
 
 interface AuthContextType {
   loginUser: (data: UserCredential) => void,
+  onLoginAdmin: () => void,
+  isLoading: boolean,
+  setIsLoading: (id: boolean) => void,
+  password: string,
+  setPassword: (p: string) => void,
+  email: string,
+  setEmail: (p: string) => void,
 }
 
 // Admin context interfaces
