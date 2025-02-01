@@ -16,6 +16,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { useStore } from '@/app/context/store-context'
+import { FullScreenLoader } from '../../ui/fullscreen-loader'
 
 interface SecondaryPageLayoutProps {
   children: React.ReactNode
@@ -29,8 +31,16 @@ const navPages = [
 ];
 
 const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
+  const { isLoading } = useStore();
+
+  const renderLoader = () => {
+    if (!isLoading) return;
+    return <FullScreenLoader />
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
+      {renderLoader()}
       <header className="bg-bone-500 shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/">

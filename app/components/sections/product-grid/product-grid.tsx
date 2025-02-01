@@ -3,9 +3,10 @@
 import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useStore } from '@/context/store-context';
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { useStore } from '@/context/store-context';
+import { capitalize } from '@/lib/utils'
 
 const ProductGrid: React.FC = () => {
   const { addCartItem, loadProducts, products } = useStore();
@@ -22,13 +23,13 @@ const ProductGrid: React.FC = () => {
     <div className="container mx-auto px-4 py-8">
       {products.map((category, index) => (
         <motion.div
-          key={category.name}
+          key={category.cat}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
           className="mb-12"
         >
-          <h2 className="text-2xl font-bold text-apacha-brown mb-6">{category.name}</h2>
+          <h2 className="text-2xl font-bold text-black mb-6">{capitalize(category.cat)}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {category.products.map((product) => (
               <motion.div
@@ -39,16 +40,16 @@ const ProductGrid: React.FC = () => {
                 <Card className="overflow-hidden h-full flex flex-col">
                   <div className="relative h-80">
                     <Image
-                      src={product.image}
+                      src={product.image?.length ? product.image : '/placeholder.svg'}
                       alt={product.title}
                       fill
                       style={{ objectFit: 'cover' }} 
                     />
                   </div>
                   <CardContent className="p-4 flex-grow">
-                    <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
+                    <h3 className="text-lg font-semibold mb-2">{capitalize(product.title)}</h3>
                     {product.description && (
-                      <p className="text-sm text-gray-600 mb-2">{product.description}</p>
+                      <p className="text-sm text-gray-600 mb-2">{capitalize(product.description)}</p>
                     )}
                     {product.meassures && (
                       <p className="text-sm text-gray-600 mb-2">{product.meassures}</p>
