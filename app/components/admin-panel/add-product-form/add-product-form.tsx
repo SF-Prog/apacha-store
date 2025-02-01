@@ -1,64 +1,71 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
+import React, { useState, useRef, FormEvent } from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import Image from 'next/image'
+import { Label } from '@/components/ui/label'
 import { useAdmin } from '@/app/context/admin-context'
 
-const productSchema = z.object({
-  title: z.string().min(1, 'Title is required'),
-  description: z.string().optional(),
-  price: z.number().positive('Price must be positive'),
-  meassures: z.string().optional(),
-  image: z.string().optional(),
-})
+interface FormData {
+  title: string
+  description: string
+  price: number
+  meassures: string
+  image: string
+  qty: number
+}
 
-type ProductFormValues = z.infer<typeof productSchema>
+type FormErrors = {
+  [K in keyof FormData]?: string
+}
+
+type FieldConfig = {
+  name: keyof FormData
+  label: string
+  type: 'text' | 'number' | 'textarea'
+  placeholder: string
+}
+
+const fieldConfigs: FieldConfig[] = [
+  { name: 'title', label: 'Title', type: 'text', placeholder: 'Pastel de Zanahoria' },
+  { name: 'description', label: 'Description', type: 'textarea', placeholder: 'Pastel de papa con zanahoria rallada y crema de hongos.' },
+  { name: 'price', label: 'Price', type: 'number', placeholder: '0.00' },
+  { name: 'meassures', label: 'Measure', type: 'text', placeholder: '100 ml' },
+  { name: 'qty', label: 'Quantity', type: 'number', placeholder: '0' },
+]
 
 export function AddProductForm() {
   const { addProduct, isLoading } = useAdmin();
-  const [previewImage, setPreviewImage] = useState<string | null>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [formData, setFormData] = useState<FormData>({
+    title: '',
+    description: '',
+    price: 0,
+    meassures: '',
+    image: '',
+    qty: 0
+  });
 
-  const form = useForm<ProductFormValues>({
-    resolver: zodResolver(productSchema),
-    defaultValues: {
-      title: '',
-      description: '',
-      price: 0,
-      meassures: '',
-      image: '',
-    },
-  })
-
-  const onSubmit = async (data: ProductFormValues) => {
-    const formData = new FormData()
-    Object.entries(data).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
-        formData.append(key, value.toString())
-      }
-    })
-
-    if (previewImage) {
-      formData.set('image', previewImage)
-    };
-
-    addProduct(formData);
+  const validateForm = (data: FormData): boolean => {
+    const newErrors: FormErrors = {}
+    if (!data.title) newErrors.title = 'Title is required'
+    if (data.price <= 0) newErrors.price = 'Price must be positive'
+    if (data.qty < 0) newErrors.qty = 'Quantity cannot be negative'
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
   }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'number' ? parseFloat(value) || 0 : value
+    }))
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -67,119 +74,90 @@ export function AddProductForm() {
       reader.onloadend = () => {
         const base64String = reader.result as string
         setPreviewImage(base64String)
-        form.setValue('image', base64String)
+        setFormData(prev => ({ ...prev, image: base64String }))
       }
       reader.readAsDataURL(file)
     }
-  }
+  };
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!validateForm(formData)) return;
+
+    const formDataToSend = new FormData()
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value !== undefined && value !== null) {
+        formDataToSend.append(key, value.toString())
+      }
+    });
+
+    addProduct(formDataToSend);
+  };
+
+  const renderField = (field: FieldConfig) => {
+    const InputComponent = field.type === 'textarea' ? Textarea : Input
+    return (
+      <div key={field.name}>
+        <Label htmlFor={field.name}>{field.label}</Label>
+        <InputComponent
+          id={field.name}
+          name={field.name}
+          type={field.type ?? 'text'}
+          placeholder={field.placeholder}
+          value={formData[field.name]}
+          onChange={handleInputChange}
+        />
+        {errors[field.name] && <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>}
+      </div>
+    )
+  };
+
+  const renderImageInput = () => {
+    return (
+      <div>
+        <Label htmlFor="image">Product Image</Label>
+        <div className="flex items-center space-x-4">
+          <Button
+            type="button"
+            onClick={() => imageInputRef.current?.click()}
+            variant="outline"
+          >
+            Choose File
+          </Button>
+          <input
+            id="image"
+            name="image"
+            type="file"
+            ref={imageInputRef}
+            className="hidden"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+          {previewImage && (
+            <div className="relative w-20 h-20">
+              <Image
+                src={previewImage || "/placeholder.svg"}
+                alt="Preview"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-md"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+    );
+  };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="title"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Title</FormLabel>
-              <FormControl>
-                <Input placeholder="Product title" {...field} />
-              </FormControl>
-              <FormDescription>Enter the product title</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+    <form onSubmit={onSubmit} className="space-y-8">
+      {fieldConfigs.map(renderField)}
+      {renderImageInput()}
 
-        <FormField
-          control={form.control}
-          name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Description</FormLabel>
-              <FormControl>
-                <Textarea placeholder="Product description" {...field} />
-              </FormControl>
-              <FormDescription>Enter a description for the product</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="price"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Price</FormLabel>
-              <FormControl>
-                <Input 
-                  type="number" 
-                  placeholder="0.00" 
-                  {...field} 
-                  onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                />
-              </FormControl>
-              <FormDescription>Enter the product price</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="meassures"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Measure</FormLabel>
-              <FormControl>
-                <Input placeholder="e.g., kg, lbs, pcs" {...field} />
-              </FormControl>
-              <FormDescription>Enter the unit of measure for the product</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormItem>
-          <FormLabel>Product Image</FormLabel>
-          <FormControl>
-            <div className="flex items-center space-x-4">
-              <Button
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                variant="outline"
-              >
-                Choose File
-              </Button>
-              <input
-                type="file"
-                ref={fileInputRef}
-                className="hidden"
-                accept="image/*"
-                onChange={handleFileChange}
-              />
-              {previewImage && (
-                <div className="relative w-20 h-20">
-                  <Image
-                    src={previewImage || "/placeholder.svg"}
-                    alt="Preview"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-md"
-                  />
-                </div>
-              )}
-            </div>
-          </FormControl>
-          <FormDescription>Upload an image for the product</FormDescription>
-          <FormMessage />
-        </FormItem>
-
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? 'Creating...' : 'Create Product'}
-        </Button>
-      </form>
-    </Form>
+      <Button type="submit" disabled={isLoading}>
+        {isLoading ? 'Creating...' : 'Create Product'}
+      </Button>
+    </form>
   )
-}
+};

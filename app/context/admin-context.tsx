@@ -2,22 +2,27 @@
 
 import React, { createContext, useState, useContext, useEffect, ReactNode, useMemo } from "react"
 import { useStore } from "./store-context";
-import { createProduct } from "@/actions/addProduct";
+import { createProduct } from "@/actions/create-product";
+import { getProductCategories } from '@/actions/get-product-categories';
 import { displayToaster } from "@/lib/utils";
+
 const AdminContext = createContext<AdminContextType | null>(null)
 
 export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [ productsList, setProductsList ] = useState<ProductItem[]>([]);
+  const [ showCreateProductModal, setShowCreateProductModal ] = useState<boolean>(false);
+  const [ showEditProductModal, setShowEditProductModal ] = useState<boolean>(false);
+
   const { products, loadProducts, isLoading, setIsLoading } = useStore();
 
   useEffect(() => {
-    if (!!products.length) return;
-    loadProducts();
+    void loadProducts();
+    void getProductCategories();
   }, []);
 
   useEffect(() => {
     const productItems = [...products].reduce((acc, cur) => {
-      return [].concat(acc, cur.products);
+      return [].concat(acc, [...cur.products]);
     }, []);
 
     setProductsList(productItems);
@@ -27,13 +32,12 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setIsLoading(true);
     try {
       const result = await createProduct(data)
-      if (result.success) {
-        displayToaster('success', 'The product has been successfully created.',)
-        // form.reset()
-        // setPreviewImage(null)
-      } else {
-        throw new Error(result.error)
-      }
+      if (!result.success)  throw new Error(result.error);
+
+      displayToaster('success', 'The product has been successfully created.',)
+
+      await loadProducts();
+      setShowCreateProductModal(false);
     } catch (error) {
       displayToaster('Error', 'Failed to create product. Please try again.')
     } finally {
@@ -42,7 +46,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const removeProduct = (id: string) => {
-    
+
   };
 
   const editProduct = (newProduct: FormData) => {
@@ -54,7 +58,11 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     addProduct,
     removeProduct,
     editProduct,
-    isLoading
+    isLoading,
+    showCreateProductModal,
+    setShowCreateProductModal,
+    showEditProductModal,
+    setShowEditProductModal,
   };
 
   return (

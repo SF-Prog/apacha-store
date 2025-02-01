@@ -23,19 +23,21 @@
       "@/sections/*": ["./app/components/sections/*"],
       "@/context/*": ["./app/context/*"],
       "@/actions/*": ["./app/actions/*"],
-      "@/constants/*": ["lib/constants/*"],
+      "@/constants/*": ["app/lib/constants/*"],
+      "@/lib/*": ["app/lib/*"],
     },
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "lib/utils.ts",
+    "app/lib/utils.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": [

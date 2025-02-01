@@ -14,7 +14,8 @@ interface ProductItem {
   price: number
   description?: string
   meassures?: string,
-  category?: string
+  category?: string,
+  qty: number
 }
 
 interface ProductsByCategory {
@@ -74,7 +75,7 @@ interface StoreContextType {
   setIsLoading: (is: boolean) => void
 }
 
-// Admin context interfaces
+// Auth context interfaces
 interface UserCredential {
   email: string,
   password: string,
@@ -98,5 +99,9 @@ interface AdminContextType {
   removeProduct: (id: string) => void,
   editProduct: (editedProduct: FormData) => void,
   productsList: ProductItem[],
-  isLoading: boolean
+  isLoading: boolean,
+  showCreateProductModal: boolean,
+  setShowCreateProductModal: (is: boolean) => void,
+  showEditProductModal: boolean,
+  setShowEditProductModal: (is: boolean) => void,
 }

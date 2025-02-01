@@ -1,5 +1,5 @@
 import { supabase } from '@/lib/supabase';
-import { isAdmin } from '@/actions/isAdmin';
+import { isAdmin } from '@/actions/is-current-user-admin';
 
 export async function updateProduct(userId, productId, updatedData) {
   // Check if the user is an admin

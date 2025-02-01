@@ -1,10 +1,10 @@
 'use client'
 
 import React, { createContext, useState, useContext, useEffect, ReactNode, useMemo } from "react"
-import { toasterStatus, services, weeklyMenuExample } from "@/lib/constants";
-import { displayToaster } from "@/lib/utils";
-import { sendMenuEmail } from "@/actions/sendWeeklyMenu";
-import { getProducts } from "@/actions/getProducts";
+import { toasterStatus, services, weeklyMenuExample } from "@/app/lib/constants";
+import { displayToaster } from "@/app/lib/utils";
+import { sendMenuEmail } from "@/actions/send-weekly-menu";
+import { getProducts } from "@/actions/get-products";
 
 const StoreContext = createContext<StoreContextType | null>(null)
 
