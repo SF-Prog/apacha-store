@@ -4,12 +4,17 @@ import React, { createContext, useState, useContext, useEffect, ReactNode, useMe
 import { useStore } from "./store-context";
 import { createProduct } from "@/actions/create-product";
 import { getProductCategories } from '@/actions/get-product-categories';
+import { createProductCategory } from "@/actions/create-product-category";
+import { setProductCategory } from '@/actions/set-product-category';
+import { deleteProductCategory } from '@/actions/delete-product-category';
 import { displayToaster } from "@/lib/utils";
+import { toasterStatus } from "@/lib/constants";
 
 const AdminContext = createContext<AdminContextType | null>(null)
 
 export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [ productsList, setProductsList ] = useState<ProductItem[]>([]);
+  const [ productCategories, setProductCategories ] = useState<ProductCategory[]>([]);
   const [ showCreateProductModal, setShowCreateProductModal ] = useState<boolean>(false);
   const [ showEditProductModal, setShowEditProductModal ] = useState<boolean>(false);
 
@@ -17,7 +22,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   useEffect(() => {
     void loadProducts();
-    void getProductCategories();
+    void loadProductCategories();
   }, []);
 
   useEffect(() => {
@@ -27,6 +32,17 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
     setProductsList(productItems);
   }, [products]);
+
+  const loadProductCategories = async () => {
+    try {
+      const categories = await getProductCategories();
+      if (!categories) return;
+
+      setProductCategories(categories);
+    } catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    };
+  }
 
   const addProduct = async (data: FormData) => {
     setIsLoading(true);
@@ -53,6 +69,48 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   };
 
+  const addProductCategory = async (name: string) => {
+    try {
+      setIsLoading(true);
+      await createProductCategory({ name });
+      await loadProductCategories();
+    }
+    catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    }
+    finally {
+      setIsLoading(false);
+    }
+  };
+
+  const updateProductCategory = async (cat: ProductCategory) => {
+    try {
+      setIsLoading(true);
+      await setProductCategory(cat);
+      await loadProductCategories();
+    }
+    catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    }
+    finally {
+      setIsLoading(false);
+    }
+  };
+
+  const removeProductCategory = async (id: string) => {
+    try {
+      setIsLoading(true);
+      await deleteProductCategory(id);
+      await loadProductCategories();
+    }
+    catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    }
+    finally {
+      setIsLoading(false);
+    }
+  };
+
   const value = {
     productsList,
     addProduct,
@@ -63,6 +121,10 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setShowCreateProductModal,
     showEditProductModal,
     setShowEditProductModal,
+    addProductCategory,
+    updateProductCategory,
+    removeProductCategory,
+    productCategories
   };
 
   return (
