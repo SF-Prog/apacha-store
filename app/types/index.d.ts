@@ -19,7 +19,7 @@ interface ProductItem {
 }
 
 interface ProductsByCategory {
-  name: string
+  cat: string
   products: ProductItem[]
 }
 
