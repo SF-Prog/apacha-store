@@ -26,11 +26,20 @@ export async function createProduct(formData: FormData) {
     const { error } = await supabase.from('products').insert(newProduct);
 
     if (error) {
-      return { success: false, error: error?.message ?? 'Failed to create product' };
+      return {
+        success: false,
+        error: error?.message ?? 'Failed to create product'
+      };
     };
 
-    return { success: true, message: 'Product successfully created' };
+    return {
+      success: true,
+      message: 'Product successfully created'
+    };
   } catch (error) {
-    return { success: false, error: error?.message ?? 'Failed to create product' }
+    return {
+      success: false,
+      error: error?.message ?? 'Failed to create product'
+    }
   }
 }
