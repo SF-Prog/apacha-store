@@ -1,12 +1,12 @@
 import { AdminProvider } from '@/context/admin-context';
-import { supabase } from '@/lib/supabase';
+
+interface AdminLayoutProps {
+  children: React.ReactNode,
+};
 
 export default async function AdminLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
-
+}: AdminLayoutProps) {
   return (
     <AdminProvider>
       {children}

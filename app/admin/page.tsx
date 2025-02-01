@@ -1,13 +1,12 @@
 'use client'
 
-import React from "react"
+import React, { useEffect } from "react";
 import AdminPanel from "@/components/admin-panel/layout/layout";
-import { AdminProvider } from "@/context/admin-context";
+import { supabase } from "@/lib/supabase";
 
 export default function AdminPage() {
+
   return (
-     <AdminProvider>
-       <AdminPanel />
-     </AdminProvider>
+    <AdminPanel />
   );
 };
