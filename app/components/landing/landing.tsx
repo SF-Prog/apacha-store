@@ -12,15 +12,13 @@ import OurServices from "@/sections/our-services/our-services";
 export default function Landing() {
   return (
     <Layout>
-      <main>
-        <HeroSection />
-        <ScrollAnimatedBackground imageSrc="/background-mid-section.png" imageAlt="background-mid-section">
-            <AboutUs />
-            <AboutApacha />
-            <OurServices />
-        </ScrollAnimatedBackground>
-        <ContactUs />
-      </main>
+      <HeroSection />
+      <ScrollAnimatedBackground imageSrc="/background-mid-section.png" imageAlt="background-mid-section">
+          <AboutUs />
+          <AboutApacha />
+          <OurServices />
+      </ScrollAnimatedBackground>
+      <ContactUs />
     </Layout>
   )
 }
