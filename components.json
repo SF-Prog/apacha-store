@@ -10,11 +10,12 @@
     "cssVariables": true
   },
   "aliases": {
-    "utils": "@/lib/utils",
-    "components": "@/components",
+    "utils": "@/app/lib/utils",
+    "components": "@/app/components",
     "sections": "@/sections",
     "context": "@/context",
     "constants": "@/constants",
-    "actions": "@/actions"
+    "actions": "@/actions",
+    "lib": "@/lib"
   }
 }

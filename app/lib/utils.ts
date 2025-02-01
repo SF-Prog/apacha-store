@@ -1,17 +1,18 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import toast from "react-hot-toast";
+import { toasterStatus } from "./constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 export function displayToaster(type: string, message: string) {
   switch(type) {
-    case('SUCCESS'): {
+    case(toasterStatus.SUCCESS): {
       toast.success(message);
       break;
     }
-    case('ERROR'): {
+    case(toasterStatus.ERROR): {
       toast.error(message);
       break;
     }
