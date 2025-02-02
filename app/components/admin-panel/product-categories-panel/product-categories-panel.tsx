@@ -65,7 +65,7 @@ export function ProductCategoriesPanel() {
   );
 
   const onNameChange = (e) => {
-    const newName = e.targe.value;
+    const newName = e.target.value;
     setEditingCategory({ ...editingCategory, name: newName });
   };
 
