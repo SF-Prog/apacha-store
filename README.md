@@ -74,7 +74,7 @@ This project is inspired by Manu and Emi, the founders of Apacha, who are except
 For any inquiries or support, please reach out to the Apacha team:
 
 - **Email**: [apachacocina@gmail.com](mailto\:apachacocina@gmail.com)
-- **apachacocina@gmail.comm](https://apacha.com) (Coming Soon!)
+- **apachacocina@gmail.com](https://apacha.com) (Coming Soon!)
 
 ---
 
