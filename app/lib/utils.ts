@@ -6,6 +6,7 @@ import { toasterStatus } from "./constants";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
 export function displayToaster(type: string, message: string) {
   switch(type) {
     case(toasterStatus.SUCCESS): {
@@ -21,3 +22,10 @@ export function displayToaster(type: string, message: string) {
 export function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
+export function parseProductsList(productsByCategory) {
+  const productItems = [...productsByCategory].reduce((acc, cur) => {
+    return [].concat(acc, [...cur.products]);
+  }, []);
+
+  return productItems;
+};
