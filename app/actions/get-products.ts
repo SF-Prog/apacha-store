@@ -8,7 +8,14 @@ export async function getProducts() {
       throw new Error(error.message);
     };
 
-    return data;
+    // For some reason supabase is returning empty products in case there is no
+    // products linked to that category:
+    const clearData = data.filter((cat) => {
+      const hasSomeProduct = cat.products.some((p) => p.id);
+      return hasSomeProduct;
+    });
+
+    return clearData;
   } catch (error) {
     return error;
   };

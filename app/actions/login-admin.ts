@@ -15,12 +15,12 @@ export async function loginAdmin(email, password) {
     const cookiesData = await cookies();
 
     cookiesData.set({
-      name: 'supabase-auth',
+      name: 'access_token',
       value: data.session?.access_token ?? '',
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/admin",
+      // sameSite: "lax",
+      // path: "/admin",
       maxAge: 60 * 60 * 24 * 1,
     });
 
@@ -29,8 +29,8 @@ export async function loginAdmin(email, password) {
       value: data.session?.refresh_token ?? '',
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      path: "/admin",
+      // sameSite: "lax",
+      // path: "/admin",
       maxAge: 60 * 60 * 24 * 1,
     });
 

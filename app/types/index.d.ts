@@ -23,10 +23,15 @@ interface ProductsByCategory {
   products: ProductItem[]
 }
 
+interface ProductCategory {
+  id?: string,
+  created_at?: string,
+  name: string
+}
+
 interface CartItem extends ProductItem {
   quantity: number
 }
-
 
 interface ToasterType {
   SUCCESS: 'SUCCESS'
@@ -75,7 +80,7 @@ interface StoreContextType {
   setIsLoading: (is: boolean) => void
 }
 
-// Auth context interfaces
+// Auth interfaces
 interface UserCredential {
   email: string,
   password: string,
@@ -92,7 +97,7 @@ interface AuthContextType {
   setEmail: (p: string) => void,
 }
 
-// Admin context interfaces
+// Admin interfaces
 
 interface AdminContextType {
   addProduct: (newProduct: FormData) => void,
@@ -104,4 +109,10 @@ interface AdminContextType {
   setShowCreateProductModal: (is: boolean) => void,
   showEditProductModal: boolean,
   setShowEditProductModal: (is: boolean) => void,
+  productCategories: ProductCategory[],
+  addProductCategory: (id: string) => void,
+  removeProductCategory: (id: string) => void,
+  updateProductCategory: (cat: ProductCategory) => void,
 }
+
+type AdminPanelTabItem = 'products' | 'services' | 'product_categories' | 'events';

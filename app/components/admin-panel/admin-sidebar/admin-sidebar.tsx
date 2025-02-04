@@ -1,11 +1,9 @@
 import { ElementType } from 'react'
-import { Package, Briefcase, Calendar } from 'lucide-react'
-
-type AdminPanelTab = 'products' | 'services' | 'events'
+import { Package, Briefcase, Calendar, PackageSearch } from 'lucide-react'
 
 interface SidebarProps {
-  activeTab: AdminPanelTab
-  setActiveTab: (tab: AdminPanelTab) => void
+  activeTab: AdminPanelTabItem
+  setActiveTab: (tab: AdminPanelTabItem) => void
 }
 
 export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
@@ -23,6 +21,12 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           text="Services"
           isActive={activeTab === 'services'}
           onClick={() => setActiveTab('services')}
+        />
+        <SidebarItem
+          icon={PackageSearch}
+          text="Product Categories"
+          isActive={activeTab === 'product_categories'}
+          onClick={() => setActiveTab('product_categories')}
         />
         <SidebarItem
           icon={Calendar}

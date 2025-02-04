@@ -1,11 +1,12 @@
 'use client'
 
-import React, { useState, useRef, FormEvent } from 'react'
+import React, { useState, useRef, FormEvent, Fragment } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { useAdmin } from '@/app/context/admin-context'
 
 interface FormData {
@@ -14,6 +15,7 @@ interface FormData {
   price: number
   meassures: string
   image: string
+  category: string
   qty: number
 }
 
@@ -24,20 +26,21 @@ type FormErrors = {
 type FieldConfig = {
   name: keyof FormData
   label: string
-  type: 'text' | 'number' | 'textarea'
+  type: 'text' | 'number' | 'textarea' | 'select'
   placeholder: string
 }
 
 const fieldConfigs: FieldConfig[] = [
   { name: 'title', label: 'Title', type: 'text', placeholder: 'Pastel de Zanahoria' },
   { name: 'description', label: 'Description', type: 'textarea', placeholder: 'Pastel de papa con zanahoria rallada y crema de hongos.' },
-  { name: 'price', label: 'Price', type: 'number', placeholder: '0.00' },
+  { name: 'price', label: 'Price', type: 'text', placeholder: '0.00' },
   { name: 'meassures', label: 'Measure', type: 'text', placeholder: '100 ml' },
   { name: 'qty', label: 'Quantity', type: 'number', placeholder: '0' },
+  { name: 'category', label: 'Category', type: 'select', placeholder: 'Panes' },
 ]
 
 export function AddProductForm() {
-  const { addProduct, isLoading } = useAdmin();
+  const { addProduct, isLoading, productCategories } = useAdmin();
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -46,6 +49,7 @@ export function AddProductForm() {
     description: '',
     price: 0,
     meassures: '',
+    category: null,
     image: '',
     qty: 0
   });
@@ -55,16 +59,19 @@ export function AddProductForm() {
     if (!data.title) newErrors.title = 'Title is required'
     if (data.price <= 0) newErrors.price = 'Price must be positive'
     if (data.qty < 0) newErrors.qty = 'Quantity cannot be negative'
+    if (!data.category) newErrors.category = 'Category is required'
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target
+    const { name, value, type } = e.target;
+
+    const parsedValue = type === 'number' ? parseFloat(value) || 0 : value;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'number' ? parseFloat(value) || 0 : value
-    }))
+      [name]: parsedValue
+    }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,8 +101,40 @@ export function AddProductForm() {
     addProduct(formDataToSend);
   };
 
+  const handleCategoryChange = (value: string) => {
+    setFormData(prev => ({ ...prev, category: value }));
+  };
+
+  const renderSelectField = (config: FieldConfig) => {
+    const categories = [...productCategories];
+
+    return (
+      <Fragment key={config.label}>
+        <Label htmlFor="category">{config.label}</Label>
+        <Select onValueChange={handleCategoryChange} value={formData.category ?? null}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder={config.placeholder} />
+          </SelectTrigger>
+          <SelectContent>
+            {categories?.map((cat: ProductCategory) => (
+              <SelectItem key={cat.id} value={cat.id}>
+                {cat.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
+      </Fragment>
+    );
+  };
+
   const renderField = (field: FieldConfig) => {
-    const InputComponent = field.type === 'textarea' ? Textarea : Input
+    const { type } = field;
+
+    if (type === 'select') return renderSelectField(field);
+
+    const InputComponent = type === 'textarea' ? Textarea : Input
+
     return (
       <div key={field.name}>
         <Label htmlFor={field.name}>{field.label}</Label>
@@ -104,7 +143,7 @@ export function AddProductForm() {
           name={field.name}
           type={field.type ?? 'text'}
           placeholder={field.placeholder}
-          value={formData[field.name]}
+          value={formData[field.name] as string|number}
           onChange={handleInputChange}
         />
         {errors[field.name] && <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>}
