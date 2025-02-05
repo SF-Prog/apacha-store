@@ -7,7 +7,7 @@ import { getProductCategories } from '@/actions/get-product-categories';
 import { createProductCategory } from "@/actions/create-product-category";
 import { setProductCategory } from '@/actions/set-product-category';
 import { deleteProductCategory } from '@/actions/delete-product-category';
-import { displayToaster } from "@/lib/utils";
+import { displayToaster, parseProductsList } from "@/lib/utils";
 import { toasterStatus } from "@/lib/constants";
 
 const AdminContext = createContext<AdminContextType | null>(null)
@@ -26,9 +26,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   }, []);
 
   useEffect(() => {
-    const productItems = [...products].reduce((acc, cur) => {
-      return [].concat(acc, [...cur.products]);
-    }, []);
+    const productItems = parseProductsList(products);
 
     setProductsList(productItems);
   }, [products]);
@@ -47,7 +45,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const addProduct = async (data: FormData) => {
     setIsLoading(true);
     try {
-      const result = await createProduct(data)
+      const result = await createProduct(data);
       if (!result.success)  throw new Error(result.error);
 
       displayToaster('success', 'The product has been successfully created.',)
