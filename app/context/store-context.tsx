@@ -2,7 +2,7 @@
 
 import React, { createContext, useState, useContext, useEffect, ReactNode, useMemo } from "react"
 import { toasterStatus, services, weeklyMenuExample } from "@/app/lib/constants";
-import { displayToaster } from "@/app/lib/utils";
+import { displayToaster, parseProductsList } from "@/app/lib/utils";
 import { sendMenuEmail } from "@/actions/send-weekly-menu";
 import { getProducts } from "@/actions/get-products";
 
@@ -14,8 +14,6 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [total, setTotal] = useState<number>(0);
   const [products, setProducts] = useState<ProductsByCategory[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  // Products page logic
 
   const loadProducts = async () => {
     try {
@@ -42,20 +40,26 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   }
 
-  const addCartItem = (mealPack: ProductItem) => {
+  const addCartItem = (newItem: ProductItem) => {
+    const productsList = parseProductsList(products);
+
+    const availableQuantity = productsList.find((p) => p.id === newItem.id)?.qty;
+
     setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === mealPack.id)
-      if (existingItem) {
-        return prevItems.map(item =>
-          item.id === mealPack.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      } else {
-        return [...prevItems, { ...mealPack, quantity: 1 }]
-      }
-    })
-  }
+      const existingItem = prevItems.find(item => item.id === newItem.id);
+      if (existingItem) return [...prevItems, { ...newItem, quantity: 1 }];
+
+      return prevItems.map(item => {
+        const isModifiedItem = item.id === newItem.id;
+        if (!isModifiedItem) return item;
+
+        const hasStockAvailable = availableQuantity >= item.quantity + 1;
+        if (!hasStockAvailable) return item;
+
+        return { ...item, quantity: item.quantity + 1 }
+      });
+    });
+  };
 
   const removeCartItem = (itemId: string) => {
     setCartItems(prevItems => {
@@ -81,8 +85,6 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     )}`;
     window.open(whatsappLink);
   };
-
-  // Menu page logic
 
   const mealPacks: MealPack[] = [
     {
@@ -137,9 +139,8 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     };
   };
 
-  // Mantain cart on local storage to improve user retention
-
   useEffect(() => {
+    // Mantain cart on local storage to improve user retention
     updateCartFromStorage()
   }, [])
 
