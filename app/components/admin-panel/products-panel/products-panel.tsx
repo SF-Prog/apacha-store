@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { useAdmin } from '@/context/admin-context'
-import Image from 'next/image'
 import { AddProductForm } from '@/components/admin-panel/add-product-form/add-product-form';
 
 export function ProductsPanel() {
@@ -41,7 +41,7 @@ export function ProductsPanel() {
 
   const renderProductsList = () => {
     if (!productsList?.length) return;
-    console.log('whot', productsList);
+
     return productsList.map((product, index) => {
       if (!product) return;
       return (
@@ -74,7 +74,7 @@ export function ProductsPanel() {
   };
 
   const renderCreateProductModal = () => (
-    <DialogContent className="sm:max-w-[425px]">
+    <DialogContent className="sm:max-w-[450px] overflow-y-scroll max-h-[90%]">
       <DialogHeader>
         <DialogTitle>Add New Product</DialogTitle>
       </DialogHeader>
