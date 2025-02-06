@@ -95,6 +95,7 @@ interface AuthContextType {
   setPassword: (p: string) => void,
   email: string,
   setEmail: (p: string) => void,
+  isAdmin: () => Promise<boolean>
 }
 
 // Admin interfaces
