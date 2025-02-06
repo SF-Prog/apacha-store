@@ -1,6 +1,6 @@
 'use server'
 
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 
 export async function createProduct(formData: FormData) {
   const title = formData.get('title') as string

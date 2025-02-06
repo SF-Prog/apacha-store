@@ -1,10 +1,10 @@
 'use server'
 
-import { supabase } from '@/lib/supabase';
-import { cookies } from 'next/headers';
+import { createClient } from '@/lib/supabase/server';
 
 export async function loginAdmin(email, password) {
   try {
+    const supabase = await createClient();
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -12,33 +12,13 @@ export async function loginAdmin(email, password) {
 
     if (error?.message) { throw error };
 
-    const cookiesData = await cookies();
-
-    cookiesData.set({
-      name: 'access_token',
-      value: data.session?.access_token ?? '',
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      // sameSite: "lax",
-      // path: "/admin",
-      maxAge: 60 * 60 * 24 * 1,
-    });
-
-    cookiesData.set({
-      name: 'supabase-refresh-token',
-      value: data.session?.refresh_token ?? '',
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      // sameSite: "lax",
-      // path: "/admin",
-      maxAge: 60 * 60 * 24 * 1,
-    });
-
-    // await supabase.setSession({ session:  })
+    await supabase.auth.setSession({ access_token: data.session?.access_token, refresh_token: data.session?.refresh_token });
 
     return { success: true, message: 'Login successful!'};
   } catch (error) {
-    if (typeof error.message !== 'string') return new Error('Something went wrong');
-    return new Error(error.message);
+    if (typeof error.message !== 'string')
+      return { success: false, error: new Error('Something went wrong')};
+
+    return { success: false, error: new Error(error.message)};
   };
-} 
+}

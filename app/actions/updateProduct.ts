@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 import { isAdmin } from '@/actions/is-current-user-admin';
 
 export async function updateProduct(userId, productId, updatedData) {
