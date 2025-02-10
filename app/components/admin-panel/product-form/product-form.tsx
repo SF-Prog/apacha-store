@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useRef, FormEvent, Fragment } from 'react'
+import React, { useState, useRef, FormEvent, Fragment, useEffect } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,9 +9,10 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { useAdmin } from '@/app/context/admin-context'
 
+
 interface FormData {
   title: string
-  description: string
+  description?: string
   price: number
   meassures: string
   image: string
@@ -21,6 +22,11 @@ interface FormData {
 
 type FormErrors = {
   [K in keyof FormData]?: string
+}
+
+interface ProductFormProps {
+  onSubmit: (FormData) => void,
+  initialValues?: ProductItem
 }
 
 type FieldConfig = {
@@ -36,11 +42,12 @@ const fieldConfigs: FieldConfig[] = [
   { name: 'price', label: 'Price', type: 'text', placeholder: '0.00' },
   { name: 'meassures', label: 'Measure', type: 'text', placeholder: '100 ml' },
   { name: 'qty', label: 'Quantity', type: 'number', placeholder: '0' },
-  { name: 'category', label: 'Category', type: 'select', placeholder: 'Panes' },
+  { name: 'category', label: 'Category', type: 'select', placeholder: 'Select category' },
 ]
 
-export function AddProductForm() {
-  const { addProduct, isLoading, productCategories } = useAdmin();
+export function ProductForm(props: ProductFormProps) {
+  const { onSubmit, initialValues } = props;
+  const { isLoading, productCategories } = useAdmin();
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -53,6 +60,14 @@ export function AddProductForm() {
     image: '',
     qty: 0
   });
+
+  useEffect(() => {
+    if (!initialValues) return;
+    // Update correspondent states ofr UI product initial display.
+    setFormData(initialValues as FormData);
+    setPreviewImage(initialValues.image);
+    handleCategoryChange(initialValues.category);
+  }, []);
 
   const validateForm = (data: FormData): boolean => {
     const newErrors: FormErrors = {}
@@ -87,7 +102,7 @@ export function AddProductForm() {
     }
   };
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!validateForm(formData)) return;
 
@@ -98,7 +113,7 @@ export function AddProductForm() {
       }
     });
 
-    addProduct(formDataToSend);
+    onSubmit(formDataToSend);
   };
 
   const handleCategoryChange = (value: string) => {
@@ -190,12 +205,12 @@ export function AddProductForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="space-y-8">
       {fieldConfigs.map(renderField)}
       {renderImageInput()}
 
       <Button type="submit" disabled={isLoading}>
-        {isLoading ? 'Creating...' : 'Create Product'}
+        {isLoading ? 'Setting...' : 'Set Product'}
       </Button>
     </form>
   )
