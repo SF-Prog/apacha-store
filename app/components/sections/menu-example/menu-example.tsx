@@ -15,7 +15,7 @@ export default function MenuExample() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Nuestro Menú Semanal
+          Te compartimos un ejemplo
         </motion.h2>
 
         <motion.div
@@ -26,7 +26,7 @@ export default function MenuExample() {
         >
           <Card className="overflow-hidden">
             <Image
-              src="/placeholder.svg?height=600&width=800"
+              src="/menu-semanal.png"
               alt="Menú semanal de Apacha"
               width={800}
               height={600}
