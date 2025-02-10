@@ -3,6 +3,8 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode, useMemo } from "react"
 import { useStore } from "./store-context";
 import { createProduct } from "@/actions/create-product";
+import { deleteProduct } from "@/actions/delete-product";
+import { setProduct } from "@/actions/set-product";
 import { getProductCategories } from '@/actions/get-product-categories';
 import { createProductCategory } from "@/actions/create-product-category";
 import { setProductCategory } from '@/actions/set-product-category';
@@ -59,12 +61,33 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   };
 
-  const removeProduct = (id: string) => {
-
+  const removeProduct = async (id: string) => {
+    try {
+      setIsLoading(true);
+      await deleteProduct(id);
+      await loadProducts();
+    }
+    catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    }
+    finally {
+      setIsLoading(false);
+    }
   };
 
-  const editProduct = (newProduct: FormData) => {
+  const editProduct = async (data: FormData) => {
+    try {
+      setIsLoading(true);
 
+      await setProduct(data);
+      await loadProducts();
+    }
+    catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    }
+    finally {
+      setIsLoading(false);
+    };
   };
 
   const addProductCategory = async (name: string) => {
