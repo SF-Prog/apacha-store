@@ -2,14 +2,16 @@
 
 import { supabase } from '@/lib/supabase/client';
 
-export async function createProduct(formData: FormData) {
-  const title = formData.get('title') as string
-  const description = formData.get('description') as string
-  const price = parseFloat(formData.get('price') as string)
-  const image = formData.get('image') as string
-  const meassures = formData.get('meassures') as string
-  const category = formData.get('category') as string
-  const qty = parseFloat(formData.get('qty') as string)
+export async function createProduct(data: FormData) {
+  const title = data.get('title') as string
+  const description = data.get('description') as string
+  const price = parseFloat(data.get('price') as string)
+  const image = data.get('image') as string
+  const meassures = data.get('meassures') as string
+  const category = data.get('category') as string
+  const qty = parseFloat(data.get('qty') as string)
+  const is_published = !!data.get('is_published') as boolean
+  const priority = parseFloat(data.get('priority') as string)
 
   const newProduct: ProductItem = {
     id: Date.now().toString(),
@@ -19,7 +21,9 @@ export async function createProduct(formData: FormData) {
     image,
     meassures,
     category,
-    qty
+    qty,
+    priority,
+    is_published,
   };
 
   try {
