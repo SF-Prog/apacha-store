@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import { Switch } from '@/components/ui/switch'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { useAdmin } from '@/app/context/admin-context'
 
@@ -18,6 +19,8 @@ interface FormData {
   image: string
   category: string
   qty: number
+  is_published: boolean
+  priority: number
 }
 
 type FormErrors = {
@@ -32,17 +35,19 @@ interface ProductFormProps {
 type FieldConfig = {
   name: keyof FormData
   label: string
-  type: 'text' | 'number' | 'textarea' | 'select'
+  type: 'text' | 'number' | 'textarea' | 'select' | 'switch'
   placeholder: string
 }
 
 const fieldConfigs: FieldConfig[] = [
-  { name: 'title', label: 'Title', type: 'text', placeholder: 'Pastel de Zanahoria' },
-  { name: 'description', label: 'Description', type: 'textarea', placeholder: 'Pastel de papa con zanahoria rallada y crema de hongos.' },
-  { name: 'price', label: 'Price', type: 'text', placeholder: '0.00' },
-  { name: 'meassures', label: 'Measure', type: 'text', placeholder: '100 ml' },
-  { name: 'qty', label: 'Quantity', type: 'number', placeholder: '0' },
-  { name: 'category', label: 'Category', type: 'select', placeholder: 'Select category' },
+  { name: 'title', label: 'Título', type: 'text', placeholder: 'Pastel de Zanahoria' },
+  { name: 'description', label: 'Descripción', type: 'textarea', placeholder: 'Pastel de papa con zanahoria rallada y crema de hongos.' },
+  { name: 'price', label: 'Precio', type: 'text', placeholder: '0.00' },
+  { name: 'meassures', label: 'Medidas', type: 'text', placeholder: '100 ml' },
+  { name: 'qty', label: 'Cantidad Disponible', type: 'number', placeholder: '0' },
+  { name: 'is_published', label: 'Está Publicado', type: 'switch', placeholder: '0' },
+  { name: 'priority', label: 'Prioridad', type: 'number', placeholder: '' },
+  { name: 'category', label: 'Categoria', type: 'select', placeholder: 'Select category' },
 ]
 
 export function ProductForm(props: ProductFormProps) {
@@ -58,7 +63,9 @@ export function ProductForm(props: ProductFormProps) {
     meassures: '',
     category: null,
     image: '',
-    qty: 0
+    qty: 0,
+    is_published: false,
+    priority: 0
   });
 
   useEffect(() => {
@@ -66,6 +73,7 @@ export function ProductForm(props: ProductFormProps) {
     // Update correspondent states ofr UI product initial display.
     setFormData(initialValues as FormData);
     setPreviewImage(initialValues.image);
+    console.log('INITIAL', initialValues);
     handleCategoryChange(initialValues.category);
   }, []);
 
@@ -117,6 +125,7 @@ export function ProductForm(props: ProductFormProps) {
   };
 
   const handleCategoryChange = (value: string) => {
+    console.log('SRT', value);
     setFormData(prev => ({ ...prev, category: value }));
   };
 
@@ -124,9 +133,9 @@ export function ProductForm(props: ProductFormProps) {
     const categories = [...productCategories];
 
     return (
-      <Fragment key={config.label}>
+      <div key={config.label}>
         <Label htmlFor="category">{config.label}</Label>
-        <Select onValueChange={handleCategoryChange} value={formData.category ?? null}>
+        <Select onValueChange={handleCategoryChange} value={formData.category ?? initialValues.category}>
           <SelectTrigger className="w-full">
             <SelectValue placeholder={config.placeholder} />
           </SelectTrigger>
@@ -139,7 +148,22 @@ export function ProductForm(props: ProductFormProps) {
           </SelectContent>
         </Select>
         {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
-      </Fragment>
+      </div>
+    );
+  };
+
+  const renderSwitchField = (config: FieldConfig) => {
+    const key = config.name;
+    const onUpdate = (checked) => setFormData(prev => ({ ...prev, [key]: checked }));
+    return (
+      <div key={config.name} className="flex items-center space-x-2">
+        <Switch
+          id={config.name}
+          checked={formData[key] as boolean}
+          onCheckedChange={onUpdate}
+        />
+        <Label htmlFor={config.name}>{config.label}</Label>
+      </div>
     );
   };
 
@@ -147,6 +171,7 @@ export function ProductForm(props: ProductFormProps) {
     const { type } = field;
 
     if (type === 'select') return renderSelectField(field);
+    if (type === 'switch') return renderSwitchField(field);
 
     const InputComponent = type === 'textarea' ? Textarea : Input
 
