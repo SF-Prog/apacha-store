@@ -125,7 +125,6 @@ export function ProductForm(props: ProductFormProps) {
   };
 
   const handleCategoryChange = (value: string) => {
-    console.log('SRT', value);
     setFormData(prev => ({ ...prev, category: value }));
   };
 
