@@ -1,46 +1,58 @@
 'use client'
 
-import React, { useState, useRef, FormEvent, Fragment } from 'react'
+import React, { useState, useRef, FormEvent, Fragment, useEffect } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import { Switch } from '@/components/ui/switch'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { useAdmin } from '@/app/context/admin-context'
 
+
 interface FormData {
   title: string
-  description: string
+  description?: string
   price: number
   meassures: string
   image: string
   category: string
   qty: number
+  is_published: boolean
+  priority: number
 }
 
 type FormErrors = {
   [K in keyof FormData]?: string
 }
 
+interface ProductFormProps {
+  onSubmit: (FormData) => void,
+  initialValues?: ProductItem
+}
+
 type FieldConfig = {
   name: keyof FormData
   label: string
-  type: 'text' | 'number' | 'textarea' | 'select'
+  type: 'text' | 'number' | 'textarea' | 'select' | 'switch'
   placeholder: string
 }
 
 const fieldConfigs: FieldConfig[] = [
-  { name: 'title', label: 'Title', type: 'text', placeholder: 'Pastel de Zanahoria' },
-  { name: 'description', label: 'Description', type: 'textarea', placeholder: 'Pastel de papa con zanahoria rallada y crema de hongos.' },
-  { name: 'price', label: 'Price', type: 'text', placeholder: '0.00' },
-  { name: 'meassures', label: 'Measure', type: 'text', placeholder: '100 ml' },
-  { name: 'qty', label: 'Quantity', type: 'number', placeholder: '0' },
-  { name: 'category', label: 'Category', type: 'select', placeholder: 'Panes' },
+  { name: 'title', label: 'Título', type: 'text', placeholder: 'Pastel de Zanahoria' },
+  { name: 'description', label: 'Descripción', type: 'textarea', placeholder: 'Pastel de papa con zanahoria rallada y crema de hongos.' },
+  { name: 'price', label: 'Precio', type: 'text', placeholder: '0.00' },
+  { name: 'meassures', label: 'Medidas', type: 'text', placeholder: '100 ml' },
+  { name: 'qty', label: 'Cantidad Disponible', type: 'number', placeholder: '0' },
+  { name: 'is_published', label: 'Está Publicado', type: 'switch', placeholder: '0' },
+  { name: 'priority', label: 'Prioridad', type: 'number', placeholder: '' },
+  { name: 'category', label: 'Categoria', type: 'select', placeholder: 'Select category' },
 ]
 
-export function AddProductForm() {
-  const { addProduct, isLoading, productCategories } = useAdmin();
+export function ProductForm(props: ProductFormProps) {
+  const { onSubmit, initialValues } = props;
+  const { isLoading, productCategories } = useAdmin();
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
@@ -51,8 +63,19 @@ export function AddProductForm() {
     meassures: '',
     category: null,
     image: '',
-    qty: 0
+    qty: 0,
+    is_published: false,
+    priority: 0
   });
+
+  useEffect(() => {
+    if (!initialValues) return;
+    // Update correspondent states ofr UI product initial display.
+    setFormData(initialValues as FormData);
+    setPreviewImage(initialValues.image);
+    console.log('INITIAL', initialValues);
+    handleCategoryChange(initialValues.category);
+  }, []);
 
   const validateForm = (data: FormData): boolean => {
     const newErrors: FormErrors = {}
@@ -87,7 +110,7 @@ export function AddProductForm() {
     }
   };
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!validateForm(formData)) return;
 
@@ -98,10 +121,11 @@ export function AddProductForm() {
       }
     });
 
-    addProduct(formDataToSend);
+    onSubmit(formDataToSend);
   };
 
   const handleCategoryChange = (value: string) => {
+    console.log('SRT', value);
     setFormData(prev => ({ ...prev, category: value }));
   };
 
@@ -109,9 +133,9 @@ export function AddProductForm() {
     const categories = [...productCategories];
 
     return (
-      <Fragment key={config.label}>
+      <div key={config.label}>
         <Label htmlFor="category">{config.label}</Label>
-        <Select onValueChange={handleCategoryChange} value={formData.category ?? null}>
+        <Select onValueChange={handleCategoryChange} value={formData.category ?? initialValues.category}>
           <SelectTrigger className="w-full">
             <SelectValue placeholder={config.placeholder} />
           </SelectTrigger>
@@ -124,7 +148,22 @@ export function AddProductForm() {
           </SelectContent>
         </Select>
         {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
-      </Fragment>
+      </div>
+    );
+  };
+
+  const renderSwitchField = (config: FieldConfig) => {
+    const key = config.name;
+    const onUpdate = (checked) => setFormData(prev => ({ ...prev, [key]: checked }));
+    return (
+      <div key={config.name} className="flex items-center space-x-2">
+        <Switch
+          id={config.name}
+          checked={formData[key] as boolean}
+          onCheckedChange={onUpdate}
+        />
+        <Label htmlFor={config.name}>{config.label}</Label>
+      </div>
     );
   };
 
@@ -132,6 +171,7 @@ export function AddProductForm() {
     const { type } = field;
 
     if (type === 'select') return renderSelectField(field);
+    if (type === 'switch') return renderSwitchField(field);
 
     const InputComponent = type === 'textarea' ? Textarea : Input
 
@@ -190,12 +230,12 @@ export function AddProductForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="space-y-8">
       {fieldConfigs.map(renderField)}
       {renderImageInput()}
 
       <Button type="submit" disabled={isLoading}>
-        {isLoading ? 'Creating...' : 'Create Product'}
+        {isLoading ? 'Setting...' : 'Set Product'}
       </Button>
     </form>
   )
