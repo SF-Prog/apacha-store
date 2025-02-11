@@ -15,7 +15,9 @@ interface ProductItem {
   description?: string
   meassures?: string,
   category?: string,
-  qty: number
+  qty: number,
+  priority: number,
+  is_published: boolean
 }
 
 interface ProductsByCategory {
