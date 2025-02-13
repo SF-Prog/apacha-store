@@ -57,7 +57,10 @@ export function WorkshopsPanel() {
         <TableCell>{workshop.finalization_time}</TableCell>
         <TableCell>{workshop.location}</TableCell>
         <TableCell>{workshop.priority}</TableCell>
-        <TableCell>{workshop.is_published ? 'Sí' : 'No'}</TableCell>
+        <TableCell>{workshop.is_published ? 'True' : 'False'}</TableCell>
+        <TableCell>{workshop.author ?? ''}</TableCell>
+        <TableCell>{workshop.capacity ?? ''}</TableCell>
+        <TableCell>{workshop.social_media_link ?? ''}</TableCell>
         <TableCell>
           <Button
             variant="outline"
@@ -123,6 +126,9 @@ export function WorkshopsPanel() {
               <TableHead>Location</TableHead>
               <TableHead>Priority</TableHead>
               <TableHead>Published</TableHead>
+              <TableHead>Author</TableHead>
+              <TableHead>Capacity</TableHead>
+              <TableHead>Social</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
