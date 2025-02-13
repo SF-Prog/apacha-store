@@ -5,11 +5,13 @@ import { toasterStatus, services, weeklyMenuExample } from "@/app/lib/constants"
 import { displayToaster, parseProductsList } from "@/app/lib/utils";
 import { sendMenuEmail } from "@/actions/send-weekly-menu";
 import { getProducts } from "@/actions/get-products";
+import { getWorkshops } from "@/actions/get-workshops";
 
 const StoreContext = createContext<StoreContextType | null>(null)
 
 export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [selectedMeals, setSelectedMeals] = useState<string[]>([])
+  const [workshops, setWorkshops] = useState<Workshop[]>([])
+  const [selectedMeals, setSelectedMeals] = useState<string[]>([]);
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [total, setTotal] = useState<number>(0);
   const [products, setProducts] = useState<ProductsByCategory[]>([]);
@@ -47,7 +49,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === newItem.id);
-      if (existingItem) return [...prevItems, { ...newItem, quantity: 1 }];
+      if (!existingItem) return [...prevItems, { ...newItem, quantity: 1 }];
 
       return prevItems.map(item => {
         const isModifiedItem = item.id === newItem.id;
@@ -139,9 +141,21 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     };
   };
 
+  const loadWorkshops = async () => {
+    try {
+      setIsLoading(true);
+      const data = await getWorkshops();
+      setIsLoading(false);
+      console.log('SET WS', workshops);
+      setWorkshops(data);
+    } catch (error) {
+      setIsLoading(false);
+      displayToaster(toasterStatus.ERROR, error.details);
+    };
+  };
+
   useEffect(() => {
-    // Mantain cart on local storage to improve user retention
-    updateCartFromStorage()
+    updateCartFromStorage();
   }, [])
 
   useEffect(() => {
@@ -168,6 +182,8 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     loadProducts,
     isLoading,
     setIsLoading,
+    workshops,
+    loadWorkshops
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

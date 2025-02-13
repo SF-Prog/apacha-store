@@ -31,6 +31,20 @@ interface ProductCategory {
   name: string
 }
 
+interface Workshop {
+  id: string
+  title: string
+  description: string
+  date: string
+  initial_time: string
+  finalization_time: string
+  location: string
+  image: string
+  is_published: boolean
+  price: number,
+  priority: number
+}
+
 interface CartItem extends ProductItem {
   quantity: number
 }
@@ -79,7 +93,9 @@ interface StoreContextType {
   services: Service[],
   loadProducts: () => void,
   isLoading: boolean,
-  setIsLoading: (is: boolean) => void
+  setIsLoading: (is: boolean) => void,
+  workshops: Workshop[],
+  loadWorkshops: () => void
 }
 
 // Auth interfaces
@@ -116,6 +132,10 @@ interface AdminContextType {
   addProductCategory: (id: string) => void,
   removeProductCategory: (id: string) => void,
   updateProductCategory: (cat: ProductCategory) => void,
+  workshops: Workshop[],
+  addWorkshop: (w: FormData) => void,
+  removeWorkshop: (id: string) => void,
+  editWorkshop: (w: FormData) => void,
 }
 
-type AdminPanelTabItem = 'products' | 'services' | 'product_categories' | 'events';
+type AdminPanelTabItem = 'products' | 'services' | 'product_categories' | 'events' | 'workshops';

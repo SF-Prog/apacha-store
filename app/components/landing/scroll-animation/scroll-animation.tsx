@@ -32,14 +32,14 @@ const ScrollAnimatedBackground: React.FC<ScrollAnimatedBackgroundProps> = ({ chi
   return (
     <div ref={containerRef} className="relative overflow-hidden">
       <motion.div
-        className="absolute inset-0 z-0"
+        className="absolute top-[-100px] inset-0 z-0"
         style={{ opacity, scale, y: yPosition }}
       >
         <Image
           src={imageSrc}
           alt={imageAlt}
           fill
-          style={{ objectFit: 'cover' }} 
+          style={{ objectFit: 'cover' }}
           quality={100}
           priority
         />

@@ -34,6 +34,12 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           isActive={activeTab === 'events'}
           onClick={() => setActiveTab('events')}
         />
+        <SidebarItem
+          icon={Calendar}
+          text="Workshops"
+          isActive={activeTab === 'workshops'}
+          onClick={() => setActiveTab('workshops')}
+        />
       </nav>
     </aside>
   )

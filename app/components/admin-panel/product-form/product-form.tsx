@@ -10,30 +10,17 @@ import { Switch } from '@/components/ui/switch'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import { useAdmin } from '@/app/context/admin-context'
 
-
-interface FormData {
-  title: string
-  description?: string
-  price: number
-  meassures: string
-  image: string
-  category: string
-  qty: number
-  is_published: boolean
-  priority: number
-}
-
 type FormErrors = {
-  [K in keyof FormData]?: string
+  [K in keyof ProductItem]?: string
 }
 
 interface ProductFormProps {
-  onSubmit: (FormData) => void,
+  onSubmit: (data: FormData) => void,
   initialValues?: ProductItem
 }
 
 type FieldConfig = {
-  name: keyof FormData
+  name: keyof ProductItem
   label: string
   type: 'text' | 'number' | 'textarea' | 'select' | 'switch'
   placeholder: string
@@ -56,7 +43,8 @@ export function ProductForm(props: ProductFormProps) {
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setProductItem] = useState<ProductItem>({
+    id: '',
     title: '',
     description: '',
     price: 0,
@@ -71,13 +59,13 @@ export function ProductForm(props: ProductFormProps) {
   useEffect(() => {
     if (!initialValues) return;
     // Update correspondent states ofr UI product initial display.
-    setFormData(initialValues as FormData);
+    setProductItem(initialValues as ProductItem);
     setPreviewImage(initialValues.image);
-    console.log('INITIAL', initialValues);
+
     handleCategoryChange(initialValues.category);
   }, []);
 
-  const validateForm = (data: FormData): boolean => {
+  const validateForm = (data: ProductItem): boolean => {
     const newErrors: FormErrors = {}
     if (!data.title) newErrors.title = 'Title is required'
     if (data.price <= 0) newErrors.price = 'Price must be positive'
@@ -91,7 +79,7 @@ export function ProductForm(props: ProductFormProps) {
     const { name, value, type } = e.target;
 
     const parsedValue = type === 'number' ? parseFloat(value) || 0 : value;
-    setFormData(prev => ({
+    setProductItem(prev => ({
       ...prev,
       [name]: parsedValue
     }));
@@ -104,7 +92,7 @@ export function ProductForm(props: ProductFormProps) {
       reader.onloadend = () => {
         const base64String = reader.result as string
         setPreviewImage(base64String)
-        setFormData(prev => ({ ...prev, image: base64String }))
+        setProductItem(prev => ({ ...prev, image: base64String }))
       }
       reader.readAsDataURL(file)
     }
@@ -125,8 +113,7 @@ export function ProductForm(props: ProductFormProps) {
   };
 
   const handleCategoryChange = (value: string) => {
-    console.log('SRT', value);
-    setFormData(prev => ({ ...prev, category: value }));
+    setProductItem(prev => ({ ...prev, category: value }));
   };
 
   const renderSelectField = (config: FieldConfig) => {
@@ -135,17 +122,19 @@ export function ProductForm(props: ProductFormProps) {
     return (
       <div key={config.label}>
         <Label htmlFor="category">{config.label}</Label>
-        <Select onValueChange={handleCategoryChange} value={formData.category ?? initialValues.category}>
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder={config.placeholder} />
-          </SelectTrigger>
-          <SelectContent>
-            {categories?.map((cat: ProductCategory) => (
-              <SelectItem key={cat.id} value={cat.id}>
-                {cat.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
+        <Select
+          onValueChange={handleCategoryChange}
+          value={formData.category ?? initialValues?.category ?? ''}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder={config.placeholder} />
+            </SelectTrigger>
+            <SelectContent>
+              {categories?.map((cat: ProductCategory) => (
+                <SelectItem key={cat.id} value={cat.id}>
+                  {cat.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
         </Select>
         {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
       </div>
@@ -154,7 +143,7 @@ export function ProductForm(props: ProductFormProps) {
 
   const renderSwitchField = (config: FieldConfig) => {
     const key = config.name;
-    const onUpdate = (checked) => setFormData(prev => ({ ...prev, [key]: checked }));
+    const onUpdate = (checked) => setProductItem(prev => ({ ...prev, [key]: checked }));
     return (
       <div key={config.name} className="flex items-center space-x-2">
         <Switch

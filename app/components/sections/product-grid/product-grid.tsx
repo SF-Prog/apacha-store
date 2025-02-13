@@ -17,7 +17,7 @@ const ProductGrid: React.FC = () => {
 
   const handleAddCartItem = (product: ProductItem) => {
     addCartItem(product)
-  }
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
