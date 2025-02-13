@@ -34,6 +34,8 @@ const fieldConfigs: FieldConfig[] = [
   { name: 'location', label: 'Ubicación', type: 'text', placeholder: 'Apacha Kitchen Studio' },
   { name: 'price', label: 'Precio', type: 'number', placeholder: '100' },
   { name: 'priority', label: 'Prioridad', type: 'number', placeholder: '0' },
+  { name: 'capacity', label: 'Capacidad de gente', type: 'number', placeholder: '0' },
+  { name: 'author', label: 'Autor/Invidado', type: 'text', placeholder: 'Equipo de Apacha, Gustavo Hernnadez' },
   { name: 'is_published', label: 'Publicado', type: 'switch', placeholder: '' },
 ]
 
@@ -54,6 +56,8 @@ export function WorkshopForm({ onSubmit, initialValues }: WorkshopFormProps) {
     priority: 0,
     price: 0,
     is_published: false,
+    capacity: 0,
+    author: ''
   });
 
   useEffect(() => {
@@ -72,6 +76,7 @@ export function WorkshopForm({ onSubmit, initialValues }: WorkshopFormProps) {
     if (!data.finalization_time) newErrors.finalization_time = 'La hora de finalizacion es requerida'
     if (!data.price) newErrors.price = 'El precio es Requerido'
     if (!data.location) newErrors.location = 'La ubicación es requerida'
+    if (data.capacity < 0) newErrors.capacity = 'La capacidad debe ser mayor a 0'
     if (data.priority < 0) newErrors.priority = 'La prioridad no puede ser negativa'
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0

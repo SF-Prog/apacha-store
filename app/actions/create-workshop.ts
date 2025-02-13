@@ -15,6 +15,8 @@ export async function createWorkshop(data: FormData) {
   const finalization_time = data.get('finalization_time') as string
   const is_published = !!data.get('is_published') as boolean
   const priority = parseFloat(data.get('priority') as string)
+  const capacity = parseFloat(data.get('capacity') as string)
+  const author = data.get('author') as string
 
   const newWorkshop: Workshop = {
     id: undefined,
@@ -27,7 +29,9 @@ export async function createWorkshop(data: FormData) {
     image,
     is_published,
     price,
-    priority
+    priority,
+    capacity,
+    author
   };
 
   try {
