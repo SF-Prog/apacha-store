@@ -9,6 +9,9 @@ import { getProductCategories } from '@/actions/get-product-categories';
 import { createProductCategory } from "@/actions/create-product-category";
 import { setProductCategory } from '@/actions/set-product-category';
 import { deleteProductCategory } from '@/actions/delete-product-category';
+import { createWorkshop } from "@/actions/create-workshop";
+import { deleteWorkshop } from "@/actions/delete-workshop";
+import { setWorkshop } from "@/actions/set-workshop";
 import { displayToaster, parseProductsList } from "@/lib/utils";
 import { toasterStatus } from "@/lib/constants";
 
@@ -20,11 +23,12 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [ showCreateProductModal, setShowCreateProductModal ] = useState<boolean>(false);
   const [ showEditProductModal, setShowEditProductModal ] = useState<boolean>(false);
 
-  const { products, loadProducts, isLoading, setIsLoading } = useStore();
+  const { products, loadProducts, isLoading, setIsLoading, workshops, loadWorkshops } = useStore();
 
   useEffect(() => {
     void loadProducts();
     void loadProductCategories();
+    void loadWorkshops();
   }, []);
 
   useEffect(() => {
@@ -81,6 +85,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
       await setProduct(data);
       await loadProducts();
+      displayToaster(toasterStatus.SUCCESS, 'Product edited.')
     }
     catch (error) {
       displayToaster(toasterStatus.ERROR, error.message);
@@ -132,6 +137,51 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   };
 
+  const addWorkshop = async (data: FormData) => {
+    setIsLoading(true);
+    try {
+      const result = await createWorkshop(data);
+      if (!result.success)  throw new Error(result.error);
+
+      displayToaster('success', 'The Workshops has been successfully created.',)
+
+      await loadWorkshops();
+    } catch (error) {
+      displayToaster('Error', 'Failed to create Workshops. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  };
+
+  const removeWorkshop = async (id: string) => {
+    try {
+      setIsLoading(true);
+      await deleteWorkshop(id);
+      await loadWorkshops();
+    }
+    catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    }
+    finally {
+      setIsLoading(false);
+    }
+  };
+
+  const editWorkshop = async (data: FormData) => {
+    try {
+      setIsLoading(true);
+
+      await setWorkshop(data);
+      await loadWorkshops();
+    }
+    catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    }
+    finally {
+      setIsLoading(false);
+    };
+  };
+
   const value = {
     productsList,
     addProduct,
@@ -145,7 +195,11 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     addProductCategory,
     updateProductCategory,
     removeProductCategory,
-    productCategories
+    productCategories,
+    addWorkshop,
+    editWorkshop,
+    removeWorkshop,
+    workshops
   };
 
   return (
