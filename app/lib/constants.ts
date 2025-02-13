@@ -58,14 +58,14 @@ const services: Service[] = [
     title: "Talleres",
     description: "Parte de nuestro disfrute es poder compartir el conocimiento y herramientas que hemos aprendido y adquirido en todo este tiempo. Queremos compartirlo para que puedas disfrutar cocinar alimentos ricos y nutritivos en tu casa con tu familia y amigo",
     image: "/workshop-people.png",
-    url: '/events',
+    url: '/workshops',
     customStyle: { objectFit: 'cover', objectPosition: 'center -600px' }
   },
   {
     title: "Caterings y Eventos",
     description: "Ofrecemos un servicio de catering personalizado y diseñado para cada cliente. Es ideal para agasajar a los invitados con comida deliciosa, novedosa y nutritiva. Al ser sin gluten y sin ingredientes de origen animal también la consideramos inclusiva, ya que todos los invitados podrán disfrutar.",
     image: "/caterings-table.jpg",
-    url: "/catering",
+    url: "/events",
   }
 ];
 
