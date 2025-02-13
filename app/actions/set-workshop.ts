@@ -3,6 +3,7 @@
 import { supabase } from '@/lib/supabase/client';
 
 export async function setWorkshop(data: FormData) {
+  const id = data.get('id') as string
   const title = data.get('title') as string
   const description = data.get('description') as string
   const price = parseFloat(data.get('price') as string)
@@ -16,9 +17,10 @@ export async function setWorkshop(data: FormData) {
   const priority = parseFloat(data.get('priority') as string)
   const capacity = parseFloat(data.get('capacity') as string)
   const author = data.get('author') as string
+  const social_media_link = data.get('social_media_link') as string
 
   const newWorkshop: Workshop = {
-    id: 'placeholder',
+    id,
     title,
     description,
     location,
@@ -30,7 +32,8 @@ export async function setWorkshop(data: FormData) {
     price,
     priority,
     capacity,
-    author
+    author,
+    social_media_link
   };
 
   try {
@@ -45,7 +48,11 @@ export async function setWorkshop(data: FormData) {
       is_published: newWorkshop.is_published,
       price: newWorkshop.price,
       priority: newWorkshop.priority,
-    });
+      author: newWorkshop.author,
+      capacity: newWorkshop.capacity,
+      social_media_link: newWorkshop.social_media_link,
+    })
+    .eq('id', newWorkshop.id);;
 
     if (error) {
       return {

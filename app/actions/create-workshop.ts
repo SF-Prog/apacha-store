@@ -17,6 +17,7 @@ export async function createWorkshop(data: FormData) {
   const priority = parseFloat(data.get('priority') as string)
   const capacity = parseFloat(data.get('capacity') as string)
   const author = data.get('author') as string
+  const social_media_link = data.get('social_media_link') as string
 
   const newWorkshop: Workshop = {
     id: undefined,
@@ -31,7 +32,8 @@ export async function createWorkshop(data: FormData) {
     price,
     priority,
     capacity,
-    author
+    author,
+    social_media_link
   };
 
   try {

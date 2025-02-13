@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Calendar, Clock, MapPin } from 'lucide-react'
+import { Calendar, Clock, MapPin, Users, User } from 'lucide-react'
 import { useStore } from '@/app/context/store-context'
 
 export function WorkshopsGrid() {
@@ -55,9 +55,17 @@ export function WorkshopsGrid() {
                   <span>{workshop.initial_time}</span> /
                   <span>{workshop.finalization_time}</span>
                 </div>
-                <div className="flex items-center text-sm text-gray-600">
+                <div className="flex items-center text-sm text-gray-600 mb-2">
                   <MapPin className="mr-2 h-4 w-4" />
                   <span>{workshop.location}</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-600 mb-2">
+                  <Users className="mr-2 h-4 w-4" />
+                  <span>Capacidad: {workshop.capacity} personas</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-600">
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Instructor: {workshop.author}</span>
                 </div>
               </CardContent>
               <CardFooter>
