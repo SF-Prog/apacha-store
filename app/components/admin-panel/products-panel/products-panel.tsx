@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { useAdmin } from '@/context/admin-context'
+import { Pencil, Trash2, Plus } from 'lucide-react'
 import { ProductForm } from '@/components/admin-panel/product-form/product-form';
 
 export function ProductsPanel() {
@@ -64,14 +65,14 @@ export function ProductsPanel() {
           <TableCell>
             <Button
               variant="outline"
-              className="mr-2"
+              className="mb-2"
               onClick={() => handleEdit(product)}>
-              Edit
+                <Pencil className="h-4 w-4" />
             </Button>
             <Button
               variant="destructive"
               onClick={() => handleRemoveProduct(product.id)}>
-              Remove
+                <Trash2 className="h-4 w-4" />
             </Button>
           </TableCell>
         </TableRow>
@@ -82,7 +83,7 @@ export function ProductsPanel() {
   const renderCreateProductModal = () => (
     <Dialog open={showCreateProductModal} onOpenChange={setShowCreateProductModal}>
       <DialogTrigger asChild>
-        <Button className="mb-4">Add Product</Button>
+        <Button className="mb-4"><Plus className="mr-2" />Add Product</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[450px] overflow-y-scroll max-h-[90%]">
         <DialogHeader>
