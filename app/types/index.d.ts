@@ -42,7 +42,10 @@ interface Workshop {
   image: string
   is_published: boolean
   price: number,
-  priority: number
+  priority: number,
+  capacity?: number,
+  author?: string,
+  social_media_link?: string
 }
 
 interface CartItem extends ProductItem {

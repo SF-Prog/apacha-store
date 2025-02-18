@@ -34,7 +34,10 @@ const fieldConfigs: FieldConfig[] = [
   { name: 'location', label: 'Ubicación', type: 'text', placeholder: 'Apacha Kitchen Studio' },
   { name: 'price', label: 'Precio', type: 'number', placeholder: '100' },
   { name: 'priority', label: 'Prioridad', type: 'number', placeholder: '0' },
+  { name: 'capacity', label: 'Capacidad de gente', type: 'number', placeholder: '0' },
+  { name: 'author', label: 'Autor/Invidado', type: 'text', placeholder: 'Equipo de Apacha, Gustavo Hernnadez' },
   { name: 'is_published', label: 'Publicado', type: 'switch', placeholder: '' },
+  { name: 'social_media_link', label: 'Link a contenido', type: 'text', placeholder: 'https://www.instagram.com/hfasdklpmcapojse' },
 ]
 
 export function WorkshopForm({ onSubmit, initialValues }: WorkshopFormProps) {
@@ -54,13 +57,17 @@ export function WorkshopForm({ onSubmit, initialValues }: WorkshopFormProps) {
     priority: 0,
     price: 0,
     is_published: false,
+    capacity: 0,
+    author: '',
+    social_media_link: '',
   });
 
   useEffect(() => {
-    if (initialValues) {
-      setFormData(initialValues)
-      setPreviewImage(initialValues.image)
-    }
+    if (!initialValues) return;
+
+    const parsedDate = initialValues.date.split('T')[0];
+    setFormData({...initialValues, date: parsedDate});
+    setPreviewImage(initialValues.image);
   }, [initialValues])
 
   const validateForm = (data: Workshop): boolean => {
@@ -72,6 +79,7 @@ export function WorkshopForm({ onSubmit, initialValues }: WorkshopFormProps) {
     if (!data.finalization_time) newErrors.finalization_time = 'La hora de finalizacion es requerida'
     if (!data.price) newErrors.price = 'El precio es Requerido'
     if (!data.location) newErrors.location = 'La ubicación es requerida'
+    if (data.capacity < 0) newErrors.capacity = 'La capacidad debe ser mayor a 0'
     if (data.priority < 0) newErrors.priority = 'La prioridad no puede ser negativa'
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -116,19 +124,21 @@ export function WorkshopForm({ onSubmit, initialValues }: WorkshopFormProps) {
     onSubmit(formDataToSend);
   };
 
+  const renderSwitch = (field: FieldConfig) => {
+    return (
+      <div key={field.name} className="flex items-center space-x-2">
+        <Switch
+          id={field.name}
+          checked={formData.is_published}
+          onCheckedChange={handleSwitchChange}
+        />
+        <Label htmlFor={field.name}>{field.label}</Label>
+      </div>
+    )
+  };
+
   const renderField = (field: FieldConfig) => {
-    if (field.type === 'switch') {
-      return (
-        <div key={field.name} className="flex items-center space-x-2">
-          <Switch
-            id={field.name}
-            checked={formData.is_published}
-            onCheckedChange={handleSwitchChange}
-          />
-          <Label htmlFor={field.name}>{field.label}</Label>
-        </div>
-      )
-    }
+    if (field.type === 'switch') return renderSwitch(field);
 
     const InputComponent = field.type === 'textarea' ? Textarea : Input
 
@@ -140,7 +150,7 @@ export function WorkshopForm({ onSubmit, initialValues }: WorkshopFormProps) {
           name={field.name}
           type={field.type}
           placeholder={field.placeholder}
-          value={formData[field.name] as string}
+          value={formData[field.name] as string ?? ''}
           onChange={handleInputChange}
         />
         {errors[field.name] && <p className="text-red-500 text-sm mt-1">{errors[field.name]}</p>}
@@ -189,7 +199,6 @@ export function WorkshopForm({ onSubmit, initialValues }: WorkshopFormProps) {
     <form onSubmit={handleSubmit} className="space-y-8">
       {fieldConfigs.map(renderField)}
       {renderImageInput()}
-
       <Button type="submit" disabled={isLoading}>
         {isLoading ? 'Guardando...' : 'Guardar Taller'}
       </Button>
