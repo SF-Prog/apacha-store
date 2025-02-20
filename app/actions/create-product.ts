@@ -1,6 +1,5 @@
-'use server'
-
 import { supabase } from '@/lib/supabase/client';
+import uploadImageToBucket from './utils/upload-image-to-bucket';
 
 export async function createProduct(data: FormData) {
   const title = data.get('title') as string
@@ -27,7 +26,19 @@ export async function createProduct(data: FormData) {
   };
 
   try {
-    const { error } = await supabase.from('products').insert(newProduct);
+    const response = await uploadImageToBucket({
+      base64Image: image,
+      bucketName: 'product-images',
+      imageName: title.replace(' ', '-')
+    });
+
+    if (!response.success) return {
+      success: false,
+      error: response?.message ?? 'Failed to create product'
+    };
+
+    const { error } = await supabase.from('products')
+      .insert({ ...newProduct, image: response.data.fullPath });
 
     if (error) {
       return {
