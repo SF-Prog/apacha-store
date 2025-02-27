@@ -54,7 +54,7 @@ const ProductGrid: React.FC = () => {
                     {product.meassures && (
                       <p className="text-sm text-gray-600 mb-2">{product.meassures}</p>
                     )}
-                    <p className="text-apacha_green-100 font-bold">${product.price.toFixed(2)}</p>
+                    <p className="text-apacha_green-100 font-bold">${product.price?.toFixed(2)}</p>
                   </CardContent>
                   <CardFooter>
                     <Button
