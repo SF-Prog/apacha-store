@@ -1,3 +1,4 @@
+import getImageUrl from './utils/get-image-url';
 import { supabase } from '@/lib/supabase/client';
 
 export async function getProducts() {
@@ -15,7 +16,15 @@ export async function getProducts() {
       return hasSomeProduct;
     });
 
-    return clearData;
+    const parsedData = clearData.map((cat) => {
+      const productWithImages = cat.products?.map((p) => {
+        const url = getImageUrl('product-images', p.image);
+        return { ...p, image: url };
+      });
+      return { ...cat, products: productWithImages };
+    });
+
+    return parsedData;
   } catch (error) {
     return error;
   };
