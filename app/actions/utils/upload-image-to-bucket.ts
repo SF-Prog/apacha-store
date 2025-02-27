@@ -13,17 +13,14 @@ const uploadImageToBucket = async (payload: Payload) => {
   try {
     const file = base64ToFile(base64Image);
 
-    const { data: existe, error: e } = await supabase
-    .storage
-    .from('product-images')
-    .list('/');
-
     const { data: imageData } = await supabase.storage.from(bucketName).getPublicUrl(imageName);
+    const responseImageCheck = await fetch(imageData.publicUrl);
 
-    const alreadyExists = !!imageData?.publicUrl;
+    const alreadyExists = !!responseImageCheck.ok;
 
     if (alreadyExists) {
-      await deleteImageFromBucket({ bucketName: 'product-images', imageNames: [`product-images/${imageName}.png`] });
+      const response = await deleteImageFromBucket({ bucketName: 'product-images', imageNames: ['test6'] });
+      if (!response.success) return { success: false, message: response.message };
     };
 
     const { data, error } = await supabase.storage.from(bucketName).upload(
@@ -33,7 +30,7 @@ const uploadImageToBucket = async (payload: Payload) => {
 
     if (!data || !!error) return { success: false, message: error.message ?? 'Something went wrong' };
 
-    return { success: true, data};
+    return { success: true, data };
   } catch (error) {
     return { success: false, message: error.message ?? 'Something failed while uploading the image to the Bucket' };
   };
