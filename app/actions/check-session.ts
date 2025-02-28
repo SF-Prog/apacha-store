@@ -1,9 +1,7 @@
-'use server'
-import { createClient } from '@/lib/supabase/server';
+import { supabase } from '@/lib/supabase/client';
 
 export async function checkSession() {
   try {
-    const supabase = await createClient();
     const { data: { user }, error: errorUser } = await supabase.auth.getUser();
 
     if (errorUser ) {

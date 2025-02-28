@@ -66,9 +66,10 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const removeProduct = async (id: string) => {
+    const product = productsList.find(p => p.id === id);
     try {
       setIsLoading(true);
-      await deleteProduct(id);
+      await deleteProduct(product);
       await loadProducts();
     }
     catch (error) {
@@ -83,7 +84,9 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     try {
       setIsLoading(true);
 
-      await setProduct(data);
+      const response = await setProduct(data);
+      if (!response.success) throw new Error(response.message);
+
       await loadProducts();
       displayToaster(toasterStatus.SUCCESS, 'Product edited.')
     }

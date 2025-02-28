@@ -1,10 +1,7 @@
-'use server'
-
-import { createClient } from '@/lib/supabase/server';
+import { supabase } from '@/lib/supabase/client';
 
 export async function loginAdmin(email, password) {
   try {
-    const supabase = await createClient();
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -12,7 +9,10 @@ export async function loginAdmin(email, password) {
 
     if (error?.message) { throw error };
 
-    await supabase.auth.setSession({ access_token: data.session?.access_token, refresh_token: data.session?.refresh_token });
+    await supabase.auth.setSession({
+      access_token: data.session?.access_token,
+      refresh_token: data.session?.refresh_token
+    });
 
     return { success: true, message: 'Login successful!'};
   } catch (error) {

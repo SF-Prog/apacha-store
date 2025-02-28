@@ -1,3 +1,4 @@
+import uploadImageToBucket from './utils/upload-image-to-bucket';
 import { supabase } from "@/lib/supabase/client";
 
 const defaultErrorMessage = 'Failed to update product';
@@ -11,7 +12,7 @@ export const setProduct = async (data: FormData) => {
   const meassures = data.get('meassures') as string
   const category = data.get('category') as string
   const qty = parseFloat(data.get('qty') as string)
-  const is_published = !!data.get('is_published') as boolean
+  const is_published = (data.get('is_published') == 'true') as boolean
   const priority = parseFloat(data.get('priority') as string)
 
   const newProduct: ProductItem = {
@@ -28,11 +29,19 @@ export const setProduct = async (data: FormData) => {
   };
 
   try {
+    const response = await uploadImageToBucket({
+      base64Image: image,
+      bucketName: 'product-images',
+      imageName: title.replace(' ', '-')
+    });
+
+    if (!response.success) throw new Error(response.message);
+
     const { error } = await supabase
       .from('products')
       .update({
         title: newProduct.title,
-        image: newProduct.image,
+        image: response.data?.path,
         price: newProduct.price,
         description: newProduct.description,
         meassures: newProduct.meassures,
@@ -43,21 +52,14 @@ export const setProduct = async (data: FormData) => {
        })
       .eq('id', newProduct.id);
 
-    if (error) {
-      return {
-        success: false,
-        error: error?.message ?? defaultErrorMessage
-      };
-    };
+    if (error) throw new Error(error.message ?? 'Something went wrong')
 
     return {
       success: true,
       message: 'Product updated successfully'
     };
   } catch (error) {
-    return {
-      success: false,
-      error: error?.message ?? defaultErrorMessage
-    }
+    console.log('error', error);
+    return error;
   }
 };
