@@ -15,11 +15,10 @@ const uploadImageToBucket = async (payload: Payload) => {
 
     const { data: imageData } = await supabase.storage.from(bucketName).getPublicUrl(imageName);
     const responseImageCheck = await fetch(imageData.publicUrl);
-
     const alreadyExists = !!responseImageCheck.ok;
 
     if (alreadyExists) {
-      const response = await deleteImageFromBucket({ bucketName: 'product-images', imageNames: ['test6'] });
+      const response = await deleteImageFromBucket({ bucketName: bucketName, imageNames: [imageName] });
       if (!response.success) return { success: false, message: response.message };
     };
 
