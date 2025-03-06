@@ -91,8 +91,8 @@ export function WorkshopsPanel() {
         </DialogHeader>
         <WorkshopForm onSubmit={addWorkshop} />
       </DialogContent>
-    </Dialog> 
-  )
+    </Dialog>
+  );
 
   const renderEditWorkshopModal = () => (
     <Dialog open={showEditWorkshopModal} onOpenChange={setShowEditWorkshopModal}>
@@ -106,7 +106,7 @@ export function WorkshopsPanel() {
         />
       </DialogContent>
     </Dialog>
-  )
+  );
 
   return (
     <div>
