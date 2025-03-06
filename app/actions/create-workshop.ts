@@ -1,15 +1,12 @@
-'use server'
-
-import { createClient } from '@/lib/supabase/server';
+import { supabase } from '@/lib/supabase/client';
+import uploadImageToBucket from './utils/upload-image-to-bucket';
 
 export async function createWorkshop(data: FormData) {
-  const supabase = await createClient();
   const title = data.get('title') as string
   const description = data.get('description') as string
   const price = parseFloat(data.get('price') as string)
   const image = data.get('image') as string
   const location = data.get('location') as string
-  // const date = new Date(data.get('date') as string)
   const date = data.get('date') as string
   const initial_time = data.get('initial_time') as string
   const finalization_time = data.get('finalization_time') as string
@@ -37,7 +34,21 @@ export async function createWorkshop(data: FormData) {
   };
 
   try {
-    const { error } = await supabase.from('workshops').insert(newWorkshop);
+    const response = await uploadImageToBucket({
+      base64Image: image,
+      bucketName: 'workshop-images',
+      imageName: title.replaceAll(' ', '-')
+    });
+
+    if (!response.success) return {
+      success: false,
+      error: response?.message ?? 'Failed to create product'
+    };
+
+    const { error } = await supabase.from('workshops').insert({
+      ...newWorkshop,
+      image: response.data?.path
+    });
 
     if (error) {
       return {
