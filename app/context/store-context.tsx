@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useState, useContext, useEffect, ReactNode, useMemo } from "react"
-import { toasterStatus, services, weeklyMenuExample } from "@/app/lib/constants";
+import { toasterStatus, services, weeklyMenuExample, mealPacks, meals } from "@/app/lib/constants";
 import { displayToaster, parseProductsList } from "@/app/lib/utils";
 import { sendMenuEmail } from "@/actions/send-weekly-menu";
 import { getProducts } from "@/actions/get-products";
@@ -88,33 +88,6 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     window.open(whatsappLink);
   };
 
-  const mealPacks: MealPack[] = [
-    {
-      id: 'breakfast-prod',
-      title: "Desayunos",
-      description: "Jugos y licuados a base de frutas y verduras. Es una gran manera de comenzar el día hidratado e incorporando nutrientes, vitaminas y antioxidantes.",
-      price: 1000,
-      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno",
-      image: "/breakfast-preview.jpg",
-    },
-    {
-      id: 'lunch-prod',
-      title: "Almuerzo",
-      description: "El plato principal es una celebración de sabores y nutrición. Desde ensaladas vibrantes hasta guisos reconfortantes, cada opción ofrece un mundo de sabores y nutrientes. Ideales para solucionar tus almuerzos de una manera diferente y así no caer en el aburrimiento y monotonía.",
-      price: 400,
-      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%20y%20Almuerzo",
-      image: "/lunch-preview.jpg"
-    },
-    {
-      id: 'dinner-prod',
-      title: "Cena",
-      description: "sopa liviana y nutritiva. Al terminar el día y la rutina, muchas veces buscamos opciones prácticas para solucionar la cena. Las distintas variedades de sopas son ideales para incorporar a la rutina nocturna, ya que favorecerá a que te vayas a dormir liviano y de esta manera descansar mejor.",
-      price: 800,
-      whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%2C%20Almuerzo%20y%20Cena",
-      image: "/dinner-preview.jpg"
-    }
-  ];
-
   const toggleMeal = (mealId: string) => {
     setSelectedMeals(prev =>
       prev.includes(mealId)
@@ -124,7 +97,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const totalMealsPrice = selectedMeals.reduce((sum, mealId) => {
-    const meal = mealPacks.find(m => m.id === mealId)
+    const meal = meals.find(m => m.id === mealId)
     return sum + (meal?.price || 0)
   }, 0);
 
@@ -181,6 +154,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     onCartCheckout,
     selectedMeals,
     totalMealsPrice,
+    meals,
     mealPacks,
     toggleMeal,
     sendWeeklyMenuToEmail,
@@ -191,7 +165,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setIsLoading,
     workshops,
     loadWorkshops,
-    onRegisterToWorkshop
+    onRegisterToWorkshop,
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

@@ -84,9 +84,67 @@ const emptyProduct = {
   category: ''
 }
 
+
+const mealPacks: MealPack[] = [
+  {
+    id: '1',
+    title: "PACK DESAYUNO Y ALMUERZO",
+    weeklyPrice: 2550,
+    monthlyPrice: 9400,
+    color: "#8B5C8B",
+    whatsappLink: `https://wa.me/1234567890?text=Hola%21%20Me%20interesa%20el%20Pack%20Desayuno%20y%20Almuerzo`
+  },
+  {
+    id: '2',
+    title: "PACK ALMUERZO Y CENA",
+    weeklyPrice: 3100,
+    monthlyPrice: 11500,
+    color: "#F4A460",
+    whatsappLink: `https://wa.me/1234567890?text=Hola%21%20Me%20interesa%20el%20Pack%20Almuerzo%20y%20Cena`
+  },
+  {
+    id: '3',
+    title: "PACK DESAYUNO, ALMUERZO Y CENA",
+    weeklyPrice: 4000,
+    monthlyPrice: 14900,
+    color: "#8B9D8B",
+    whatsappLink: `https://wa.me/1234567890?text=Hola%21%20Me%20interesa%20el%20Pack%20Desayuno,%20Almuerzo%20y%20Cena`
+  }
+];
+
+
+const meals: Meal[] = [
+  {
+    id: 'breakfast-prod',
+    title: "Desayunos",
+    description: "Jugos y licuados a base de frutas y verduras. Es una gran manera de comenzar el día hidratado e incorporando nutrientes, vitaminas y antioxidantes.",
+    price: 1000,
+    whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno",
+    image: "/breakfast-preview.jpg",
+  },
+  {
+    id: 'lunch-prod',
+    title: "Almuerzo",
+    description: "El plato principal es una celebración de sabores y nutrición. Desde ensaladas vibrantes hasta guisos reconfortantes, cada opción ofrece un mundo de sabores y nutrientes. Ideales para solucionar tus almuerzos de una manera diferente y así no caer en el aburrimiento y monotonía.",
+    price: 400,
+    whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%20y%20Almuerzo",
+    image: "/lunch-preview.jpg"
+  },
+  {
+    id: 'dinner-prod',
+    title: "Cena",
+    description: "sopa liviana y nutritiva. Al terminar el día y la rutina, muchas veces buscamos opciones prácticas para solucionar la cena. Las distintas variedades de sopas son ideales para incorporar a la rutina nocturna, ya que favorecerá a que te vayas a dormir liviano y de esta manera descansar mejor.",
+    price: 800,
+    whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%2C%20Almuerzo%20y%20Cena",
+    image: "/dinner-preview.jpg"
+  }
+];
+
 export {
   weeklyMenuExample,
   services,
   toasterStatus,
-  emptyProduct
+  emptyProduct,
+  mealPacks,
+  meals
 };
