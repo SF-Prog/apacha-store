@@ -1,8 +1,17 @@
 interface MealPack {
   id: string
   title: string
-  image: string
+  weeklyPrice: number
+  monthlyPrice: number
+  whatsappLink: string
+  color: string
+}
+
+interface Meal {
+  id: string
+  title: string
   description: string
+  image: string
   price: number
   whatsappLink: string
 }
@@ -89,6 +98,7 @@ interface StoreContextType {
   onCartCheckout: () => void,
   selectedMeals: string[],
   totalMealsPrice: number,
+  meals: Meal[],
   mealPacks: MealPack[],
   toggleMeal: (id: string) => void
   sendWeeklyMenuToEmail: (email: string) => void,
