@@ -32,7 +32,7 @@ export const setProduct = async (data: FormData) => {
     const response = await uploadImageToBucket({
       base64Image: image,
       bucketName: 'product-images',
-      imageName: title.replace(' ', '-')
+      imageName: title.replaceAll(' ', '-')
     });
 
     if (!response.success) throw new Error(response.message);
@@ -52,14 +52,13 @@ export const setProduct = async (data: FormData) => {
        })
       .eq('id', newProduct.id);
 
-    if (error) throw new Error(error.message ?? 'Something went wrong')
+    if (error) throw new Error(error.message ?? defaultErrorMessage)
 
     return {
       success: true,
       message: 'Product updated successfully'
     };
   } catch (error) {
-    console.log('error', error);
     return error;
   }
 };

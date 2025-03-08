@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabase/client';
+import getImageUrl from './utils/get-image-url';
 
 export async function getWorkshops() {
   try {
@@ -10,7 +11,12 @@ export async function getWorkshops() {
 
     const clearData = data.filter((ws) => ws.id);
 
-    return clearData;
+    const parsedData = clearData.map((workshop) => {
+      const url = getImageUrl('workshop-images', workshop.image);
+      return { ...workshop, image: url };
+    });
+
+    return parsedData;
   } catch (error) {
     return error;
   };

@@ -112,9 +112,9 @@ export function WorkshopForm({ onSubmit, initialValues }: WorkshopFormProps) {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!validateForm(formData))  return;
+    if (!validateForm(formData)) return;
 
-    const formDataToSend = new FormData()
+    const formDataToSend = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
         formDataToSend.append(key, value.toString())

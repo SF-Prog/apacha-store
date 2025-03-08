@@ -24,6 +24,9 @@ export function ProductsPanel() {
   const [productToEdit, setProductToEdit] = useState<ProductItem|null>(null);
 
   const handleRemoveProduct = (id: string) => {
+    const hasConfirmed = window.confirm('Confirma eliminar este producto?');
+    if (!hasConfirmed) return;
+
     removeProduct(id);
   };
 

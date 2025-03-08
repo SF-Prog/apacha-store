@@ -26,12 +26,10 @@ export async function createProduct(data: FormData) {
   };
 
   try {
-    const { data: user, error: errorUser} = await supabase.auth.getSession();
-
     const response = await uploadImageToBucket({
       base64Image: image,
       bucketName: 'product-images',
-      imageName: title.replace(' ', '-')
+      imageName: title.replaceAll(' ', '-')
     });
 
     if (!response.success) return {

@@ -15,14 +15,19 @@ export function WorkshopsPanel() {
     removeWorkshop,
     addWorkshop,
     editWorkshop,
+    showCreateWorkshopModal,
+    setShowCreateWorkshopModal,
+    showEditWorkshopModal,
+    setShowEditWorkshopModal
   } = useAdmin()
 
-  const [showAddWorkshopModal, setShowAddWorkshopModal] = useState<boolean>(false)
-  const [showEditWorkshopModal, setShowEditWorkshopModal] = useState<boolean>(false)
   const [workshopToEdit, setWorkshopToEdit] = useState<Workshop | null>(null)
 
   const handleRemoveWorkshop = (id: string) => {
-    removeWorkshop(id)
+    const hasConfirmed = window.confirm('Confirma eliminar este taller?');
+    if (!hasConfirmed) return;
+
+    removeWorkshop(id);
   }
 
   const handleEdit = (workshop: Workshop) => {
@@ -81,7 +86,7 @@ export function WorkshopsPanel() {
   }
 
   const renderCreateWorkshopModal = () => (
-    <Dialog open={showAddWorkshopModal} onOpenChange={setShowAddWorkshopModal}>
+    <Dialog open={showCreateWorkshopModal} onOpenChange={setShowCreateWorkshopModal}>
       <DialogTrigger asChild>
         <Button className="mb-4"><Plus className="mr-2" />Add Workshop</Button>
       </DialogTrigger>
@@ -91,8 +96,8 @@ export function WorkshopsPanel() {
         </DialogHeader>
         <WorkshopForm onSubmit={addWorkshop} />
       </DialogContent>
-    </Dialog> 
-  )
+    </Dialog>
+  );
 
   const renderEditWorkshopModal = () => (
     <Dialog open={showEditWorkshopModal} onOpenChange={setShowEditWorkshopModal}>
@@ -106,7 +111,7 @@ export function WorkshopsPanel() {
         />
       </DialogContent>
     </Dialog>
-  )
+  );
 
   return (
     <div>

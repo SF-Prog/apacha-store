@@ -1,19 +1,45 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { SyntheticEvent, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { Calendar, Clock, MapPin, Users, User } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Calendar, Clock, MapPin, Users, User } from 'lucide-react'
+import { capitalize } from '@/app/lib/utils'
 import { useStore } from '@/app/context/store-context'
 
 export function WorkshopsGrid() {
-  const { workshops, loadWorkshops } = useStore();
+  const { workshops, loadWorkshops, onRegisterToWorkshop } = useStore();
+
+  const hasAlreadyHappened = (w: Workshop) => {
+    const now = new Date();
+    const eventDate = new Date(`${w.date}, ${w.initial_time}`);
+    return eventDate < now;
+  };
+
 
   useEffect(() => {
     void loadWorkshops();
   }, []);
+
+  const renderActionButton = (workshop: Workshop) => {
+    const isOld = hasAlreadyHappened(workshop);
+
+    const label = !isOld ? 'Registrate' : 'Ver Más';
+    const action = !isOld ? onRegisterToWorkshop : () => window.open(workshop.social_media_link, '_blank')
+
+    const handleClick = (e: SyntheticEvent) => {
+      e.preventDefault;
+      action(workshop);
+    };
+
+    return (
+      <Button onClick={handleClick} className="w-full bg-apacha_purple-100 hover:bg-apacha_purple-100/90">
+        {label}
+      </Button>
+    );
+  };
 
   return (
     <div className="bg-apacha-beige min-h-screen py-12 px-4 sm:px-6 lg:px-8">
@@ -43,7 +69,7 @@ export function WorkshopsGrid() {
               />
               <CardHeader>
                 <CardTitle className="text-xl font-semibold text-apacha_purple-100">{workshop.title}</CardTitle>
-                <CardDescription>{workshop.description}</CardDescription>
+                <CardDescription>{capitalize(workshop.description)}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center text-sm text-gray-600 mb-2">
@@ -69,9 +95,7 @@ export function WorkshopsGrid() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full bg-apacha_purple-100 hover:bg-apacha_purple-100/90">
-                  Registrate
-                </Button>
+                {renderActionButton(workshop)}
               </CardFooter>
             </Card>
           </motion.div>
