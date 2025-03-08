@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 
-import { PhoneCallIcon as WhatsappIcon } from 'lucide-react';
+import { MessageCircle as WhatsappIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import { Button } from '@/components/ui/button';
@@ -12,15 +12,16 @@ import {
   CardHeader,
   CardTitle
 } from "@/components/ui/card";
+import { MealPacksGrid } from '@/components/sections/meal-packs/meal-packs';
 import { useStore } from '@/context/store-context';
 
 const MakeYourOrder: React.FC = () => {
-  const { selectedMeals, toggleMeal, totalMealsPrice, mealPacks } = useStore();
+  const { selectedMeals, toggleMeal, totalMealsPrice, meals } = useStore();
 
 
   const generateWhatsAppMessage = () => {
     const selectedMealTitles = selectedMeals.map(mealId =>
-      mealPacks.find(m => m.id === mealId)?.title
+      meals.find(m => m.id === mealId)?.title
     ).join(', ')
     return `Hola, me interesa ordenar el pack de comida que incluye: ${selectedMealTitles}. El total es $${totalMealsPrice.toFixed(2)}.`
   };
@@ -38,7 +39,7 @@ const MakeYourOrder: React.FC = () => {
           <p className="text-xl text-apacha-brown max-w-2xl mx-auto">Puedes escribirnos para que te asesoremos y así saber cuál es el pack ideal para ti</p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {mealPacks.map((meal, index) => (
+          {meals.map((meal, index) => (
             <motion.div
               key={meal.id}
               initial={{ opacity: 0, y: 20 }}
@@ -82,6 +83,7 @@ const MakeYourOrder: React.FC = () => {
           </Button>
         </div>
       </div>
+      <MealPacksGrid />
     </section>
   );
 };
