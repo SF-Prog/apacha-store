@@ -98,7 +98,8 @@ interface StoreContextType {
   isLoading: boolean,
   setIsLoading: (is: boolean) => void,
   workshops: Workshop[],
-  loadWorkshops: () => void
+  loadWorkshops: () => void,
+  onRegisterToWorkshop: (w: Workshop) => void
 }
 
 // Auth interfaces
@@ -139,6 +140,10 @@ interface AdminContextType {
   addWorkshop: (w: FormData) => void,
   removeWorkshop: (id: string) => void,
   editWorkshop: (w: FormData) => void,
+  showCreateWorkshopModal: boolean,
+  setShowCreateWorkshopModal: (is: boolean) => void,
+  showEditWorkshopModal: boolean,
+  setShowEditWorkshopModal: (is: boolean) => void,
 }
 
 type AdminPanelTabItem = 'products' | 'services' | 'product_categories' | 'events' | 'workshops';

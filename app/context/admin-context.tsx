@@ -22,6 +22,8 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [ productCategories, setProductCategories ] = useState<ProductCategory[]>([]);
   const [ showCreateProductModal, setShowCreateProductModal ] = useState<boolean>(false);
   const [ showEditProductModal, setShowEditProductModal ] = useState<boolean>(false);
+  const [ showCreateWorkshopModal, setShowCreateWorkshopModal ] = useState<boolean>(false);
+  const [ showEditWorkshopModal, setShowEditWorkshopModal ] = useState<boolean>(false);
 
   const { products, loadProducts, isLoading, setIsLoading, workshops, loadWorkshops } = useStore();
 
@@ -149,7 +151,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       displayToaster('success', 'The Workshops has been successfully created.',)
 
       await loadWorkshops();
-      setShowEditProductModal(false);
+      setShowCreateProductModal(false);
     } catch (error) {
       displayToaster('Error', 'Failed to create Workshops. Please try again.');
     } finally {
@@ -177,6 +179,8 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
       await setWorkshop(data);
       await loadWorkshops();
+
+      setShowCreateProductModal(false);
     }
     catch (error) {
       displayToaster(toasterStatus.ERROR, error.message);
@@ -203,7 +207,11 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     addWorkshop,
     editWorkshop,
     removeWorkshop,
-    workshops
+    workshops,
+    showCreateWorkshopModal,
+    setShowCreateWorkshopModal,
+    showEditWorkshopModal,
+    setShowEditWorkshopModal,
   };
 
   return (
