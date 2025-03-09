@@ -16,11 +16,7 @@ export default function WorkshopsPage() {
         imageSrc="/hero-2.jpg"
       />
       <PageContent>
-        <ScrollAnimatedBackground
-          imageSrc="/workshop-people.png"
-          imageAlt="lunch-table">
-         <WorkshopsGrid />
-        </ScrollAnimatedBackground>
+        <WorkshopsGrid />
       </PageContent>
     </SecondaryPageLayout>
   )

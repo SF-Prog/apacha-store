@@ -5,22 +5,18 @@ import SecondaryPageLayout from "@/components/secondary-page/layout/layout";
 import PageHeader from "@/components/secondary-page/page-header/page-header";
 import PageContent from "@/components/secondary-page/page-content/page-content"
 import ScrollAnimatedBackground from "@/components/landing/scroll-animation/scroll-animation"
-import { EventsGrid } from "@/components/sections/events-grid/events-grid";
+import { EventsLanding } from "@/components/sections/events-landing/events-landing";
 
 export default function EventsPage() {
   return (
     <SecondaryPageLayout>
       <PageHeader
-        title="Caterings y eventos"
+        title="Nuestra Variedad Gastronómica"
         description="Relajate y disfruta de tu fiesta mientras nos encargamos de la alimentacion."
-        imageSrc="/hero-2.png"
+        imageSrc="/catering-focaccia.jpg"
       />
       <PageContent>
-        <ScrollAnimatedBackground
-          imageSrc="/lunch-table.jpg"
-          imageAlt="lunch-table">
-         <EventsGrid />
-        </ScrollAnimatedBackground>
+         <EventsLanding />
       </PageContent>
     </SecondaryPageLayout>
   )
