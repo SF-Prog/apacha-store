@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { useAdmin } from '@/context/admin-context'
 import { Pencil, Trash2, Plus } from 'lucide-react'
-import { WorkshopForm } from '@/components/admin-panel/workshop-form/workshop-form'
+import { WorkshopForm } from '@/app/components/forms/workshop-form/workshop-form'
 
 export function WorkshopsPanel() {
   const {

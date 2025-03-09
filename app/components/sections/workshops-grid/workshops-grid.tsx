@@ -42,9 +42,9 @@ export function WorkshopsGrid() {
   };
 
   return (
-    <div className="bg-apacha-beige min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-bone-500 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <motion.h1
-        className="text-4xl font-bold text-center text-apacha-brown mb-12"
+        className="text-4xl font-bold text-center text-black mb-12"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
