@@ -1,11 +1,12 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ChefHat, Utensils, Heart, Leaf, Clock, Users } from 'lucide-react'
+import { EventInfoRequestModal } from "@/components/forms/event-request/event-request"
 
 // Sample data - replace with your actual content
 const testimonials = [
@@ -87,8 +88,8 @@ const galleryImages = [
 ]
 
 export function EventsLanding() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
-  const [hoveredImage, setHoveredImage] = useState<number | null>(null)
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
 
   // Auto-rotate testimonials
   useEffect(() => {
@@ -264,6 +265,33 @@ export function EventsLanding() {
               </ul>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-gradient-to-r from-apacha_purple-100 to-apacha_purple-100/80 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">¿Listo para una Experiencia Culinaria Personalizada?</h2>
+            <p className="text-xl mb-8">
+              Nuestro equipo está esperando para crear un plan alimenticio que se adapte perfectamente a tus necesidades y preferencias.
+            </p>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block"
+            >
+              <EventInfoRequestModal />
+            </motion.div>
+            <p className="mt-4 text-white/80 text-sm">
+              Respuesta garantizada en menos de 24 horas
+            </p>
+          </motion.div>
         </div>
       </section>
     </div>

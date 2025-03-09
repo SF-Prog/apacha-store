@@ -5,6 +5,7 @@ import { toasterStatus, services, weeklyMenuExample, mealPacks, meals } from "@/
 import { displayToaster, parseProductsList } from "@/app/lib/utils";
 import { sendMenuEmail } from "@/actions/send-weekly-menu";
 import { getProducts } from "@/actions/get-products";
+import { createEventRequest } from "@/actions/create-event-request";
 import { getWorkshops } from "@/actions/get-workshops";
 
 const StoreContext = createContext<StoreContextType | null>(null)
@@ -134,6 +135,21 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     window.open(whatsappLink);
   };
 
+  const sendEventRequest = async (data: FormData) => {
+    try {
+      setIsLoading(true);
+      const response = await createEventRequest(data);
+      if (!response.success) throw new Error(response.message);
+      displayToaster(toasterStatus.SUCCESS, response.message);
+      setIsLoading(false);
+      return true;
+    } catch (error) {
+      setIsLoading(false);
+      displayToaster(toasterStatus.ERROR, error.message);
+      return false;
+    };
+  };
+
   useEffect(() => {
     updateCartFromStorage();
   }, [])
@@ -166,6 +182,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     workshops,
     loadWorkshops,
     onRegisterToWorkshop,
+    sendEventRequest
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

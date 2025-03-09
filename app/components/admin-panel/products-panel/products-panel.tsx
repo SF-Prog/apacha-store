@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { useAdmin } from '@/context/admin-context'
 import { Pencil, Trash2, Plus } from 'lucide-react'
-import { ProductForm } from '@/components/admin-panel/product-form/product-form';
+import { ProductForm } from '@/components/forms/product-form/product-form';
 
 export function ProductsPanel() {
   const {

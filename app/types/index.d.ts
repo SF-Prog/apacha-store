@@ -109,7 +109,8 @@ interface StoreContextType {
   setIsLoading: (is: boolean) => void,
   workshops: Workshop[],
   loadWorkshops: () => void,
-  onRegisterToWorkshop: (w: Workshop) => void
+  onRegisterToWorkshop: (w: Workshop) => void,
+  sendEventRequest: (data: FormData) => Promise<boolean>
 }
 
 // Auth interfaces
@@ -154,6 +155,18 @@ interface AdminContextType {
   setShowCreateWorkshopModal: (is: boolean) => void,
   showEditWorkshopModal: boolean,
   setShowEditWorkshopModal: (is: boolean) => void,
+}
+
+interface EventRequest {
+  name: string
+  email: string
+  phone: string
+  event_type: string
+  message: string
+  contact_preference: 'email' | 'whatsapp' | 'call'
+  newsletter: boolean
+  status: 'pending' | 'contacted' | 'completed'
+  created_at?: string
 }
 
 type AdminPanelTabItem = 'products' | 'services' | 'product_categories' | 'events' | 'workshops';
