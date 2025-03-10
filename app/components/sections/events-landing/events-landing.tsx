@@ -162,7 +162,7 @@ export function EventsLanding() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      {/* <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-apacha-brown mb-4">Lo Que Dicen Nuestros Clientes</h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
@@ -207,7 +207,7 @@ export function EventsLanding() {
             />
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Customization Highlight */}
       <section className="py-16 bg-apacha_purple-100/10">
@@ -215,17 +215,17 @@ export function EventsLanding() {
           <div className="md:flex items-center gap-12">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <motion.div
-                className="relative h-96 rounded-lg overflow-hidden shadow-xl"
+                className="relative h-96 rounded-lg shadow-xl"
                 whileInView={{ opacity: 1, scale: 1 }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/placeholder.svg?height=800&width=1200"
+                  src="/events-cooking.jpg?width=500&height=300"
                   alt="Personalización de menús"
                   fill
-                  className="object-cover"
+                  className="object-cover object-[0% -30%]"
                 />
               </motion.div>
             </div>
