@@ -59,7 +59,7 @@ const services: Service[] = [
     description: "Parte de nuestro disfrute es poder compartir el conocimiento y herramientas que hemos aprendido y adquirido en todo este tiempo. Queremos compartirlo para que puedas disfrutar cocinar alimentos ricos y nutritivos en tu casa con tu familia y amigo",
     image: "/workshop-people.png",
     url: '/workshops',
-    customStyle: { objectFit: 'cover', objectPosition: 'center -600px' }
+    customStyle: { objectFit: 'cover', objectPosition: 'center center' }
   },
   {
     title: "Caterings y Eventos",
