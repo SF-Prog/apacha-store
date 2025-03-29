@@ -37,7 +37,6 @@ export async function createWorkshop(data: FormData) {
     const response = await uploadImageToBucket({
       base64Image: image,
       bucketName: 'workshop-images',
-      imageName: title.replaceAll(' ', '-')
     });
 
     if (!response.success) return {
