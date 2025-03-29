@@ -1,13 +1,16 @@
 import { supabase } from "@/lib/supabase/client";
+import deleteImageFromBucket from "./utils/delete-image-from-bucket";
 
 const defaultErrorMessage = 'Failed to delete workshop';
 
-export const deleteWorkshop = async (id: string) => {
+export const deleteWorkshop = async (workshop: Workshop) => {
   try {
+    await deleteImageFromBucket({ bucketName: 'workshop-images', imageNames: [workshop.image]})
+
     const { error } = await supabase
       .from('workshops')
       .delete()
-      .eq('id', id);
+      .eq('id', workshop.id);
 
     if (error) {
       return {

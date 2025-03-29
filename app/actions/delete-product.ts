@@ -1,21 +1,15 @@
 import { supabase } from "@/lib/supabase/client";
+import deleteImageFromBucket from "./utils/delete-image-from-bucket";
 
 const defaultErrorMessage = 'Failed to delete product';
 
 export const deleteProduct = async (product: ProductItem) => {
   try {
+    await deleteImageFromBucket({
+      bucketName: 'product-images',
+      imageNames: [product.image]
+    });
 
-    const { error: errorImage } = await supabase
-      .storage
-      .from('product-images')
-      .remove([product.image]);
-
-    if (errorImage ) {
-      return {
-        success: false,
-        error: errorImage?.message ?? defaultErrorMessage
-      };
-    };
     const { error } = await supabase
       .from('products')
       .delete()
