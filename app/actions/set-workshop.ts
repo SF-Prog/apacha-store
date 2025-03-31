@@ -46,27 +46,28 @@ export async function setWorkshop(data: FormData) {
       error: response?.message ?? 'Failed to update workshop'
     };
 
-    // If the iamge was modified on the udpate we need to gather new path:
-    const imageDataForUpdate = response.imageNotModified
-      ? image
-      : response.data?.path;
-
-    const { error } = await supabase.from('workshops').update({
+    const updatedWorkshop: Partial<Workshop> = {
       title: newWorkshop.title,
       description: newWorkshop.description,
       location: newWorkshop.location,
       date: newWorkshop.date,
       initial_time: newWorkshop.initial_time,
       finalization_time: newWorkshop.finalization_time,
-      image: imageDataForUpdate,
       is_published: newWorkshop.is_published,
       price: newWorkshop.price,
       priority: newWorkshop.priority,
       author: newWorkshop.author,
       capacity: newWorkshop.capacity,
       social_media_link: newWorkshop.social_media_link,
-    })
-    .eq('id', newWorkshop.id);;
+    };
+
+    if (response.imageNotModified) {
+      updatedWorkshop.image = response.data?.path;
+    };
+
+    const { error } = await supabase.from('workshops')
+      .update(updatedWorkshop)
+      .eq('id', newWorkshop.id);;
 
     if (error) {
       return {

@@ -150,7 +150,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
       displayToaster(toasterStatus.SUCCESS, 'The Workshops has been successfully created.',)
 
-      setShowCreateProductModal(false);
+      setShowCreateWorkshopModal(false);
       await loadWorkshops();
     } catch (error) {
       displayToaster(toasterStatus.ERROR, 'Failed to create Workshops. Please try again.');

@@ -41,19 +41,24 @@ export const setProduct = async (data: FormData) => {
       ? image
       : response.data?.path;
 
+    const updatedProduct: Partial<ProductItem> = {
+      title: newProduct.title,
+      price: newProduct.price,
+      description: newProduct.description,
+      meassures: newProduct.meassures,
+      category: newProduct.category,
+      qty: newProduct.qty,
+      is_published: newProduct.is_published,
+      priority: newProduct.priority
+    };
+
+    if (response.imageNotModified) {
+      updatedProduct.image = response.data?.path;
+    };
+
     const { error } = await supabase
       .from('products')
-      .update({
-        title: newProduct.title,
-        image: imageDataForUpdate,
-        price: newProduct.price,
-        description: newProduct.description,
-        meassures: newProduct.meassures,
-        category: newProduct.category,
-        qty: newProduct.qty,
-        is_published: newProduct.is_published,
-        priority: newProduct.priority
-      })
+      .update(updatedProduct)
       .eq('id', newProduct.id);
 
     if (error) throw new Error(error.message ?? defaultErrorMessage)
