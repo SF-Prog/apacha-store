@@ -1,29 +1,34 @@
-import { supabase } from '@/app/lib/supabase/client';
+import { getStorageClient } from '@/app/lib/supabase/client';
 import base64ToFile from './base64-to-file';
+import { getExtensionFromBase64 } from './get-base64-file-extension';
+import { isBase64Image } from './is-base-64';
 import deleteImageFromBucket from './delete-image-from-bucket';
 
 interface Payload {
   base64Image: string,
   bucketName: string,
-  imageName: string
+  preExistingImage?: string
 };
 
 const uploadImageToBucket = async (payload: Payload) => {
-  const { base64Image, bucketName, imageName } = payload;
+  const { base64Image, bucketName } = payload;
+  const storage = await getStorageClient();
+
+  const isNew = isBase64Image(base64Image);
+  console.log('isbase64', isNew);
   try {
+    if (!isNew) {
+      // const response = await deleteImageFromBucket({ bucketName: bucketName, imageNames: [name] });
+      // if (!response.success) return { success: false, message: response.message };
+      return { success: true, imageNotModified: true };
+    };
+    const ext = getExtensionFromBase64(base64Image);
+    const name = `${Math.random().toString(36).substring(2, 15)}.${ext}`;
     const file = base64ToFile(base64Image);
 
-    const { data: imageData } = await supabase.storage.from(bucketName).getPublicUrl(imageName);
-    const responseImageCheck = await fetch(imageData.publicUrl);
-    const alreadyExists = !!responseImageCheck.ok;
 
-    if (alreadyExists) {
-      const response = await deleteImageFromBucket({ bucketName: bucketName, imageNames: [imageName] });
-      if (!response.success) return { success: false, message: response.message };
-    };
-
-    const { data, error } = await supabase.storage.from(bucketName).upload(
-      imageName,
+    const { data, error } = await storage.from(bucketName).upload(
+      name,
       file,
     );
 

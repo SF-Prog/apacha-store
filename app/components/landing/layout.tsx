@@ -24,7 +24,6 @@ interface LayoutProps {
 const options = [
   { label: 'Sobre Nosotros', href: '/#sobre-nosotros'},
   { label: 'Servicios y Productos', href: '/#nuestros-servicios'},
-  { label: 'Vlog', href: '/vlog'},
   { label: 'Contacto', href: '/#contactanos'}
 ];
 

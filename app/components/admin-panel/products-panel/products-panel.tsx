@@ -16,7 +16,7 @@ export function ProductsPanel() {
     productsList,
     removeProduct,
     addProduct,
-    editProduct,
+    updateProduct,
     productCategories
   } = useAdmin();
 
@@ -104,7 +104,7 @@ export function ProductsPanel() {
           <DialogTitle>Edit Product</DialogTitle>
         </DialogHeader>
         <ProductForm
-          onSubmit={editProduct}
+          onSubmit={updateProduct}
           initialValues={productToEdit} />
       </DialogContent>
     </Dialog>

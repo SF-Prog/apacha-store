@@ -136,7 +136,7 @@ interface AuthContextType {
 interface AdminContextType {
   addProduct: (newProduct: FormData) => void,
   removeProduct: (id: string) => void,
-  editProduct: (editedProduct: FormData) => void,
+  updateProduct: (editedProduct: FormData) => void,
   productsList: ProductItem[],
   isLoading: boolean,
   showCreateProductModal: boolean,

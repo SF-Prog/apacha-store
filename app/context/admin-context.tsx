@@ -82,7 +82,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     }
   };
 
-  const editProduct = async (data: FormData) => {
+  const updateProduct = async (data: FormData) => {
     try {
       setIsLoading(true);
 
@@ -148,12 +148,12 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       const result = await createWorkshop(data);
       if (!result.success)  throw new Error(result.error);
 
-      displayToaster('success', 'The Workshops has been successfully created.',)
+      displayToaster(toasterStatus.SUCCESS, 'The Workshops has been successfully created.',)
 
-      await loadWorkshops();
       setShowCreateProductModal(false);
+      await loadWorkshops();
     } catch (error) {
-      displayToaster('Error', 'Failed to create Workshops. Please try again.');
+      displayToaster(toasterStatus.ERROR, 'Failed to create Workshops. Please try again.');
     } finally {
       setIsLoading(false)
     }
@@ -161,8 +161,9 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const removeWorkshop = async (id: string) => {
     try {
+      const workshop: Workshop = workshops.find((w) => w.id === id);
       setIsLoading(true);
-      await deleteWorkshop(id);
+      await deleteWorkshop(workshop);
       await loadWorkshops();
     }
     catch (error) {
@@ -178,9 +179,10 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setIsLoading(true);
 
       await setWorkshop(data);
+
       await loadWorkshops();
 
-      setShowCreateProductModal(false);
+      setShowEditWorkshopModal(false);
     }
     catch (error) {
       displayToaster(toasterStatus.ERROR, error.message);
@@ -194,7 +196,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     productsList,
     addProduct,
     removeProduct,
-    editProduct,
+    updateProduct,
     isLoading,
     showCreateProductModal,
     setShowCreateProductModal,
