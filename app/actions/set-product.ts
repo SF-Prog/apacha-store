@@ -32,16 +32,20 @@ export const setProduct = async (data: FormData) => {
     const response = await uploadImageToBucket({
       base64Image: image,
       bucketName: 'product-images',
-      imageName: title.replaceAll(' ', '-')
     });
 
     if (!response.success) throw new Error(response.message);
+
+    // If the iamge was modified on the udpate we need to gather new path:
+    const imageDataForUpdate = response.imageNotModified
+      ? image
+      : response.data?.path;
 
     const { error } = await supabase
       .from('products')
       .update({
         title: newProduct.title,
-        image: response.data?.path,
+        image: imageDataForUpdate,
         price: newProduct.price,
         description: newProduct.description,
         meassures: newProduct.meassures,
@@ -49,7 +53,7 @@ export const setProduct = async (data: FormData) => {
         qty: newProduct.qty,
         is_published: newProduct.is_published,
         priority: newProduct.priority
-       })
+      })
       .eq('id', newProduct.id);
 
     if (error) throw new Error(error.message ?? defaultErrorMessage)

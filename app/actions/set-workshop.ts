@@ -1,6 +1,5 @@
-'use server'
-
 import { supabase } from '@/lib/supabase/client';
+import uploadImageToBucket from './utils/upload-image-to-bucket';
 
 export async function setWorkshop(data: FormData) {
   const id = data.get('id') as string
@@ -37,6 +36,21 @@ export async function setWorkshop(data: FormData) {
   };
 
   try {
+    const response = await uploadImageToBucket({
+      base64Image: image,
+      bucketName: 'workshop-images',
+    });
+
+    if (!response.success) return {
+      success: false,
+      error: response?.message ?? 'Failed to update workshop'
+    };
+
+    // If the iamge was modified on the udpate we need to gather new path:
+    const imageDataForUpdate = response.imageNotModified
+      ? image
+      : response.data?.path;
+
     const { error } = await supabase.from('workshops').update({
       title: newWorkshop.title,
       description: newWorkshop.description,
@@ -44,7 +58,7 @@ export async function setWorkshop(data: FormData) {
       date: newWorkshop.date,
       initial_time: newWorkshop.initial_time,
       finalization_time: newWorkshop.finalization_time,
-      image: newWorkshop.image,
+      image: imageDataForUpdate,
       is_published: newWorkshop.is_published,
       price: newWorkshop.price,
       priority: newWorkshop.priority,
