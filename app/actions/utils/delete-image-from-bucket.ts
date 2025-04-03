@@ -1,4 +1,4 @@
-import { supabase } from "@/app/lib/supabase/client";
+import { getStorageClient } from "@/app/lib/supabase/client";
 
 interface Payload {
   bucketName: string,
@@ -8,7 +8,8 @@ interface Payload {
 const deleteImageFromBucket = async (payload: Payload) => {
   const { bucketName, imageNames } = payload;
   try {
-    const { error } = await supabase.storage.from(bucketName).remove([...imageNames]);
+    const storage = await getStorageClient();
+    const { error } = await storage.from(bucketName).remove([...imageNames]);
     if (error) return { success: false, message: error.message ?? 'Something went wrong' };
 
     return { success: true };

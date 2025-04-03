@@ -9,7 +9,7 @@ export async function createProduct(data: FormData) {
   const meassures = data.get('meassures') as string
   const category = data.get('category') as string
   const qty = parseFloat(data.get('qty') as string)
-  const is_published = (data.get('is_published') == 'true')   
+  const is_published = (data.get('is_published') == 'true')
   const priority = parseFloat(data.get('priority') as string)
 
   const newProduct: ProductItem = {
@@ -18,7 +18,7 @@ export async function createProduct(data: FormData) {
     description,
     price,
     image,
-    meassures,
+    meassures, 
     category,
     qty,
     priority,
@@ -29,7 +29,6 @@ export async function createProduct(data: FormData) {
     const response = await uploadImageToBucket({
       base64Image: image,
       bucketName: 'product-images',
-      imageName: title.replaceAll(' ', '-')
     });
 
     if (!response.success) return {

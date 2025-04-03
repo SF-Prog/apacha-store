@@ -1,6 +1,5 @@
-'use server'
-
 import { supabase } from '@/lib/supabase/client';
+import uploadImageToBucket from './utils/upload-image-to-bucket';
 
 export async function setWorkshop(data: FormData) {
   const id = data.get('id') as string
@@ -37,22 +36,38 @@ export async function setWorkshop(data: FormData) {
   };
 
   try {
-    const { error } = await supabase.from('workshops').update({
+    const response = await uploadImageToBucket({
+      base64Image: image,
+      bucketName: 'workshop-images',
+    });
+
+    if (!response.success) return {
+      success: false,
+      error: response?.message ?? 'Failed to update workshop'
+    };
+
+    const updatedWorkshop: Partial<Workshop> = {
       title: newWorkshop.title,
       description: newWorkshop.description,
       location: newWorkshop.location,
       date: newWorkshop.date,
       initial_time: newWorkshop.initial_time,
       finalization_time: newWorkshop.finalization_time,
-      image: newWorkshop.image,
       is_published: newWorkshop.is_published,
       price: newWorkshop.price,
       priority: newWorkshop.priority,
       author: newWorkshop.author,
       capacity: newWorkshop.capacity,
       social_media_link: newWorkshop.social_media_link,
-    })
-    .eq('id', newWorkshop.id);;
+    };
+
+    if (response.imageNotModified) {
+      updatedWorkshop.image = response.data?.path;
+    };
+
+    const { error } = await supabase.from('workshops')
+      .update(updatedWorkshop)
+      .eq('id', newWorkshop.id);;
 
     if (error) {
       return {

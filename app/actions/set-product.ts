@@ -32,24 +32,33 @@ export const setProduct = async (data: FormData) => {
     const response = await uploadImageToBucket({
       base64Image: image,
       bucketName: 'product-images',
-      imageName: title.replaceAll(' ', '-')
     });
 
     if (!response.success) throw new Error(response.message);
 
+    // If the iamge was modified on the udpate we need to gather new path:
+    const imageDataForUpdate = response.imageNotModified
+      ? image
+      : response.data?.path;
+
+    const updatedProduct: Partial<ProductItem> = {
+      title: newProduct.title,
+      price: newProduct.price,
+      description: newProduct.description,
+      meassures: newProduct.meassures,
+      category: newProduct.category,
+      qty: newProduct.qty,
+      is_published: newProduct.is_published,
+      priority: newProduct.priority
+    };
+
+    if (response.imageNotModified) {
+      updatedProduct.image = response.data?.path;
+    };
+
     const { error } = await supabase
       .from('products')
-      .update({
-        title: newProduct.title,
-        image: response.data?.path,
-        price: newProduct.price,
-        description: newProduct.description,
-        meassures: newProduct.meassures,
-        category: newProduct.category,
-        qty: newProduct.qty,
-        is_published: newProduct.is_published,
-        priority: newProduct.priority
-       })
+      .update(updatedProduct)
       .eq('id', newProduct.id);
 
     if (error) throw new Error(error.message ?? defaultErrorMessage)

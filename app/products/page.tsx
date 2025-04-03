@@ -14,10 +14,8 @@ export default function ProductsPage() {
         imageSrc="/products-dips-2.jpg"
       />
       <PageContent>
-        <section className="py-12">
-          <h2 className="text-3xl font-bold text-center mb-8 text-apacha-green">Armá tu pack</h2>
+          
           <ProductGrid />
-        </section>
         <CartWidget />
       </PageContent>
     </SecondaryPageLayout>
