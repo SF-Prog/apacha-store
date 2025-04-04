@@ -61,7 +61,7 @@ export async function setWorkshop(data: FormData) {
       social_media_link: newWorkshop.social_media_link,
     };
 
-    if (response.imageNotModified) {
+    if (!response.imageNotModified) {
       updatedWorkshop.image = response.data?.path;
     };
 

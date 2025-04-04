@@ -52,7 +52,7 @@ export const setProduct = async (data: FormData) => {
       priority: newProduct.priority
     };
 
-    if (response.imageNotModified) {
+    if (!response.imageNotModified) {
       updatedProduct.image = response.data?.path;
     };
 
