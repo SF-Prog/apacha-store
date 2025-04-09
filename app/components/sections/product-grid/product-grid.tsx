@@ -25,15 +25,15 @@ const ProductGrid: React.FC = () => {
         Armá tu pack
       </h2>
       <div className="container mx-auto px-4 py-8">
-        {products.map((category, index) => (
+        {products?.map((category, index) => (
           <motion.div
-            key={category.cat}
+            key={category.category}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             className="mb-12"
           >
-            <h2 className="text-2xl font-bold text-black mb-6">{capitalize(category.cat)}</h2>
+            <h2 className="text-2xl font-bold text-black mb-6">{capitalize(category.category)}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {category.products.map((product) => (
                 <motion.div
