@@ -111,7 +111,7 @@ export function WorkshopsGrid() {
                   </div>
                   <div className="flex items-center">
                     <User className="mr-2 h-4 w-4" />
-                    <span>Instructor: {workshop.author}</span>
+                    <span>Tallerista: {workshop.author}</span>
                   </div>
                 </div>
               </CardContent>

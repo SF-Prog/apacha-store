@@ -12,8 +12,10 @@ import { deleteProductCategory } from '@/actions/delete-product-category';
 import { createWorkshop } from "@/actions/create-workshop";
 import { deleteWorkshop } from "@/actions/delete-workshop";
 import { setWorkshop } from "@/actions/set-workshop";
+import { getEventRequests } from "@/actions/get-event-requests";
 import { displayToaster, parseProductsList } from "@/lib/utils";
 import { toasterStatus } from "@/lib/constants";
+import { setEventRequestStatus } from "../actions/set-event-request-status";
 
 const AdminContext = createContext<AdminContextType | null>(null)
 
@@ -24,13 +26,14 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [ showEditProductModal, setShowEditProductModal ] = useState<boolean>(false);
   const [ showCreateWorkshopModal, setShowCreateWorkshopModal ] = useState<boolean>(false);
   const [ showEditWorkshopModal, setShowEditWorkshopModal ] = useState<boolean>(false);
-
+  const [ eventRequests, setEventRequests ] = useState<EventRequest[]>([]);
   const { products, loadProducts, isLoading, setIsLoading, workshops, loadWorkshops } = useStore();
 
   useEffect(() => {
     void loadProducts();
     void loadProductCategories();
     void loadWorkshops();
+    void loadEventRequests();
   }, []);
 
   useEffect(() => {
@@ -38,6 +41,29 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
     setProductsList(productItems);
   }, [products]);
+
+  const loadEventRequests = async () => {
+    try {
+      setIsLoading(true);
+      const requests = await getEventRequests();
+      if (!requests) return;
+
+      setEventRequests(requests);
+    } catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    } finally {
+      setIsLoading(false);
+    };
+  };
+
+  const updateEventRequestStatus = async (id: string, newStatus: string) => {
+    try {
+      await setEventRequestStatus(id, newStatus);
+      await loadEventRequests();
+    } catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    };
+  }
 
   const loadProductCategories = async () => {
     try {
@@ -100,10 +126,11 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     };
   };
 
-  const addProductCategory = async (name: string) => {
+  const addProductCategory = async (cat: ProductCategory) => {
     try {
       setIsLoading(true);
-      await createProductCategory({ name });
+      const { name, priority } = cat;
+      await createProductCategory({ name, priority });
       await loadProductCategories();
     }
     catch (error) {
@@ -214,6 +241,8 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     setShowCreateWorkshopModal,
     showEditWorkshopModal,
     setShowEditWorkshopModal,
+    eventRequests,
+    updateEventRequestStatus
   };
 
   return (

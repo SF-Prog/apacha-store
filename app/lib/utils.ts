@@ -27,8 +27,33 @@ export function capitalize(string) {
 export function parseProductsList(productsByCategory) {
   if (!productsByCategory?.length) return [];
   const productItems = [...productsByCategory].reduce((acc, cur) => {
-    return [].concat(acc, [...cur.products]);
+    const productsOfCat = cur.products.map((prod) => {
+      return {
+        ...prod,
+        category: { name: cur.category, priority: cur.category_priority }
+      };
+    });
+    return [].concat(acc, [...productsOfCat]);
   }, []);
 
   return productItems;
+};
+
+export const sortProductsByPriority = (data: ProductsByCategory[]) => {
+  data.sort((a: ProductsByCategory, b: ProductsByCategory) => {
+    return a.category_priority < b.category_priority ? 1 : -1;
+  });
+
+  data.map((cat) => {
+    const catWithProductsSortedByPriority = cat.products.sort((a: ProductItem, b: ProductItem) => {
+      return a.priority < b.priority ? 1 : -1
+    });
+    return catWithProductsSortedByPriority;
+  });
+
+  return data;
+}
+
+export const sortWorkshopsByPriority = (data: Workshop[]) => {
+  return data.sort((a, b) => a.priority < b.priority ? 1 : -1);
 };

@@ -23,6 +23,19 @@ interface ProductItem {
   price: number
   description?: string
   meassures?: string,
+  category?: ProductCategory,
+  qty: number,
+  priority: number,
+  is_published: boolean
+}
+
+interface ProductParams {
+  id: string
+  title: string
+  image: string
+  price: number
+  description?: string
+  meassures?: string,
   category?: string,
   qty: number,
   priority: number,
@@ -30,7 +43,8 @@ interface ProductItem {
 }
 
 interface ProductsByCategory {
-  cat: string
+  category: string
+  category_priority: string
   products: ProductItem[]
 }
 
@@ -38,6 +52,7 @@ interface ProductCategory {
   id?: string,
   created_at?: string,
   name: string
+  priority?: number
 }
 
 interface Workshop {
@@ -144,7 +159,7 @@ interface AdminContextType {
   showEditProductModal: boolean,
   setShowEditProductModal: (is: boolean) => void,
   productCategories: ProductCategory[],
-  addProductCategory: (id: string) => void,
+  addProductCategory: (cat: ProductCategory) => void,
   removeProductCategory: (id: string) => void,
   updateProductCategory: (cat: ProductCategory) => void,
   workshops: Workshop[],
@@ -155,9 +170,12 @@ interface AdminContextType {
   setShowCreateWorkshopModal: (is: boolean) => void,
   showEditWorkshopModal: boolean,
   setShowEditWorkshopModal: (is: boolean) => void,
+  eventRequests: EventRequest[],
+  updateEventRequestStatus: (id: string, status: string) => void
 }
 
 interface EventRequest {
+  id?: string,
   name: string
   email: string
   phone: string
