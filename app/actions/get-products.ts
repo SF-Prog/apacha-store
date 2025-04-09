@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase/client';
 
 export async function getProducts() {
   try {
-    const { data, error } = await supabase.rpc('get_products_grouped_by_category');
+    const { data, error } = await supabase.rpc('get_products_by_category');
 
     if (error) {
       throw new Error(error.message);
