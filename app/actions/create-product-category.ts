@@ -4,7 +4,11 @@ const defaultErrorMessage = 'Failed to create product category';
 
 export const createProductCategory = async (cat: ProductCategory) => {
   try {
-    const newProductCat = { name: cat.name, created_at: new Date };
+    const newProductCat = { 
+      name: cat.name,
+      priority: cat.priority, 
+      created_at: new Date 
+    };
 
     const { error } = await supabase.from('product_category')
       .insert(newProductCat);
