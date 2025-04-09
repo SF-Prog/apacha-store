@@ -7,19 +7,19 @@ export async function createProduct(data: FormData) {
   const price = parseFloat(data.get('price') as string)
   const image = data.get('image') as string
   const meassures = data.get('meassures') as string
-  const category = data.get('category') as string
+  const category = data.get('category') as ProductCategory
   const qty = parseFloat(data.get('qty') as string)
   const is_published = (data.get('is_published') == 'true')
   const priority = parseFloat(data.get('priority') as string)
 
-  const newProduct: ProductItem = {
+  const newProduct: ProductParams = {
     id: Date.now().toString(),
     title,
     description,
     price,
     image,
-    meassures, 
-    category,
+    meassures,
+    category: category.id,
     qty,
     priority,
     is_published,

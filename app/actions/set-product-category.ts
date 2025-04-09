@@ -6,7 +6,7 @@ export const setProductCategory = async (cat: ProductCategory) => {
   try {
     const { error } = await supabase
       .from('product_category')
-      .update({ name: cat.name })
+      .update({ name: cat.name, priority: cat.priority })
       .eq('id', cat.id);
 
     if (error) {

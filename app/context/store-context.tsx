@@ -2,7 +2,7 @@
 
 import React, { createContext, useState, useContext, useEffect, ReactNode, useMemo } from "react"
 import { toasterStatus, services, weeklyMenuExample, mealPacks, meals } from "@/app/lib/constants";
-import { displayToaster, parseProductsList } from "@/app/lib/utils";
+import { displayToaster, parseProductsList, sortProductsByPriority, sortWorkshopsByPriority } from "@/app/lib/utils";
 import { sendMenuEmail } from "@/actions/send-weekly-menu";
 import { getProducts } from "@/actions/get-products";
 import { createEventRequest } from "@/actions/create-event-request";
@@ -23,7 +23,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setIsLoading(true);
       const data = await getProducts();
       setIsLoading(false);
-      setProducts(data);
+      setProducts(sortProductsByPriority(data));
     } catch (error) {
       setIsLoading(false);
       displayToaster(toasterStatus.ERROR, error.details);
@@ -120,8 +120,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       setIsLoading(true);
       const data = await getWorkshops();
       setIsLoading(false);
-      console.log('SET WS', workshops);
-      setWorkshops(data);
+      setWorkshops(sortWorkshopsByPriority(data));
     } catch (error) {
       setIsLoading(false);
       displayToaster(toasterStatus.ERROR, error.details);

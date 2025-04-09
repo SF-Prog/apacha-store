@@ -50,7 +50,6 @@ export function ProductsPanel() {
     if (!productsList?.length) return;
 
     return productsList.map((product) => {
-      const category = productCategories.find(p => p.id === product.category);
       if (!product) return;
       return (
         <TableRow key={product.id}>
@@ -61,7 +60,7 @@ export function ProductsPanel() {
           <TableCell className="max-w-xs truncate">{product.description}</TableCell>
           <TableCell>${product.price?.toFixed(2)}</TableCell>
           <TableCell>{product.meassures}</TableCell>
-          <TableCell>{category?.name}</TableCell>
+          <TableCell>{product.category?.name}</TableCell>
           <TableCell>{product.qty}</TableCell>
           <TableCell>{product.priority}</TableCell>
           <TableCell>{product.is_published ? 'true' : 'false'}</TableCell>

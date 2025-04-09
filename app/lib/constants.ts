@@ -84,6 +84,11 @@ const emptyProduct = {
   category: ''
 }
 
+const emptyProductCategory = {
+  name: '',
+  priority: 0
+}
+
 
 const mealPacks: MealPack[] = [
   {
@@ -145,6 +150,7 @@ export {
   services,
   toasterStatus,
   emptyProduct,
+  emptyProductCategory,
   mealPacks,
   meals
 };

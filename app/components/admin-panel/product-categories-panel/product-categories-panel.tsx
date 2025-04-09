@@ -7,6 +7,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Pencil, Trash2, Plus } from 'lucide-react'
 import { useAdmin } from '@/context/admin-context'
+import { emptyProductCategory } from '@/app/lib/constants'
+import { Label } from '@radix-ui/react-label'
 
 export function ProductCategoriesPanel() {
   const {
@@ -16,16 +18,19 @@ export function ProductCategoriesPanel() {
     productCategories,
   } = useAdmin();
 
-  const [newCategoryName, setNewCategoryName] = useState('');
+  const [newCategory, setNewCategory] = useState<ProductCategory>(emptyProductCategory);
   const [editingCategory, setEditingCategory] = useState<ProductCategory | null>(null);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
 
 
   const handleAddCategory = async () => {
-    if (!newCategoryName.trim()) return;
-    await addProductCategory(newCategoryName.trim())
-    setNewCategoryName('')
+    if (!newCategory.name.trim()) return;
+    await addProductCategory({
+      name: newCategory.name.trim(),
+      priority: newCategory.priority
+    })
+    setNewCategory(emptyProductCategory);
     setIsAddDialogOpen(false)
   }
 
@@ -53,21 +58,25 @@ export function ProductCategoriesPanel() {
           <DialogTitle>Add New Category</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
+          <Label htmlFor="name">Name</Label>
           <Input
+            name="name"
             placeholder="Category name"
-            value={newCategoryName}
-            onChange={(e) => setNewCategoryName(e.target.value)}
+            value={newCategory.name}
+            onChange={(e) => setNewCategory({ ...newCategory, name: e.target.value })}
+          />
+          <Label htmlFor="priority">Priority</Label>
+          <Input
+            name="priority"
+            placeholder="Priority"
+            value={newCategory.priority}
+            onChange={(e) => setNewCategory({ ...newCategory, priority: Number(e.target.value) })}
           />
           <Button onClick={handleAddCategory}>Add Category</Button>
         </div>
       </DialogContent>
     </Dialog>
   );
-
-  const onNameChange = (e) => {
-    const newName = e.target.value;
-    setEditingCategory({ ...editingCategory, name: newName });
-  };
 
   const renderEditCategoryModalAndTrigger = () => {
     return (
@@ -77,10 +86,19 @@ export function ProductCategoriesPanel() {
             <DialogTitle>Edit Category</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
+          <Label htmlFor="name">Name</Label>
+
             <Input
               placeholder="Category name"
               value={editingCategory?.name || ''}
-              onChange={onNameChange}
+              onChange={(e) => setEditingCategory({ ...editingCategory, name: e.target.value })}
+            />
+                      <Label htmlFor="priority">Priority</Label>
+
+            <Input
+              placeholder="Category priority"
+              value={editingCategory?.priority || ''}
+              onChange={(e) => setEditingCategory({ ...editingCategory, priority: Number(e.target.value) })}
             />
             <Button onClick={() => handleUpdateCategory()}>Update Category</Button>
           </div>
@@ -99,6 +117,7 @@ export function ProductCategoriesPanel() {
             <TableRow>
               <TableHead>Id</TableHead>
               <TableHead>Name</TableHead>
+              <TableHead>Priority</TableHead>
               <TableHead>Created at</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
@@ -109,6 +128,7 @@ export function ProductCategoriesPanel() {
                 <TableRow>
                   <TableCell>{category.id}</TableCell>
                   <TableCell>{category.name}</TableCell>
+                  <TableCell>{category.priority ?? 0}</TableCell>
                   <TableCell>{category.created_at}</TableCell>
                   <TableCell>
                     <Button

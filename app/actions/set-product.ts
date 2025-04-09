@@ -10,7 +10,7 @@ export const setProduct = async (data: FormData) => {
   const price = parseFloat(data.get('price') as string)
   const image = data.get('image') as string
   const meassures = data.get('meassures') as string
-  const category = data.get('category') as string
+  const category = data.get('category') as ProductCategory
   const qty = parseFloat(data.get('qty') as string)
   const is_published = (data.get('is_published') == 'true') as boolean
   const priority = parseFloat(data.get('priority') as string)
@@ -41,19 +41,19 @@ export const setProduct = async (data: FormData) => {
       ? image
       : response.data?.path;
 
-    const updatedProduct: Partial<ProductItem> = {
+    const updatedProduct: Partial<ProductParams> = {
       title: newProduct.title,
       price: newProduct.price,
       description: newProduct.description,
       meassures: newProduct.meassures,
-      category: newProduct.category,
+      category: newProduct.category.id,
       qty: newProduct.qty,
       is_published: newProduct.is_published,
       priority: newProduct.priority
     };
 
     if (!response.imageNotModified) {
-      updatedProduct.image = response.data?.path;
+      updatedProduct['image'] = response.data?.path;
     };
 
     const { error } = await supabase

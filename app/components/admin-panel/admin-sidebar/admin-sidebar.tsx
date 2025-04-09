@@ -16,12 +16,12 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           isActive={activeTab === 'products'}
           onClick={() => setActiveTab('products')}
         />
-        <SidebarItem
+        {/* <SidebarItem
           icon={Briefcase}
           text="Services"
           isActive={activeTab === 'services'}
           onClick={() => setActiveTab('services')}
-        />
+        /> */}
         <SidebarItem
           icon={PackageSearch}
           text="Product Categories"
