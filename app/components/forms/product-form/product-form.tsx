@@ -112,7 +112,7 @@ export function ProductForm(props: ProductFormProps) {
   };
 
   const handleCategoryChange = (value: string) => {
-    const selectedCat = productCategories.find(pc => pc.name === value);
+    const selectedCat = productCategories.find(pc => pc.id === value);
     setProductItem(prev => ({ ...prev, category: selectedCat }));
   };
 
