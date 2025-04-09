@@ -61,8 +61,7 @@ export function ProductForm(props: ProductFormProps) {
     // Update correspondent states ofr UI product initial display.
     setProductItem(initialValues as ProductItem);
     setPreviewImage(initialValues.image);
-
-    handleCategoryChange(initialValues.category);
+    handleCategoryChange(initialValues.category.id);
   }, []);
 
   const validateForm = (data: ProductItem): boolean => {
@@ -113,7 +112,8 @@ export function ProductForm(props: ProductFormProps) {
   };
 
   const handleCategoryChange = (value: string) => {
-    setProductItem(prev => ({ ...prev, category: value }));
+    const selectedCat = productCategories.find(pc => pc.name === value);
+    setProductItem(prev => ({ ...prev, category: selectedCat }));
   };
 
   const renderSelectField = (config: FieldConfig) => {
@@ -124,7 +124,7 @@ export function ProductForm(props: ProductFormProps) {
         <Label htmlFor="category">{config.label}</Label>
         <Select
           onValueChange={handleCategoryChange}
-          value={formData.category ?? initialValues?.category ?? ''}>
+          value={formData.category?.id ?? initialValues?.category?.id ?? ''}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder={config.placeholder} />
             </SelectTrigger>
