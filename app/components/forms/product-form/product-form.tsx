@@ -103,11 +103,12 @@ export function ProductForm(props: ProductFormProps) {
 
     const formDataToSend = new FormData()
     Object.entries(formData).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
-        formDataToSend.append(key, value.toString())
-      }
+      if (!value) return;
+      if (key === 'category') {
+        return formDataToSend.append(key, value.id.toString());
+      };
+      formDataToSend.append(key, value.toString())
     });
-
     onSubmit(formDataToSend);
   };
 

@@ -48,20 +48,23 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
     const availableQuantity = productsList.find((p) => p.id === newItem.id)?.qty;
 
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === newItem.id);
-      if (!existingItem) return [...prevItems, { ...newItem, quantity: 1 }];
+    const existingItem = cartItems.find(item => item.id === newItem.id);
+    if (!existingItem) return setCartItems([...cartItems, { ...newItem, quantity: 1 }]);
 
-      return prevItems.map(item => {
-        const isModifiedItem = item.id === newItem.id;
-        if (!isModifiedItem) return item;
+    const modifiedItem = cartItems.find(i => i.id === newItem.id);
+    const hasStockAvailable = modifiedItem.quantity + 1 <= availableQuantity;
 
-        const hasStockAvailable = availableQuantity >= item.quantity + 1;
-        if (!hasStockAvailable) return item;
+    if (!hasStockAvailable) {
+      displayToaster(toasterStatus.ERROR, "No nos quedan mas articulos disponibles.");
+    };
 
-        return { ...item, quantity: item.quantity + 1 }
-      });
+    const updatedCart = cartItems.map(item => {
+      const isModifiedItem = item.id === newItem.id;
+      if (!isModifiedItem) return item;
+
+      return { ...item, quantity: item.quantity + 1 }
     });
+    setCartItems(updatedCart);
   };
 
   const removeCartItem = (itemId: string) => {
@@ -106,12 +109,12 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     try {
       const result = await sendMenuEmail(email);
       if (result.success) {
-        displayToaster('SUCCESS', '¡Menú enviado! Revisa tu correo.');
+        displayToaster(toasterStatus.SUCCESS, '¡Menú enviado! Revisa tu correo.');
       } else {
-        displayToaster('ERROR', 'Error al enviar el menú. Por favor, intenta de nuevo.');
+        displayToaster(toasterStatus.ERROR, 'Error al enviar el menú. Por favor, intenta de nuevo.');
       };
     } catch (error) {
-      displayToaster('ERROR', 'Ocurrió un error. Por favor, intenta de nuevo más tarde.');
+      displayToaster(toasterStatus.ERROR, 'Ocurrió un error. Por favor, intenta de nuevo más tarde.');
     };
   };
 
