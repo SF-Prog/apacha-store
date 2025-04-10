@@ -10,12 +10,12 @@ export const setProduct = async (data: FormData) => {
   const price = parseFloat(data.get('price') as string)
   const image = data.get('image') as string
   const meassures = data.get('meassures') as string
-  const category = data.get('category') as ProductCategory
+  const category = data.get('category') as string
   const qty = parseFloat(data.get('qty') as string)
   const is_published = (data.get('is_published') == 'true') as boolean
   const priority = parseFloat(data.get('priority') as string)
 
-  const newProduct: ProductItem = {
+  const newProduct: ProductParams = {
     id,
     title,
     description,
@@ -46,10 +46,10 @@ export const setProduct = async (data: FormData) => {
       price: newProduct.price,
       description: newProduct.description,
       meassures: newProduct.meassures,
-      category: newProduct.category.id,
+      category: newProduct.category,
       qty: newProduct.qty,
       is_published: newProduct.is_published,
-      priority: newProduct.priority
+      priority: newProduct.priority ?? 0
     };
 
     if (!response.imageNotModified) {

@@ -15,7 +15,6 @@ const uploadImageToBucket = async (payload: Payload) => {
   const storage = await getStorageClient();
 
   const isNew = isBase64Image(base64Image);
-  console.log('isbase64', isNew);
   try {
     if (!isNew) {
       // const response = await deleteImageFromBucket({ bucketName: bucketName, imageNames: [name] });

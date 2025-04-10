@@ -103,16 +103,17 @@ export function ProductForm(props: ProductFormProps) {
 
     const formDataToSend = new FormData()
     Object.entries(formData).forEach(([key, value]) => {
-      if (value !== undefined && value !== null) {
-        formDataToSend.append(key, value.toString())
-      }
+      if (!value) return;
+      if (key === 'category') {
+        return formDataToSend.append(key, value.id.toString());
+      };
+      formDataToSend.append(key, value.toString())
     });
-
     onSubmit(formDataToSend);
   };
 
   const handleCategoryChange = (value: string) => {
-    const selectedCat = productCategories.find(pc => pc.name === value);
+    const selectedCat = productCategories.find(pc => pc.id === value);
     setProductItem(prev => ({ ...prev, category: selectedCat }));
   };
 

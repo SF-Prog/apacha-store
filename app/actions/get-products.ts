@@ -23,7 +23,6 @@ export async function getProducts() {
       });
       return { ...cat, products: productWithImages };
     });
-
     return parsedData;
   } catch (error) {
     return error;

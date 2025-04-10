@@ -16,7 +16,7 @@ const ProductGrid: React.FC = () => {
   }, []);
 
   const handleAddCartItem = (product: ProductItem) => {
-    addCartItem(product)
+    addCartItem(product);
   };
 
   return (

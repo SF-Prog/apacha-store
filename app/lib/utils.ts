@@ -30,7 +30,11 @@ export function parseProductsList(productsByCategory) {
     const productsOfCat = cur.products.map((prod) => {
       return {
         ...prod,
-        category: { name: cur.category, priority: cur.category_priority }
+        category: {
+          name: cur.category,
+          priority: cur.category_priority,
+          id: cur.category_id,
+        }
       };
     });
     return [].concat(acc, [...productsOfCat]);
