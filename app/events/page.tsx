@@ -4,7 +4,6 @@ import React from "react"
 import SecondaryPageLayout from "@/components/secondary-page/layout/layout";
 import PageHeader from "@/components/secondary-page/page-header/page-header";
 import PageContent from "@/components/secondary-page/page-content/page-content"
-import ScrollAnimatedBackground from "@/components/landing/scroll-animation/scroll-animation"
 import { EventsLanding } from "@/components/sections/events-landing/events-landing";
 
 export default function EventsPage() {

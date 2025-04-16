@@ -310,21 +310,29 @@ export function EventInfoRequestModal({
 
                   <div className="space-y-2">
                     <Label htmlFor="eventType">Tipo de evento</Label>
-                    <Select
-                      onValueChange={(value) => handleSelectChange("eventType", value)}
-                      value={formValues.eventType}
-                    >
-                      <SelectTrigger id="eventType">
-                        <SelectValue placeholder="Selecciona un tipo de evento" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="workshop">Taller de cocina</SelectItem>
-                        <SelectItem value="catering">Servicio de catering</SelectItem>
-                        <SelectItem value="mealplan">Plan de comidas</SelectItem>
-                        <SelectItem value="private">Evento privado</SelectItem>
-                        <SelectItem value="other">Otro</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div className="flex">
+                      <Select
+                        name="eventType"
+                        value={formValues.eventType}
+                        onValueChange={(value) => handleSelectChange("eventType", value)}
+                      >
+                        <SelectTrigger id="eventType" className="w-full">
+                          <SelectValue placeholder="Selecciona un tipo de evento" />
+                        </SelectTrigger>
+                        <SelectContent position="popper">
+                          <SelectItem value="workshop">Taller de cocina</SelectItem>
+                          <SelectItem value="catering">Servicio de catering</SelectItem>
+                          <SelectItem value="mealplan">Plan de comidas</SelectItem>
+                          <SelectItem value="private">Evento privado</SelectItem>
+                          <SelectItem value="corporate">Evento empresarial</SelectItem>
+                          <SelectItem value="birthday">Cumpleaños</SelectItem>
+                          <SelectItem value="retreat">Retiro</SelectItem>
+                          <SelectItem value="breakfast">Desayuno corporativo</SelectItem>
+                          <SelectItem value="afteroffice">After office</SelectItem>
+                          <SelectItem value="other">Otro</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div> 
                     {errors.eventType && (
                       <p className="text-sm font-medium text-destructive">{errors.eventType}</p>
                     )}
