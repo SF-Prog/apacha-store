@@ -21,7 +21,7 @@ export default function CartWidget() {
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-4 right-4 z-50"
+        className="fixed bottom-4 right-4 z-49"
       >
         <Button
           onClick={() => setIsOpen(true)}
@@ -39,7 +39,7 @@ export default function CartWidget() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-49"
             onClick={() => setIsOpen(false)}
           >
             <motion.div
