@@ -11,9 +11,9 @@ export default function EventsPage() {
   return (
     <SecondaryPageLayout>
       <PageHeader
-        title="Nuestra Variedad Gastronómica"
-        description="Relajate y disfruta de tu fiesta mientras nos encargamos de la alimentacion."
-        imageSrc="/catering-focaccia.jpg"
+        title="De la comida nos encargamos nosotros"
+        description="Nos aseguramos de que tu evento sea una experiencia única e inigualable."
+        imageSrc="/events_hummus.jpg?height=600px"
       />
       <PageContent>
          <EventsLanding />
