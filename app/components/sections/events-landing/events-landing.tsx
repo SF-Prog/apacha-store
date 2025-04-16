@@ -2,13 +2,11 @@
 
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Card, CardContent } from "@/components/ui/card"
+import { motion } from 'framer-motion'
 import { Badge } from "@/components/ui/badge"
-import { ChefHat, Utensils, Heart, Leaf, Clock, Users } from 'lucide-react'
+import { Sunrise, Cake, Building2, Coffee, Leaf, Clock, Users } from 'lucide-react'
 import { EventInfoRequestModal } from "@/components/forms/event-request/event-request"
 
-// Sample data - replace with your actual content
 const testimonials = [
   {
     id: 1,
@@ -32,24 +30,24 @@ const testimonials = [
 
 const features = [
   {
-    icon: <ChefHat className="h-6 w-6" />,
-    title: "Chef Profesional",
-    description: "Platos preparados por chefs con experiencia en gastronomía internacional"
+    icon: <Sunrise className="h-6 w-6" />,
+    title: "Retiros y Eventos Wellness",
+    description: "Alimentación consciente para retiros de yoga, meditación y experiencias de bienestar integral"
   },
   {
-    icon: <Utensils className="h-6 w-6" />,
-    title: "Menú Personalizado",
-    description: "Adaptamos cada plan a tus preferencias y necesidades alimenticias"
+    icon: <Cake className="h-6 w-6" />,
+    title: "Celebraciones y Cumpleaños",
+    description: "Menús festivos plant-based para tus momentos especiales con familia y amigos"
   },
   {
-    icon: <Leaf className="h-6 w-6" />,
-    title: "Ingredientes Frescos",
-    description: "Seleccionamos los mejores ingredientes locales y de temporada"
+    icon: <Building2 className="h-6 w-6" />,
+    title: "Eventos Empresariales",
+    description: "Catering corporativo, workshops culinarios y afteroffice saludables para tu equipo"
   },
   {
-    icon: <Clock className="h-6 w-6" />,
-    title: "Puntualidad",
-    description: "Entrega en el horario que mejor se adapte a tu rutina diaria"
+    icon: <Coffee className="h-6 w-6" />,
+    title: "Desayunos y Brunch",
+    description: "Opciones nutritivas y deliciosas para comenzar el día con energía y bienestar"
   }
 ]
 
@@ -88,58 +86,10 @@ const galleryImages = [
 ]
 
 export function EventsLanding() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [hoveredImage, setHoveredImage] = useState<number | null>(null);
-
-  // Auto-rotate testimonials
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <div className="bg-bone-500">
-      <section className="py-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {galleryImages.map((image, index) => (
-            <motion.div
-              key={index}
-              className="relative overflow-hidden rounded-lg shadow-lg h-64"
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-              onHoverStart={() => setHoveredImage(index)}
-              onHoverEnd={() => setHoveredImage(null)}
-            >
-              <Image
-                src={image.src || "/placeholder.svg"}
-                alt={image.alt}
-                fill
-                className="object-cover transition-transform duration-500"
-                style={{
-                  transform: hoveredImage === index ? 'scale(1.1)' : 'scale(1)'
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-4 text-white">
-                <Badge className="self-start mb-2 bg-apacha_purple-100">{image.category}</Badge>
-                <p className="font-medium">{image.alt}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Features Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-apacha-brown mb-4">La Experiencia Apacha</h2>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-              Nos distinguimos por ofrecer un servicio completamente adaptado a tus preferencias y estilo de vida.
-            </p>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <motion.div
@@ -160,56 +110,6 @@ export function EventsLanding() {
           </div>
         </div>
       </section>
-
-      {/* Testimonials Section */}
-      {/* <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-apacha-brown mb-4">Lo Que Dicen Nuestros Clientes</h2>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            Experiencias reales de personas que han transformado su alimentación con Apacha.
-          </p>
-        </div>
-
-        <div className="relative h-64">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentTestimonial}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.5 }}
-              className="absolute inset-0"
-            >
-              <Card className="h-full flex flex-col justify-center shadow-lg border-apacha_purple-100/20 border-2">
-                <CardContent className="text-center p-8">
-                  <div className="mb-4 text-apacha_purple-100">
-                    <Heart className="h-8 w-8 mx-auto" />
-                  </div>
-                  <p className="text-xl italic mb-6">"{testimonials[currentTestimonial].quote}"</p>
-                  <div>
-                    <p className="font-semibold">{testimonials[currentTestimonial].author}</p>
-                    <p className="text-gray-500">{testimonials[currentTestimonial].role}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <div className="flex justify-center mt-6">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              className={`w-3 h-3 rounded-full mx-1 ${
-                index === currentTestimonial ? 'bg-apacha_purple-100' : 'bg-gray-300'
-              }`}
-              onClick={() => setCurrentTestimonial(index)}
-            />
-          ))}
-        </div>
-      </section> */}
-
-      {/* Customization Highlight */}
       <section className="py-16 bg-apacha_purple-100/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="md:flex items-center gap-12">
@@ -222,10 +122,10 @@ export function EventsLanding() {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/events-cooking.jpg?width=500&height=300"
+                  src="/events_table.jpg?width=500&height=400"
                   alt="Personalización de menús"
                   fill
-                  className="object-cover object-[0% -30%]"
+                  className="object-cover object-bottom"
                 />
               </motion.div>
             </div>
@@ -236,7 +136,7 @@ export function EventsLanding() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-apacha-brown mb-4">Tu Menú, Tus Reglas</h2>
+              <h3 className="text-3xl md:text-4xl font-bold text-apacha-brown mb-4">Proponemos un menú inclusivo para que todos puedan disfrutar</h3>
               <p className="text-lg text-gray-700 mb-6">
                 En Apacha entendemos que cada persona es única, por eso ofrecemos una experiencia completamente personalizada:
               </p>
@@ -244,14 +144,14 @@ export function EventsLanding() {
                 <li className="flex items-start">
                   <Users className="h-6 w-6 text-apacha_purple-100 mr-3 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-lg">Adaptado a tus necesidades</h3>
+                    <h3 className="font-semibold text-lg">Experiencia personalizada</h3>
                     <p className="text-gray-600">Consideramos tus preferencias, alergias y objetivos nutricionales.</p>
                   </div>
                 </li>
                 <li className="flex items-start">
                   <Leaf className="h-6 w-6 text-apacha_purple-100 mr-3 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-lg">Opciones para todos</h3>
+                    <h3 className="font-semibold text-lg">Menú a base de plantas y sin gluten</h3>
                     <p className="text-gray-600">Menús vegetarianos, veganos, sin gluten, altos en proteína y más.</p>
                   </div>
                 </li>
@@ -277,7 +177,7 @@ export function EventsLanding() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">¿Listo para una Experiencia Culinaria Personalizada?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">¿Listo para una experiencia gastronómica única?</h2>
             <p className="text-xl mb-8">
               Nuestro equipo está esperando para crear un plan alimenticio que se adapte perfectamente a tus necesidades y preferencias.
             </p>
