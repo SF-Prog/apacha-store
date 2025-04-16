@@ -184,7 +184,8 @@ interface EventRequest {
   contact_preference: 'email' | 'whatsapp' | 'call'
   newsletter: boolean
   status: 'pending' | 'contacted' | 'completed'
-  created_at?: string
+  created_at?: string,
+  quantity: string
 }
 
 type AdminPanelTabItem = 'products' | 'services' | 'product_categories' | 'events' | 'workshops';

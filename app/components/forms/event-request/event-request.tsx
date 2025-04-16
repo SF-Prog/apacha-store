@@ -229,7 +229,7 @@ export function EventInfoRequestModal({
           <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] p-0 overflow-auto">
+      <DialogContent className="sm:max-w-[500px] max-h-[90%] p-0 overflow-auto">
         <AnimatePresence mode="wait">
           {isSuccess ? (
             <motion.div
@@ -331,7 +331,7 @@ export function EventInfoRequestModal({
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="eventType">Cantidad de personas (aprox)</Label>
+                  <Label htmlFor="quantity">Cantidad de personas (aprox)</Label>
                   <Input
                     id="quantity"
                     name="quantity"
