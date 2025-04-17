@@ -41,7 +41,7 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen">
       {renderLoader()}
-      <header className="bg-bone-500 shadow-sm sticky top-0 z-49">
+      <header className="bg-bone-500 shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/">
             <Image alt="apacha-logo" src="/logo-black.png" width={140} height={50} />

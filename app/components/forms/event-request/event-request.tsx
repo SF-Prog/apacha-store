@@ -229,7 +229,7 @@ export function EventInfoRequestModal({
           <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] max-h-[90%] p-0 overflow-auto">
+      <DialogContent className="sm:max-w-[500px] max-h-[80%] p-0 overflow-auto mt-10">
         <AnimatePresence mode="wait">
           {isSuccess ? (
             <motion.div
