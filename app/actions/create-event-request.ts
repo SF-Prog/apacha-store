@@ -8,8 +8,9 @@ export async function createEventRequest(formData: FormData) {
       phone: formData.get('phone') as string,
       event_type: formData.get('eventType') as string,
       message: formData.get('message') as string,
+      quantity: formData.get('quantity') as string,
+      date: formData.get('eventDate') as string,
       contact_preference: formData.get('contactPreference') as 'email' | 'whatsapp' | 'call',
-      newsletter: formData.get('newsletter') === 'on' || formData.get('newsletter') === 'true',
     }
 
     const newEventRequest: EventRequest = {

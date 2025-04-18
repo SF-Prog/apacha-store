@@ -44,7 +44,7 @@ export function QuickDeliveryNotification({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-4 right-4 z-50 max-w-sm"
+          className="fixed bottom-4 right-48 max-w-sm"
         >
           <div className="bg-white rounded-lg shadow-lg border border-apacha_purple-100/20 p-4">
             <button 

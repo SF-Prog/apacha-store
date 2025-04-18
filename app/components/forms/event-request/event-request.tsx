@@ -34,7 +34,8 @@ interface FormData {
   eventType: string
   message: string
   contactPreference: 'email' | 'whatsapp' | 'call'
-  newsletter: boolean
+  quantity: string,
+  eventDate?: string
 }
 
 // Define form errors interface
@@ -44,7 +45,8 @@ interface FormErrors {
   phone?: string
   eventType?: string
   message?: string
-  contactPreference?: string
+  contactPreference?: string,
+  quantity?: string,
 }
 
 interface EventInfoRequestModalProps {
@@ -71,7 +73,8 @@ export function EventInfoRequestModal({
     eventType: "",
     message: "",
     contactPreference: "whatsapp",
-    newsletter: false,
+    quantity: "",
+    eventDate: ""
   });
   const { sendEventRequest } = useStore();
 
@@ -93,13 +96,6 @@ export function EventInfoRequestModal({
     }))
   }
 
-  // Handle checkbox changes
-  const handleCheckboxChange = (checked: boolean) => {
-    setFormValues(prev => ({
-      ...prev,
-      newsletter: checked
-    }))
-  }
 
   // Validate form
   const validateForm = (data: FormData): boolean => {
@@ -178,7 +174,7 @@ export function EventInfoRequestModal({
           eventType: "",
           message: "",
           contactPreference: "whatsapp",
-          newsletter: false,
+          quantity: ""
         });
         setErrors({});
         setIsSuccess(false);
@@ -202,7 +198,7 @@ export function EventInfoRequestModal({
             eventType: "",
             message: "",
             contactPreference: "whatsapp",
-            newsletter: false,
+            quantity: ""
           })
           setErrors({})
           setIsSuccess(false)
@@ -224,7 +220,7 @@ export function EventInfoRequestModal({
           <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] p-0 overflow-auto">
+      <DialogContent className="sm:max-w-[500px] max-h-[80%] p-0 overflow-auto mt-10">
         <AnimatePresence mode="wait">
           {isSuccess ? (
             <motion.div
@@ -257,15 +253,14 @@ export function EventInfoRequestModal({
                   Completa el formulario y nos pondremos en contacto contigo para brindarte más detalles sobre nuestros eventos.
                 </DialogDescription>
               </DialogHeader>
-              
               <form onSubmit={handleSubmit} className="space-y-4 px-6 pt-4 pb-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Nombre completo</Label>
-                    <Input 
+                    <Input
                       id="name"
                       name="name"
-                      placeholder="Tu nombre" 
+                      placeholder="Tu nombre"
                       value={formValues.name}
                       onChange={handleChange}
                     />
@@ -273,13 +268,12 @@ export function EventInfoRequestModal({
                       <p className="text-sm font-medium text-destructive">{errors.name}</p>
                     )}
                   </div>
-                  
                   <div className="space-y-2">
                     <Label htmlFor="email">Correo electrónico</Label>
-                    <Input 
+                    <Input
                       id="email"
                       name="email"
-                      placeholder="tu@email.com" 
+                      placeholder="tu@email.com"
                       type="email"
                       value={formValues.email}
                       onChange={handleChange}
@@ -289,11 +283,11 @@ export function EventInfoRequestModal({
                     )}
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="phone">Teléfono</Label>
-                    <Input 
+                    <Input
                       id="phone"
                       name="phone"
                       placeholder="+598 98 650-560"
@@ -304,36 +298,73 @@ export function EventInfoRequestModal({
                       <p className="text-sm font-medium text-destructive">{errors.phone}</p>
                     )}
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="eventType">Tipo de evento</Label>
-                    <Select 
-                      onValueChange={(value) => handleSelectChange("eventType", value)}
-                      value={formValues.eventType}
-                    >
-                      <SelectTrigger id="eventType">
-                        <SelectValue placeholder="Selecciona un tipo de evento" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="workshop">Taller de cocina</SelectItem>
-                        <SelectItem value="catering">Servicio de catering</SelectItem>
-                        <SelectItem value="mealplan">Plan de comidas</SelectItem>
-                        <SelectItem value="private">Evento privado</SelectItem>
-                        <SelectItem value="other">Otro</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div className="flex">
+                      <Select
+                        name="eventType"
+                        value={formValues.eventType}
+                        onValueChange={(value) => handleSelectChange("eventType", value)}
+                      >
+                        <SelectTrigger id="eventType" className="w-full">
+                          <SelectValue placeholder="Selecciona un tipo de evento" />
+                        </SelectTrigger>
+                        <SelectContent position="popper">
+                          <SelectItem value="workshop">Taller de cocina</SelectItem>
+                          <SelectItem value="catering">Servicio de catering</SelectItem>
+                          <SelectItem value="mealplan">Plan de comidas</SelectItem>
+                          <SelectItem value="private">Evento privado</SelectItem>
+                          <SelectItem value="corporate">Evento empresarial</SelectItem>
+                          <SelectItem value="birthday">Cumpleaños</SelectItem>
+                          <SelectItem value="retreat">Retiro</SelectItem>
+                          <SelectItem value="breakfast">Desayuno corporativo</SelectItem>
+                          <SelectItem value="afteroffice">After office</SelectItem>
+                          <SelectItem value="other">Otro</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div> 
                     {errors.eventType && (
                       <p className="text-sm font-medium text-destructive">{errors.eventType}</p>
                     )}
                   </div>
                 </div>
-                
+                <div className="space-y-2">
+                  <Label htmlFor="quantity">Cantidad de personas</Label>
+                  <Input
+                    id="quantity"
+                    name="quantity"
+                    placeholder="120 adultos aproximadamente"
+                    value={formValues.quantity}
+                    onChange={handleChange}
+                  />
+                  {errors.quantity && (
+                    <p className="text-sm font-medium text-destructive">{errors.quantity}</p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="eventDate">
+                    Fecha del evento
+                  </Label>
+                  <Input
+                    id="eventDate"
+                    name="eventDate"
+                    type="date"
+                    value={formValues.eventDate}
+                    onChange={handleChange}
+                  />
+                  <p className="text-xs text-gray-500">
+                    Si ya tienes una fecha en mente, indícala aquí. No te preocupes si aún no estás seguro.
+                  </p>
+                </div>
+
                 <div className="space-y-2">
                   <Label htmlFor="message">Mensaje</Label>
-                  <Textarea 
+                  <Textarea
                     id="message"
                     name="message"
-                    placeholder="Cuéntanos más sobre lo que estás buscando..." 
+                    placeholder="Cuéntanos más sobre lo que estás buscando..."
                     className="min-h-[100px]"
                     value={formValues.message}
                     onChange={handleChange}
@@ -342,7 +373,7 @@ export function EventInfoRequestModal({
                     <p className="text-sm font-medium text-destructive">{errors.message}</p>
                   )}
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>¿Cómo prefieres que te contactemos?</Label>
                   <div className="flex flex-wrap gap-4">
@@ -355,7 +386,7 @@ export function EventInfoRequestModal({
                       <Mail className="mr-2 h-4 w-4" />
                       Email
                     </Button>
-                    
+
                     <Button
                       type="button"
                       variant={formValues.contactPreference === "whatsapp" ? "default" : "outline"}
@@ -365,7 +396,7 @@ export function EventInfoRequestModal({
                       <MessageSquare className="mr-2 h-4 w-4" />
                       WhatsApp
                     </Button>
-                    
+
                     <Button
                       type="button"
                       variant={formValues.contactPreference === "call" ? "default" : "outline"}
@@ -380,34 +411,17 @@ export function EventInfoRequestModal({
                     <p className="text-sm font-medium text-destructive">{errors.contactPreference}</p>
                   )}
                 </div>
-                
-                <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-                  <Checkbox
-                    id="newsletter"
-                    checked={formValues.newsletter}
-                    onCheckedChange={handleCheckboxChange}
-                  />
-                  <div className="space-y-1 leading-none">
-                    <Label htmlFor="newsletter">
-                      Suscribirme al boletín
-                    </Label>
-                    <p className="text-sm text-gray-500">
-                      Recibe noticias sobre nuevos eventos, talleres y promociones especiales.
-                    </p>
-                  </div>
-                </div>
-                
                 <DialogFooter className="pt-4">
-                  <Button 
-                    type="button" 
-                    variant="outline" 
+                  <Button
+                    type="button"
+                    variant="outline"
                     onClick={() => setOpen(false)}
                     disabled={isSubmitting}
                   >
                     Cancelar
                   </Button>
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     className="bg-apacha_purple-100 hover:bg-apacha_purple-100/90"
                     disabled={isSubmitting}
                   >
