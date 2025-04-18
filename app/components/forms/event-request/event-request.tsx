@@ -34,8 +34,8 @@ interface FormData {
   eventType: string
   message: string
   contactPreference: 'email' | 'whatsapp' | 'call'
-  newsletter: boolean,
-  quantity: string
+  quantity: string,
+  eventDate?: string
 }
 
 // Define form errors interface
@@ -46,7 +46,7 @@ interface FormErrors {
   eventType?: string
   message?: string
   contactPreference?: string,
-  quantity?: string
+  quantity?: string,
 }
 
 interface EventInfoRequestModalProps {
@@ -73,8 +73,8 @@ export function EventInfoRequestModal({
     eventType: "",
     message: "",
     contactPreference: "whatsapp",
-    newsletter: false,
-    quantity: ""
+    quantity: "",
+    eventDate: ""
   });
   const { sendEventRequest } = useStore();
 
@@ -96,13 +96,6 @@ export function EventInfoRequestModal({
     }))
   }
 
-  // Handle checkbox changes
-  const handleCheckboxChange = (checked: boolean) => {
-    setFormValues(prev => ({
-      ...prev,
-      newsletter: checked
-    }))
-  }
 
   // Validate form
   const validateForm = (data: FormData): boolean => {
@@ -181,7 +174,6 @@ export function EventInfoRequestModal({
           eventType: "",
           message: "",
           contactPreference: "whatsapp",
-          newsletter: false,
           quantity: ""
         });
         setErrors({});
@@ -206,7 +198,6 @@ export function EventInfoRequestModal({
             eventType: "",
             message: "",
             contactPreference: "whatsapp",
-            newsletter: false,
             quantity: ""
           })
           setErrors({})
@@ -350,6 +341,22 @@ export function EventInfoRequestModal({
                   {errors.quantity && (
                     <p className="text-sm font-medium text-destructive">{errors.quantity}</p>
                   )}
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="eventDate">
+                    Fecha del evento <span className="text-sm text-gray-500">(opcional)</span>
+                  </Label>
+                  <Input
+                    id="eventDate"
+                    name="eventDate"
+                    type="date"
+                    value={formValues.eventDate}
+                    onChange={handleChange}
+                  />
+                  <p className="text-xs text-gray-500">
+                    Si ya tienes una fecha en mente, indícala aquí. No te preocupes si aún no estás seguro.
+                  </p>
                 </div>
 
                 <div className="space-y-2">

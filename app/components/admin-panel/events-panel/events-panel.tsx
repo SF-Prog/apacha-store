@@ -111,7 +111,6 @@ export const EventsPanel = () => {
                 <TableHead>Preferencia</TableHead>
                 <TableHead>Newsletter</TableHead>
                 <TableHead>Estado</TableHead>
-                <TableHead>Acciones</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -129,7 +128,6 @@ export const EventsPanel = () => {
                         <span className="ml-2">{request.contact_preference}</span>
                       </div>
                     </TableCell>
-                    <TableCell>{request.newsletter ? "Sí" : "No"}</TableCell>
                     <TableCell>{getStatusBadge(request.status)}</TableCell>
                     <TableCell>
                       <Button variant="outline" size="sm" onClick={() => handleViewDetails(request)}>
@@ -182,10 +180,6 @@ export const EventsPanel = () => {
                               {selectedRequest.phone}
                             </a>
                           </dd>
-                        </div>
-                        <div>
-                          <dt className="text-sm font-medium text-gray-500">Newsletter</dt>
-                          <dd>{selectedRequest.newsletter ? "Suscrito" : "No suscrito"}</dd>
                         </div>
                       </dl>
                     </CardContent>
