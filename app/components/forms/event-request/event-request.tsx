@@ -330,11 +330,11 @@ export function EventInfoRequestModal({
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="quantity">Cantidad de personas (aprox)</Label>
+                  <Label htmlFor="quantity">Cantidad de personas</Label>
                   <Input
                     id="quantity"
                     name="quantity"
-                    placeholder="120 personas adultas"
+                    placeholder="120 adultos aproximadamente"
                     value={formValues.quantity}
                     onChange={handleChange}
                   />
@@ -345,7 +345,7 @@ export function EventInfoRequestModal({
 
                 <div className="space-y-2">
                   <Label htmlFor="eventDate">
-                    Fecha del evento <span className="text-sm text-gray-500">(opcional)</span>
+                    Fecha del evento
                   </Label>
                   <Input
                     id="eventDate"
