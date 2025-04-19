@@ -36,7 +36,7 @@ const OurServices: React.FC = () => {
                     src={service.image}
                     alt={service.title}
                     fill
-                    style={service.customStyle ?? defaultImageStyle} 
+                    style={service.customStyle ?? defaultImageStyle}
                     className="transition-transform duration-300 ease-in-out transform hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">

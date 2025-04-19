@@ -100,11 +100,6 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     );
   };
 
-  const totalMealsPrice = selectedMeals.reduce((sum, mealId) => {
-    const meal = meals.find(m => m.id === mealId)
-    return sum + (meal?.price || 0)
-  }, 0);
-
   const sendWeeklyMenuToEmail = async (email: string) => {
     try {
       const result = await sendMenuEmail(email);
@@ -171,7 +166,6 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     updateCartFromStorage,
     onCartCheckout,
     selectedMeals,
-    totalMealsPrice,
     meals,
     mealPacks,
     toggleMeal,
