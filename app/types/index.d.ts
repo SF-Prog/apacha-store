@@ -12,7 +12,7 @@ interface Meal {
   title: string
   description: string
   image: string
-  price: number
+  prices: number[]
   whatsappLink: string
 }
 
@@ -112,7 +112,6 @@ interface StoreContextType {
   updateCartFromStorage: () => void,
   onCartCheckout: () => void,
   selectedMeals: string[],
-  totalMealsPrice: number,
   meals: Meal[],
   mealPacks: MealPack[],
   toggleMeal: (id: string) => void
