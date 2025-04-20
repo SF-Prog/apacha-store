@@ -4,6 +4,7 @@ import { Roboto } from 'next/font/google'
 import { Toaster } from 'react-hot-toast';
 import { StoreProvider } from '@/context/store-context';
 import { AuthProvider } from './context/auth-context';
+import Script from 'next/script';
 
 const roboto = Roboto({
   weight: ["300", "500", "700"],
@@ -24,6 +25,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <head>
+        <Script strategy='afterInteractive' src="https://www.googletagmanager.com/gtag/js?id=G-EN7BQS5265" />
+        <Script  id="ga-init" strategy="afterInteractive">
+         {` window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-EN7BQS5265');`}
+        </Script>
+      </head>
       <body className={roboto.className}>
         <AuthProvider>
           <StoreProvider>
