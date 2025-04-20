@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useMobileView } from '@/app/hooks/useMobileView';
 import {
   Carousel,
   CarouselContent,
@@ -9,7 +8,6 @@ import Autoplay from "embla-carousel-autoplay";
 
 export default function HeroSection() {
   const [api, setApi] = useState<any>(null);
-  const isMobile = useMobileView();
 
   useEffect(() => {
     if (api) {
@@ -38,7 +36,7 @@ export default function HeroSection() {
               <CarouselItem key={index} className="h-full w-full">
                 <div
                   className="h-full w-full bg-cover bg-center transition-opacity duration-500"
-                  style={{ backgroundImage: isMobile ? `url(${image})?width=768` : `url(${image})` }}
+                  style={{ backgroundImage: `url(${image})` }}
                 />
               </CarouselItem>
             )
