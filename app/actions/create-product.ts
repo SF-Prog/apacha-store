@@ -21,7 +21,7 @@ export async function createProduct(data: FormData) {
     meassures,
     category,
     qty,
-    priority,
+    priority: priority ?? 0,
     is_published,
   };
 
