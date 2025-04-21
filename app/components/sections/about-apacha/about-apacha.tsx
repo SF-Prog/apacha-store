@@ -36,9 +36,9 @@ const ApachaStory: React.FC = () => {
   }
 
   return (
-    <section id="sobre-apacha" className="py-20">
+    <section id="sobre-apacha" className="py-4 md:py-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-apacha-purple-100">Sobre Apacha</h2>
+        <h2 className="text-3xl font-bold text-center mb-4 md:mb-12 text-apacha-purple-100">Sobre Apacha</h2>
         <Card className="overflow-hidden h-min-[600px]">
           <CardContent className="p-0">
             <div className="flex flex-col md:flex-row min-h-[450px]">
@@ -71,7 +71,7 @@ const ApachaStory: React.FC = () => {
                     transition={{ duration: 0.5 }}
                   >
                     <h3 className="text-2xl font-semibold mb-4 text-apacha-brown">{tabContent[activeTab].title}</h3>
-                    <p className="text-apacha-black leading-relaxed">{tabContent[activeTab].content}</p>
+                    <p className="text-justify text-apacha-black leading-relaxed">{tabContent[activeTab].content}</p>
                   </motion.div>
                 </AnimatePresence>
               </div>
