@@ -50,7 +50,7 @@ const ApachaStory: React.FC = () => {
                       <button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`px-4 py-2 m-2 rounded-full transition-colors duration-300 flex items-center ${
+                        className={`w-full md:w-auto px-4 py-2 m-2 rounded-full transition-colors duration-300 flex items-center ${
                           activeTab === tab
                             ? 'bg-apacha_orange-100'
                             : 'bg-beige text-apacha-apacha_green-bg-apacha_green-100 hover:text-bone-500'
