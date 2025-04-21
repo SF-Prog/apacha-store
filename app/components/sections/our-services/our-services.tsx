@@ -11,10 +11,10 @@ const OurServices: React.FC = () => {
   const defaultImageStyle = { objectFit: 'cover' };
 
   return (
-    <section id="nuestros-servicios" className="py-24 bg-apacha-beige min-h-screen flex items-center">
+    <section id="nuestros-servicios" className="py-4 md:py-24 bg-apacha-beige min-h-screen flex items-center">
       <div className="container mx-auto px-4">
         <motion.h2
-          className="text-3xl font-bold text-center mb-16 text-apacha-green"
+          className="text-3xl font-bold text-center mb-4 md:mb-16 text-apacha-green"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -44,7 +44,7 @@ const OurServices: React.FC = () => {
                 </div>
                 <div className="p-8 flex flex-col flex-grow">
                   <h3 className="text-2xl font-semibold mb-4 text-apacha-brown">{service.title}</h3>
-                  <p className="text-apacha-black text-lg flex-grow">{service.description}</p>
+                  <p className="text-justify text-apacha-black text-lg flex-grow">{service.description}</p>
                 </div>
               </motion.div>
             </Link>

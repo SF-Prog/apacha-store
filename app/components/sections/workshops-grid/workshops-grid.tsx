@@ -9,6 +9,7 @@ import { Calendar, Clock, MapPin, Users, User } from "lucide-react"
 import { useStore } from "@/app/context/store-context"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Info } from "lucide-react"
+import ScrollAnimatedBackground from "../../landing/scroll-animation/scroll-animation"
 
 export function WorkshopsGrid() {
   const { workshops, loadWorkshops, onRegisterToWorkshop } = useStore()
@@ -110,18 +111,20 @@ export function WorkshopsGrid() {
   )
 
   return (
-    <div className="bg-apacha-beige min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+
+    <ScrollAnimatedBackground
+      imageSrc="/workshop-people.png"
+      imageAlt="workshop-background">
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <motion.div
         className="max-w-3xl mx-auto text-center mb-12"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl font-bold text-apacha-brown mb-4">Descubre Nuestros Talleres Culinarios</h1>
+        <h1 className="text-4xl font-bold text-apacha-brown mb-4">Descubre nuestros Talleres de Cocina</h1>
         <p className="text-lg text-apacha-black mb-6">
-          Sumérgete en el mundo de la cocina consciente y plant-based con nuestros emocionantes talleres. Aprende, crea
-          y disfruta de experiencias gastronómicas únicas junto a expertos chefs y una comunidad apasionada por la
-          alimentación saludable.
+          Queremos compartir el conocimiento y herramientas que hemos aprendido y adquirido para que puedas disfrutar de cocinar alimentos ricos y nutritivos en tu casa.
         </p>
       </motion.div>
 
@@ -176,5 +179,6 @@ export function WorkshopsGrid() {
         </section>
       )}
     </div>
+    </ScrollAnimatedBackground>
   )
 }

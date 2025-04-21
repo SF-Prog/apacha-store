@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -24,14 +24,16 @@ interface SecondaryPageLayoutProps {
 };
 
 const navPages = [
-  {label: 'Viandas', href: '/menu'},
-  {label: 'Productos', href: '/products'},
-  {label: 'Talleres', href: '/workshops'},
-  {label: 'Caterings y eventos', href: '/events'},
+  { label: 'Viandas', href: '/viandas' },
+  { label: 'Productos', href: '/productos' },
+  { label: 'Talleres', href: '/talleres' },
+  { label: 'Caterings y eventos', href: '/eventos' },
 ];
+
 
 const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
   const { isLoading } = useStore();
+  const [menuAbierto, setMenuAbierto] = useState(false);
 
   const renderLoader = () => {
     if (!isLoading) return;
@@ -60,28 +62,28 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
               </motion.a>
             ))}
           </nav>
-          <Sheet>
+          <Sheet open={menuAbierto} onOpenChange={(open) => setMenuAbierto(open)}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className="md:hidden">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Abrir menú</span>
               </Button>
             </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Menú</SheetTitle>
+            <SheetContent className='z-50'>
+              <SheetHeader className='flex flex-column items-center'>
+                <Image alt="apacha-logo" src="/logo-black.png" width={140} height={50} />
                 <SheetDescription>
-                  Navega por nuestra página
+                  Lo que tenemos para ofrecer
                 </SheetDescription>
               </SheetHeader>
               <nav className="flex flex-col space-y-4 mt-4">
-                {['Productos', 'Sobre Nosotros', 'Eventos', 'Contacto'].map((item) => (
+                {navPages.map((item) => (
                   <Link
-                    key={item}
-                    href={`/${item.toLowerCase().replace(' ', '-')}`}
-                    className="text-apacha-brown hover:text-apacha-green transition-colors"
+                    key={item.label}
+                    href={item.href}
+                    className="text-black hover:text-apacha_purple-100 transition-colors py-2"
                   >
-                    {item}
+                    {item.label}
                   </Link>
                 ))}
               </nav>

@@ -31,57 +31,23 @@ const testimonials = [
 const features = [
   {
     icon: <Sunrise className="h-6 w-6" />,
-    title: "Retiros y Eventos Wellness",
-    description: "Alimentación consciente para retiros de yoga, meditación y experiencias de bienestar integral"
+    title: "Retiros",
+    description: "Alimentación consciente que acompañe tu propuesta para alcanzar un bienestar integral y sumarle calidez a la experiencia"
   },
   {
     icon: <Cake className="h-6 w-6" />,
     title: "Celebraciones y Cumpleaños",
-    description: "Menús festivos plant-based para tus momentos especiales con familia y amigos"
+    description: "Alimentos ricos e inclusivos para tus momentos especiales con familia y amigos"
   },
   {
     icon: <Building2 className="h-6 w-6" />,
     title: "Eventos Empresariales",
-    description: "Catering corporativo, workshops culinarios y afteroffice saludables para tu equipo"
+    description: "Disfrutar de una alimentación de calidad puede optimizar el desempeño laboral y fortalecer el bienestar"
   },
   {
     icon: <Coffee className="h-6 w-6" />,
     title: "Desayunos y Brunch",
-    description: "Opciones nutritivas y deliciosas para comenzar el día con energía y bienestar"
-  }
-]
-
-// Sample gallery images - replace with your actual images
-const galleryImages = [
-  {
-    src: "/placeholder.svg?height=600&width=800",
-    alt: "Desayuno gourmet con frutas frescas y granola casera",
-    category: "Desayuno"
-  },
-  {
-    src: "/placeholder.svg?height=600&width=800",
-    alt: "Almuerzo balanceado con proteínas y vegetales de temporada",
-    category: "Almuerzo"
-  },
-  {
-    src: "/placeholder.svg?height=600&width=800",
-    alt: "Cena ligera y nutritiva con opciones vegetarianas",
-    category: "Cena"
-  },
-  {
-    src: "/placeholder.svg?height=600&width=800",
-    alt: "Opciones veganas llenas de sabor y nutrientes",
-    category: "Vegano"
-  },
-  {
-    src: "/placeholder.svg?height=600&width=800",
-    alt: "Platos internacionales adaptados a gustos locales",
-    category: "Internacional"
-  },
-  {
-    src: "/placeholder.svg?height=600&width=800",
-    alt: "Postres saludables para complementar tu alimentación",
-    category: "Postres"
+    description: "Opciones coloridas y nutritivas para comenzar el día con energía y vitalidad"
   }
 ]
 
@@ -138,28 +104,28 @@ export function EventsLanding() {
             >
               <h3 className="text-3xl md:text-4xl font-bold text-apacha-brown mb-4">Proponemos un menú inclusivo para que todos puedan disfrutar</h3>
               <p className="text-lg text-gray-700 mb-6">
-                En Apacha entendemos que cada persona es única, por eso ofrecemos una experiencia completamente personalizada:
+                En Apacha entendemos que cada evento y celebración es única, por eso ofrecemos una experiencia completamente personalizada:
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <Users className="h-6 w-6 text-apacha_purple-100 mr-3 mt-1" />
                   <div>
                     <h3 className="font-semibold text-lg">Experiencia personalizada</h3>
-                    <p className="text-gray-600">Consideramos tus preferencias, alergias y objetivos nutricionales.</p>
+                    <p className="text-gray-600">Consideramos tus preferencias y te ayudamos a que tu evento sea único e inolvidable.</p>
                   </div>
                 </li>
                 <li className="flex items-start">
                   <Leaf className="h-6 w-6 text-apacha_purple-100 mr-3 mt-1" />
                   <div>
                     <h3 className="font-semibold text-lg">Menú a base de plantas y sin gluten</h3>
-                    <p className="text-gray-600">Menús vegetarianos, veganos, sin gluten, altos en proteína y más.</p>
+                    <p className="text-gray-600">Ofrecemos un menú inclusivo para que todos y todas puedan disfrutar.</p>
                   </div>
                 </li>
                 <li className="flex items-start">
                   <Clock className="h-6 w-6 text-apacha_purple-100 mr-3 mt-1" />
                   <div>
                     <h3 className="font-semibold text-lg">Flexibilidad total</h3>
-                    <p className="text-gray-600">Cambia tu plan o ajusta tus preferencias cuando lo necesites.</p>
+                    <p className="text-gray-600">Nos aseguramos de que la mesa quede armada acompañando la estética del evento y que los invitados puedan disfrutar de la experiencia con todos sus sentidos.</p>
                   </div>
                 </li>
               </ul>

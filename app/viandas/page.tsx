@@ -30,7 +30,7 @@ export default function MenuPage() {
               transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto"
             >
-              <h1 className="text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
+              <h1 className="text-xl md:text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
               <Card className="mb-8">
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl text-apacha_purple-100">
@@ -39,13 +39,13 @@ export default function MenuPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-apacha-black">
-                  <p className="mb-4">Ofrecemos un menú semanal con solo dos entregas por semana:</p>
+                  <p className="mb-4 text-justify">Ofrecemos un menú semanal con solo dos entregas por semana:</p>
                   <ul className="list-disc list-inside mb-4">
-                    <li><strong>Domingo:</strong> Entregamos lo que corresponda al menú de Lunes, Martes y Miércoles</li>
-                    <li><strong>Miércoles:</strong> Entregamos lo que corresponda al menú de Jueves y Viernes</li>
+                    <li className="text-justify"><strong>Domingo:</strong> Entregamos lo que corresponda al menú de Lunes, Martes y Miércoles</li>
+                    <li className="text-justify"><strong>Miércoles:</strong> Entregamos lo que corresponda al menú de Jueves y Viernes</li>
                   </ul>
-                  <p className="mb-4">Las entregas se realizan dichos días entre las 17:00 y las 20:00 horas, utilizando nuestro propio método de entrega para garantizar que la comida llegue segura a tu puerta. También puedes retirar el pedido en nuestro local.</p>
-                  <p className="mb-4 text-apacha_purple-100">Te recordamos que debes hacer tu pedido de forma anticipada.</p>
+                  <p className="text-justify mb-4">Las entregas se realizan dichos días entre las 17:00 y las 20:00 horas, utilizando nuestro propio método de entrega para garantizar que la comida llegue segura a tu puerta. También puedes retirar el pedido en nuestro local.</p>
+                  <p className="text-justify mb-4 text-apacha_purple-100">Te recordamos que debes hacer tu pedido de forma anticipada.</p>
                 </CardContent>
               </Card>
 
@@ -57,7 +57,7 @@ export default function MenuPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-apacha-black">
-                  <p>Todo lo que elaboramos es con ingredientes naturales a base de plantas (excluimos ingredientes de origen animal) y sin gluten. Es un gran desafío y motivación introducirnos en este tipo de gastronomía, para lograr alimentos inclusivos que la mayoría pueda disfrutar.</p>
+                  <p className="text-justify">Todo lo que elaboramos es con ingredientes naturales a base de plantas (excluimos ingredientes de origen animal) y sin gluten. Es un gran desafío y motivación introducirnos en este tipo de gastronomía, para lograr alimentos inclusivos que la mayoría pueda disfrutar.</p>
                 </CardContent>
               </Card>
 
@@ -69,7 +69,7 @@ export default function MenuPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-apacha-black">
-                  <p>
+                  <p className="text-justify">
                   Nuestro proyecto se basa en elaborar y ofrecer productos de alta calidad nutricional y que a la vez estén en armonía con el medio ambiente. Para ello la incorporación de viandas retornables fue clave. Deseamos minimizar los residuos y generar el menor impacto posible en el ambiente.
                   </p>
                 </CardContent>
