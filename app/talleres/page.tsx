@@ -12,7 +12,7 @@ export default function WorkshopsPage() {
     <SecondaryPageLayout>
       <PageHeader
         title="Talleres"
-        description="Te interesa conocer mas sobre Apacha y nuestros procesos, sumate!"
+        description="Te invitamos a cocinar con nosotros!"
         imageSrc="/hero-2.jpg"
       />
       <PageContent>
