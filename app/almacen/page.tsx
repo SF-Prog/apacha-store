@@ -9,7 +9,7 @@ export default function ProductsPage() {
   return (
     <SecondaryPageLayout>
       <PageHeader
-        title="Nuestros Productos"
+        title="Almacén"
         description="Tus grandes aliados para la rutina"
         imageSrc="/products-dips-2.jpg"
       />

@@ -55,6 +55,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
+        <link rel="icon" href="/favicon.ico" />
         <Script strategy='afterInteractive' src="https://www.googletagmanager.com/gtag/js?id=G-EN7BQS5265" />
         <Script  id="ga-init" strategy="afterInteractive">
          {` window.dataLayer = window.dataLayer || [];

@@ -25,7 +25,7 @@ interface SecondaryPageLayoutProps {
 
 const navPages = [
   { label: 'Viandas', href: '/viandas' },
-  { label: 'Productos', href: '/productos' },
+  { label: 'Almacén', href: '/almacen' },
   { label: 'Talleres', href: '/talleres' },
   { label: 'Caterings y Eventos', href: '/eventos' },
 ];
@@ -33,7 +33,7 @@ const navPages = [
 const mobileNavPages = [
   { label: 'Sobre Nosotros', href: '/#sobre-nosotros' },
   { label: 'Viandas', href: '/viandas' },
-  { label: 'Productos', href: '/productos' },
+  { label: 'Almacén', href: '/almacen' },
   { label: 'Talleres', href: '/talleres' },
   { label: 'Caterings y Eventos', href: '/eventos' },
   { label: 'Contacto', href: '/#contactanos' },

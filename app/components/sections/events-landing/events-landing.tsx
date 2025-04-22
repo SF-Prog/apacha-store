@@ -124,7 +124,7 @@ export function EventsLanding() {
                 <li className="flex items-start">
                   <Clock className="h-12 w-12 text-apacha_purple-100 mr-3 mt-1" />
                   <div>
-                    <h3 className="font-semibold text-lg">Flexibilidad total</h3>
+                    <h3 className="font-semibold text-lg">Servicio completo</h3>
                     <p className="text-gray-600 text-m">Nos aseguramos de que la mesa quede armada acompañando la estética del evento y que los invitados puedan disfrutar de la experiencia con todos sus sentidos.</p>
                   </div>
                 </li>

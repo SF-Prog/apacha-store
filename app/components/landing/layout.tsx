@@ -22,14 +22,14 @@ interface LayoutProps {
 
 const options = [
   { label: 'Sobre Nosotros', href: '/#sobre-nosotros'},
-  { label: 'Servicios y Productos', href: '/#nuestros-servicios'},
+  { label: 'Servicios', href: '/#nuestros-servicios'},
   { label: 'Contacto', href: '/#contactanos'}
 ];
 
 const mobileOptions = [
   { label: 'Sobre Nosotros', href: '/#sobre-nosotros'},
   { label: 'Viandas', href: '/viandas'},
-  { label: 'Productos', href: '/productos'},
+  { label: 'Almacén', href: '/almacen'},
   { label: 'Talleres', href: '/talleres'},
   { label: 'Caterings y Eventos', href: '/eventos'},
   { label: 'Contacto', href: '/#contactanos'}
