@@ -27,7 +27,7 @@ const navPages = [
   { label: 'Viandas', href: '/viandas' },
   { label: 'Productos', href: '/productos' },
   { label: 'Talleres', href: '/talleres' },
-  { label: 'Caterings y eventos', href: '/eventos' },
+  { label: 'Caterings y Eventos', href: '/eventos' },
 ];
 
 
