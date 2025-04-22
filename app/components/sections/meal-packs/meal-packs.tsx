@@ -17,7 +17,7 @@ export function MealPacksGrid() {
   return (
     <div className="bg-apacha-beige mt-4 py-12 px-4 sm:px-6 lg:px-8">
       <motion.h1
-        className="text-4xl font-bold text-center text-apacha-brown mb-12"
+        className="text-2xl md:text-4xl font-bold text-center text-apacha-brown mb-12"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -34,7 +34,7 @@ export function MealPacksGrid() {
           >
             <Card className="overflow-hidden border-t-4" style={{ borderTopColor: pack.color }}>
               <CardHeader>
-                <CardTitle className={`text-2xl font-bold text-${pack.color} text-center`}>
+                <CardTitle className={`text-xl md:text-2xl font-bold text-${pack.color} text-center`}>
                   {pack.title}
                 </CardTitle>
               </CardHeader>

@@ -30,7 +30,7 @@ export default function MenuPage() {
               transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto"
             >
-              <h1 className="text-xl md:text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
+              <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
               <Card className="mb-8">
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl text-apacha_purple-100">

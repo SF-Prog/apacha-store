@@ -11,8 +11,8 @@ export default function WorkshopsPage() {
   return (
     <SecondaryPageLayout>
       <PageHeader
-        title="Talleres"
-        description="Te invitamos a cocinar con nosotros!"
+        title="Nuestros Talleres"
+        description="¡Te invitamos a cocinar con nosotros!"
         imageSrc="/hero-2.jpg"
       />
       <PageContent>

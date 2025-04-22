@@ -56,7 +56,7 @@ export function WorkshopsGrid() {
   const renderWorkshopCard = (workshop: Workshop, index: number) => (
     <motion.div
       key={workshop.id}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 1, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
@@ -70,7 +70,7 @@ export function WorkshopsGrid() {
         />
         <CardHeader>
           <CardTitle className="text-xl font-semibold text-apacha_purple-100">{workshop.title}</CardTitle>
-          <CardDescription>{capitalize(workshop.description)}</CardDescription>
+          <CardDescription className="text-justify">{capitalize(workshop.description)}</CardDescription>
         </CardHeader>
         <CardContent className="flex-grow">
           <div className="space-y-2 text-sm text-gray-600">
@@ -113,72 +113,71 @@ export function WorkshopsGrid() {
   return (
 
     <ScrollAnimatedBackground
-      imageSrc="/workshop-people.png"
+      imageSrc="/events-cooking.jpg"
       imageAlt="workshop-background">
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <motion.div
-        className="max-w-3xl mx-auto text-center mb-12"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className="text-4xl font-bold text-apacha-brown mb-4">Descubre nuestros Talleres de Cocina</h1>
-        <p className="text-lg text-apacha-black mb-6">
-          Queremos compartir el conocimiento y herramientas que hemos aprendido y adquirido para que puedas disfrutar de cocinar alimentos ricos y nutritivos en tu casa.
-        </p>
-      </motion.div>
-
-      <Alert className="max-w-3xl mx-auto mb-8">
-        <Info className="h-4 w-4" />
-        <AlertTitle>¿Cómo participar?</AlertTitle>
-        <AlertDescription>
-          Explora nuestros próximos talleres, elige el que más te inspire y reserva tu lugar. Cada taller es una
-          oportunidad para expandir tus habilidades culinarias y conectar con otros entusiastas de la comida saludable.
-        </AlertDescription>
-      </Alert>
-
-      {/* Upcoming Workshops Section */}
-      <section className="mb-16">
-        <motion.h2
-          className="text-3xl font-bold text-apacha-brown mb-8 text-center"
-          initial={{ opacity: 0, y: -10 }}
+      <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="max-w-3xl mx-auto text-center mb-12"
+          initial={{ opacity: 1, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Próximos Talleres
-        </motion.h2>
+          <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown mb-4">Descubre nuestros talleres de cocina</h1>
+          <p className="text-lg text-justify text-apacha-black mb-6">
+            Queremos compartir el conocimiento y herramientas que hemos aprendido y adquirido para que puedas disfrutar de cocinar alimentos ricos y nutritivos en tu casa.
+          </p>
+        </motion.div>
 
-        {upcomingWorkshops.length > 0 ? (
-          <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {upcomingWorkshops.map((workshop, index) => renderWorkshopCard(workshop, index))}
-          </div>
-        ) : (
-          <div className="text-center py-8 bg-white/50 rounded-lg max-w-3xl mx-auto">
-            <p className="text-gray-600">
-              No hay talleres programados próximamente. ¡Vuelve pronto para ver nuestras nuevas fechas!
-            </p>
-          </div>
-        )}
-      </section>
+        <Alert className="max-w-3xl mx-auto mb-8">
+          <AlertTitle className="mb-2">¿Cómo participar?</AlertTitle>
+          <AlertDescription className="text-justify">
+            Explora nuestros próximos talleres, elige el que más te inspire y reserva tu lugar. Cada taller es una
+            oportunidad para expandir tus habilidades culinarias y conectar con otros entusiastas de la comida saludable.
+          </AlertDescription>
+        </Alert>
 
-      {/* Past Workshops Section */}
-      {pastWorkshops.length > 0 && (
-        <section>
+        {/* Upcoming Workshops Section */}
+        <section className="mb-16">
           <motion.h2
-            className="text-3xl font-bold text-apacha-brown mb-8 text-center"
-            initial={{ opacity: 0, y: -10 }}
+            className="text-2xl md:text-3xl font-bold text-apacha-brown mb-8 text-center"
+            initial={{ opacity: 1, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5 }}
           >
-            Talleres Anteriores
+            Próximos talleres
           </motion.h2>
 
-          <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {pastWorkshops.map((workshop, index) => renderWorkshopCard(workshop, index))}
-          </div>
+          {upcomingWorkshops.length > 0 ? (
+            <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {upcomingWorkshops.map((workshop, index) => renderWorkshopCard(workshop, index))}
+            </div>
+          ) : (
+            <div className="text-center py-8 bg-white/50 rounded-lg max-w-3xl mx-auto">
+              <p className="text-gray-600">
+                No hay talleres programados próximamente. ¡Vuelve pronto para ver nuevas fechas!
+              </p>
+            </div>
+          )}
         </section>
-      )}
-    </div>
+
+        {/* Past Workshops Section */}
+        {pastWorkshops.length > 0 && (
+          <section>
+            <motion.h2
+              className="text-2xl md:text-3xl font-bold text-apacha-brown mb-8 text-center"
+              initial={{ opacity: 1, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Talleres anteriores
+            </motion.h2>
+
+            <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {pastWorkshops.map((workshop, index) => renderWorkshopCard(workshop, index))}
+            </div>
+          </section>
+        )}
+      </div>
     </ScrollAnimatedBackground>
   )
 }

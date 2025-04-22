@@ -93,7 +93,7 @@ const emptyProductCategory = {
 const mealPacks: MealPack[] = [
   {
     id: '1',
-    title: "PACK DESAYUNO Y ALMUERZO",
+    title: "DESAYUNO Y ALMUERZO",
     weeklyPrice: 2600,
     monthlyPrice: 9800,
     color: "#8B5C8B",
@@ -101,7 +101,7 @@ const mealPacks: MealPack[] = [
   },
   {
     id: '2',
-    title: "PACK ALMUERZO Y CENA",
+    title: "ALMUERZO Y CENA",
     weeklyPrice: 3150,
     monthlyPrice: 12000,
     color: "#F4A460",
@@ -109,7 +109,7 @@ const mealPacks: MealPack[] = [
   },
   {
     id: '3',
-    title: "PACK DESAYUNO, ALMUERZO Y CENA",
+    title: "DESAYUNO, ALMUERZO Y CENA",
     weeklyPrice: 4100,
     monthlyPrice: 15200,
     color: "#8B9D8B",
@@ -121,7 +121,7 @@ const mealPacks: MealPack[] = [
 const meals: Meal[] = [
   {
     id: 'breakfast-prod',
-    title: "Desayunos",
+    title: "Desayuno",
     description: "Jugos y licuados a base de frutas y verduras. Es una gran manera de comenzar el día hidratado e incorporando nutrientes, vitaminas y antioxidantes.",
     prices: [200, 900, 3400],
     whatsappLink: "https://wa.me/59898958230?text=Me%20interesa%20el%20pack%20de%20Desayuno",

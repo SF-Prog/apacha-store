@@ -27,7 +27,8 @@ const options = [
 ];
 
 const mobileOptions = [
-  { label: 'Sistema de Viandas', href: '/viandas'},
+  { label: 'Sobre Nosotros', href: '/#sobre-nosotros'},
+  { label: 'Viandas', href: '/viandas'},
   { label: 'Productos', href: '/productos'},
   { label: 'Talleres', href: '/talleres'},
   { label: 'Caterings y Eventos', href: '/eventos'},
