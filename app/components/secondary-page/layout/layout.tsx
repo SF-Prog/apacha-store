@@ -30,6 +30,15 @@ const navPages = [
   { label: 'Caterings y Eventos', href: '/eventos' },
 ];
 
+const mobileNavPages = [
+  { label: 'Sobre Nosotros', href: '/#sobre-nosotros' },
+  { label: 'Viandas', href: '/viandas' },
+  { label: 'Productos', href: '/productos' },
+  { label: 'Talleres', href: '/talleres' },
+  { label: 'Caterings y Eventos', href: '/eventos' },
+  { label: 'Contacto', href: '/#contactanos' },
+];
+
 
 const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
   const { isLoading } = useStore();
@@ -77,7 +86,7 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
                 </SheetDescription>
               </SheetHeader>
               <nav className="flex flex-col space-y-4 mt-4">
-                {navPages.map((item) => (
+                {mobileNavPages.map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}

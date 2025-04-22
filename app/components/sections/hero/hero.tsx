@@ -45,7 +45,7 @@ export default function HeroSection() {
       </Carousel>
       <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div className="text-center text-bone-700 z-10">
-          <h2 className="text-4xl md:text-6xl font-bold mb-4">
+          <h2 className="text-2xl md:text-6xl font-bold mb-4">
             Disfruta de una alimentación nutritiva
           </h2>
           <p className="text-xl mb-8 font-sans">

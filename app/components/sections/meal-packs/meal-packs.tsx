@@ -32,7 +32,7 @@ export function MealPacksGrid() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <Card className="overflow-hidden border-t-4" style={{ borderTopColor: pack.color }}>
+            <Card className="overflow-hidden flex flex-col justify-between border-t-4" style={{ borderTopColor: pack.color }}>
               <CardHeader>
                 <CardTitle className={`text-xl md:text-2xl font-bold text-${pack.color} text-center`}>
                   {pack.title}
@@ -47,8 +47,6 @@ export function MealPacksGrid() {
                   <span className="font-semibold">Mensual</span>
                   <span className="text-xl font-bold">${pack.monthlyPrice.toLocaleString()}</span>
                 </div>
-              </CardContent>
-              <CardFooter>
                 <Button 
                   className="w-full group hover:shadow-lg transition-all duration-300"
                   style={{ 
@@ -60,7 +58,7 @@ export function MealPacksGrid() {
                   <MessageCircle className="mr-2 h-5 w-5" />
                   Me interesa
                 </Button>
-              </CardFooter>
+              </CardContent>
             </Card>
           </motion.div>
         ))}
