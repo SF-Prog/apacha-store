@@ -19,11 +19,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Apacha Cocina Consciente',
     description: 'Tienda online de alimentos nutritivos, sin gluten y a base de plantas.',
-    url: 'https://aoachacocina.com.uy',
+    url: 'https://apachacocina.com.uy',
     siteName: 'Apacha Cocina',
     images: [
       {
-        url: 'https://aoachacocina.com.uy/lunch-fridge-2.jpg',
+        url: 'https://apachacocina.com.uy/lunch-fridge-2.jpg',
         width: 1200,
         height: 630,
         alt: 'Comida saludable, plant based y sin gluten',
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     type: 'website',
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '//favicon.ico',
-    apple: '/favicon.ico',
+    icon: '/public/icons/favicon.ico',
+    shortcut: '/public/icons/favicon.ico',
+    apple: '/public/icons/favicon.ico',
   },
   robots: {
     index: true,
