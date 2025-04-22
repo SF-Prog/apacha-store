@@ -64,7 +64,7 @@ const MakeYourOrder: React.FC = () => {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-b from-apacha-beige to-white">
+    <section className="py-0 md:py-16 bg-gradient-to-b from-apacha-beige to-white">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-12"
@@ -72,8 +72,8 @@ const MakeYourOrder: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl font-bold mb-4">¿Qué estás necesitando?</h2>
-          <p className="text-xl text-apacha-brown max-w-2xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">¿Qué estás necesitando?</h2>
+          <p className=" text-l md:text-xl text-apacha-brown text-justify max-w-2xl mx-auto">
             Puedes escribirnos para que te asesoremos y así saber cuál es el pack ideal para ti. Selecciona tus comidas
             y el plan que prefieras.
           </p>

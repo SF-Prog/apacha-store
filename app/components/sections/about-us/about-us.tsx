@@ -31,7 +31,7 @@ export default function AboutUs() {
                 </p>
                 <p className="text-justify text-apacha-black">
                   A partir de ahí surgen estas ganas de emprender en conjunto. Con una gran complementariedad entre nosotrxs; Emi con una fuerte convicción en la alimentación consciente, intuitiva, basada en plantas y placentera. Manu con la pasión desde niño por el mundo de la gastronomía y su gran habilidad de cocinar tan rico.
-                </p>
+                </p><br />
                 <p className="text-justify text-apacha-black">
                   Nuestro gran objetivo es poder compartir el disfrute por nuevas alternativas gastronomicas y poder demostrar que comer rico y de forma consciente es posible.
                 </p>
