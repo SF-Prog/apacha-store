@@ -43,7 +43,7 @@ export default function ContactUs() {
 
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-3xl font-bold text-left md:text-center mb-12">Contáctanos</h2>
-        <div className="flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-8 space-y-6 md:space-y-0">
+        <div className="flex flex-col md:flex-row justify-start md:justify-center items-start md:items-center md:space-x-8 space-y-6 md:space-y-0">
           <motion.div
             className="flex items-center space-x-2"
             whileHover={{ scale: 1.05 }}
