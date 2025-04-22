@@ -97,7 +97,7 @@ const mealPacks: MealPack[] = [
     weeklyPrice: 2600,
     monthlyPrice: 9800,
     color: "#8B5C8B",
-    whatsappLink: `https://wa.me/1234567890?text=Hola%21%20Me%20interesa%20el%20Pack%20Desayuno%20y%20Almuerzo`
+    whatsappLink: `https://wa.me/59898958230?text=Hola%21%20Me%20interesa%20el%20Pack%20Desayuno%20y%20Almuerzo`
   },
   {
     id: '2',
@@ -105,7 +105,7 @@ const mealPacks: MealPack[] = [
     weeklyPrice: 3150,
     monthlyPrice: 12000,
     color: "#F4A460",
-    whatsappLink: `https://wa.me/1234567890?text=Hola%21%20Me%20interesa%20el%20Pack%20Almuerzo%20y%20Cena`
+    whatsappLink: `https://wa.me/59898958230?text=Hola%21%20Me%20interesa%20el%20Pack%20Almuerzo%20y%20Cena`
   },
   {
     id: '3',
@@ -113,7 +113,7 @@ const mealPacks: MealPack[] = [
     weeklyPrice: 4100,
     monthlyPrice: 15200,
     color: "#8B9D8B",
-    whatsappLink: `https://wa.me/1234567890?text=Hola%21%20Me%20interesa%20el%20Pack%20Desayuno,%20Almuerzo%20y%20Cena`
+    whatsappLink: `https://wa.me/59898958230?text=Hola%21%20Me%20interesa%20el%20Pack%20Desayuno,%20Almuerzo%20y%20Cena`
   }
 ];
 
@@ -124,7 +124,7 @@ const meals: Meal[] = [
     title: "Desayunos",
     description: "Jugos y licuados a base de frutas y verduras. Es una gran manera de comenzar el día hidratado e incorporando nutrientes, vitaminas y antioxidantes.",
     prices: [200, 900, 3400],
-    whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno",
+    whatsappLink: "https://wa.me/59898958230?text=Me%20interesa%20el%20pack%20de%20Desayuno",
     image: "/breakfast-preview.jpg",
   },
   {
@@ -132,7 +132,7 @@ const meals: Meal[] = [
     title: "Almuerzo",
     description: "El plato principal es una celebración de sabores y nutrición. Desde ensaladas vibrantes hasta guisos reconfortantes, cada opción ofrece un mundo de sabores y nutrientes. Ideales para solucionar tus almuerzos de una manera diferente y así no caer en el aburrimiento y monotonía.",
     prices: [370, 1750, 6600],
-    whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%20y%20Almuerzo",
+    whatsappLink: "https://wa.me/59898958230?text=Me%20interesa%20el%20pack%20de%20Desayuno%20y%20Almuerzo",
     image: "/lunch-preview.jpg"
   },
   {
@@ -140,7 +140,7 @@ const meals: Meal[] = [
     title: "Cena",
     description: "Sopa liviana y nutritiva. Al terminar el día y la rutina, muchas veces buscamos opciones prácticas para solucionar la cena. Las distintas variedades de sopas son ideales para incorporar a la rutina nocturna, ya que favorecerá a que te vayas a dormir liviano y de esta manera descansar mejor.",
     prices: [310, 1500, 5800],
-    whatsappLink: "https://wa.me/1234567890?text=Me%20interesa%20el%20pack%20de%20Desayuno%2C%20Almuerzo%20y%20Cena",
+    whatsappLink: "https://wa.me/59898958230?text=Me%20interesa%20el%20pack%20de%20Desayuno%2C%20Almuerzo%20y%20Cena",
     image: "/dinner-preview.jpg"
   }
 ];
