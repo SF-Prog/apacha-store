@@ -53,7 +53,7 @@ export default function PackPricing() {
     const price = selectedDuration === 'weekly' ? pack.weeklyPrice : pack.monthlyPrice
     const duration = selectedDuration === 'weekly' ? 'semanal' : 'mensual'
     const message = `Hola, me interesa el ${pack.title} con duración ${duration} por $${price}. ¿Podrían darme más información?`
-    window.open(`https://wa.me/1234567890?text=${encodeURIComponent(message)}`, '_blank')
+    window.open(`https://wa.me/59898958230?text=${encodeURIComponent(message)}`, '_blank')
   }
 
   return (

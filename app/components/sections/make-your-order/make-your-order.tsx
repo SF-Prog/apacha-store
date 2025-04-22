@@ -96,7 +96,7 @@ const MakeYourOrder: React.FC = () => {
                   <CardTitle className="text-2xl font-semibold text-apacha-brown">{meal.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-grow justify-between">
-                  <p className="text-apacha-black mb-4">{meal.description}</p>
+                  <p className="text-apacha-black text-justify mb-4">{meal.description}</p>
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span>Precio diario:</span>
@@ -146,7 +146,7 @@ const MakeYourOrder: React.FC = () => {
           <Button
             className="px-8 py-3 bg-apacha_purple-100 hover:bg-apacha_purple-100/90 text-white transition-all duration-300 transform hover:scale-105"
             onClick={() =>
-              window.open(`https://wa.me/1234567890?text=${encodeURIComponent(generateWhatsAppMessage())}`, "_blank")
+              window.open(`https://wa.me/59898958230?text=${encodeURIComponent(generateWhatsAppMessage())}`, "_blank")
             }
             disabled={selectedMeals.length === 0}
           >

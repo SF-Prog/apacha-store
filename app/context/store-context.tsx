@@ -84,7 +84,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const onCartCheckout = () => {
-    const whatsappLink = `https://wa.me/1234567890?text=${encodeURIComponent(
+    const whatsappLink = `https://wa.me/59898958230?text=${encodeURIComponent(
       `Hola, me gustaría hacer un pedido:\n\n${cartItems
         .map((item) => `${item.title} x${item.quantity}`)
         .join('\n')}\n\nTotal: $${total.toFixed(2)}`
@@ -126,7 +126,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   const onRegisterToWorkshop = (workshop: Workshop) => {
-    const whatsappLink = `https://wa.me/1234567890?text=${encodeURIComponent(
+    const whatsappLink = `https://wa.me/59898958230?text=${encodeURIComponent(
       `Hola, estoy interesado/a en: ${workshop.title}, el cual se desarrolla el dia ${workshop.date} a las ${workshop.initial_time} en ${workshop.location}`
     )}`;
     window.open(whatsappLink);
