@@ -54,7 +54,7 @@ const features = [
 export function EventsLanding() {
   return (
     <div className="bg-bone-500">
-      <section className="py-16 bg-white">
+      <section className="py-4 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
@@ -102,8 +102,8 @@ export function EventsLanding() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-3xl md:text-4xl font-bold text-apacha-brown mb-4">Proponemos un menú inclusivo para que todos puedan disfrutar</h3>
-              <p className="text-lg text-gray-700 mb-6">
+              <h3 className="text-xl md:text-4xl font-bold text-apacha-brown mb-4">Proponemos un menú inclusivo para que todos puedan disfrutar</h3>
+              <p className="text-m md:text-lg text-gray-700 mb-6">
                 En Apacha entendemos que cada evento y celebración es única, por eso ofrecemos una experiencia completamente personalizada:
               </p>
               <ul className="space-y-4">
@@ -111,21 +111,21 @@ export function EventsLanding() {
                   <Users className="h-6 w-6 text-apacha_purple-100 mr-3 mt-1" />
                   <div>
                     <h3 className="font-semibold text-lg">Experiencia personalizada</h3>
-                    <p className="text-gray-600">Consideramos tus preferencias y te ayudamos a que tu evento sea único e inolvidable.</p>
+                    <p className="text-gray-600 text-m">Consideramos tus preferencias y te ayudamos a que tu evento sea único e inolvidable.</p>
                   </div>
                 </li>
                 <li className="flex items-start">
                   <Leaf className="h-6 w-6 text-apacha_purple-100 mr-3 mt-1" />
                   <div>
                     <h3 className="font-semibold text-lg">Menú a base de plantas y sin gluten</h3>
-                    <p className="text-gray-600">Ofrecemos un menú inclusivo para que todos y todas puedan disfrutar.</p>
+                    <p className="text-gray-600 text-m">Ofrecemos un menú inclusivo para que todos y todas puedan disfrutar.</p>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <Clock className="h-6 w-6 text-apacha_purple-100 mr-3 mt-1" />
+                  <Clock className="h-12 w-12 text-apacha_purple-100 mr-3 mt-1" />
                   <div>
                     <h3 className="font-semibold text-lg">Flexibilidad total</h3>
-                    <p className="text-gray-600">Nos aseguramos de que la mesa quede armada acompañando la estética del evento y que los invitados puedan disfrutar de la experiencia con todos sus sentidos.</p>
+                    <p className="text-gray-600 text-m">Nos aseguramos de que la mesa quede armada acompañando la estética del evento y que los invitados puedan disfrutar de la experiencia con todos sus sentidos.</p>
                   </div>
                 </li>
               </ul>
@@ -143,8 +143,8 @@ export function EventsLanding() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">¿Listo para una experiencia gastronómica única?</h2>
-            <p className="text-xl mb-8">
+            <h2 className="text-xl text-3xl md:text-4xl font-bold mb-6">¿Listo para una experiencia gastronómica única?</h2>
+            <p className="text-s md:text-xl mb-8">
               Nuestro equipo está esperando para crear un plan alimenticio que se adapte perfectamente a tus necesidades y preferencias.
             </p>
             <motion.div
