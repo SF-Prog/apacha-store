@@ -15,7 +15,36 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: 'Apacha Cocina Consciente',
   description: 'Tienda online de alimentos nutritivos, sin gluten y a base de plantas.',
-  keywords: ['viandas nutritivas', 'productos sin gluten', 'productos veganos', 'montevideo']
+  keywords: ['plant based', 'gluten free', 'comida saludable', 'alimentación consciente', 'catering vegano', 'apacha'],
+  openGraph: {
+    title: 'Apacha Cocina Consciente',
+    description: 'Tienda online de alimentos nutritivos, sin gluten y a base de plantas.',
+    url: 'https://aoachacocina.com.uy',
+    siteName: 'Apacha Cocina',
+    images: [
+      {
+        url: 'https://aoachacocina.com.uy/lunch-fridge-2.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Comida saludable, plant based y sin gluten',
+      },
+    ],
+    locale: 'es_UY',
+    type: 'website',
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '//favicon.ico',
+    apple: '/favicon.ico',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function RootLayout({
