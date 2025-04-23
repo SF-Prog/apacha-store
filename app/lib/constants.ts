@@ -49,7 +49,7 @@ const services: Service[] = [
     url: '/viandas'
   },
   {
-    title: "Productos para el día a día",
+    title: "Almacén",
     description: "Contamos con productos que pueden ser grandes aliados para tu rutina, así como para reuniones y otras actividades.",
     image: "/products-dips-2.jpg",
     url: '/almacen'

@@ -41,7 +41,7 @@ export function WorkshopsGrid() {
     return (
       <Button
         onClick={handleClick}
-        className={`w-full ${!isOld ? "bg-apacha_purple-100 hover:bg-apacha_purple-100/90" : "bg-gray-500 hover:bg-gray-600"}`}
+        className={`w-full ${!isOld ? "bg-apacha_orange-100/70 hover:bg-apacha_orange-100/60" : "bg-gray-500 hover:bg-gray-600"}`}
       >
         {label}
       </Button>
@@ -56,7 +56,7 @@ export function WorkshopsGrid() {
   const renderWorkshopCard = (workshop: Workshop, index: number) => (
     <motion.div
       key={workshop.id}
-      initial={{ opacity: 1, y: 20 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
@@ -69,7 +69,7 @@ export function WorkshopsGrid() {
           className="w-full h-48 object-cover"
         />
         <CardHeader>
-          <CardTitle className="text-xl font-semibold text-apacha_purple-100">{workshop.title}</CardTitle>
+          <CardTitle className="text-xl font-semibold text-apacha_orange-100">{workshop.title}</CardTitle>
           <CardDescription className="text-justify">{capitalize(workshop.description)}</CardDescription>
         </CardHeader>
         <CardContent className="flex-grow">
@@ -118,7 +118,7 @@ export function WorkshopsGrid() {
       <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-3xl mx-auto text-center mb-12"
-          initial={{ opacity: 1, y: -20 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
@@ -128,7 +128,7 @@ export function WorkshopsGrid() {
           </p>
         </motion.div>
 
-        <Alert className="max-w-3xl mx-auto mb-8">
+        <Alert className="max-w-3xl border-none mx-auto mb-8 bg-apacha_orange-100 bg-opacity-50">
           <AlertTitle className="mb-2">¿Cómo participar?</AlertTitle>
           <AlertDescription className="text-justify">
             Explora nuestros próximos talleres, elige el que más te inspire y reserva tu lugar. Cada taller es una
@@ -140,7 +140,7 @@ export function WorkshopsGrid() {
         <section className="mb-16">
           <motion.h2
             className="text-2xl md:text-3xl font-bold text-apacha-brown mb-8 text-center"
-            initial={{ opacity: 1, y: -10 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
@@ -152,7 +152,7 @@ export function WorkshopsGrid() {
               {upcomingWorkshops.map((workshop, index) => renderWorkshopCard(workshop, index))}
             </div>
           ) : (
-            <div className="text-center py-8 bg-white/50 rounded-lg max-w-3xl mx-auto">
+            <div className="text-center py-8 bg-apacha_orange-100/60 rounded-lg max-w-3xl mx-auto">
               <p className="text-gray-600">
                 No hay talleres programados próximamente. ¡Vuelve pronto para ver nuevas fechas!
               </p>

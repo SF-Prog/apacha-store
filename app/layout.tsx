@@ -13,11 +13,11 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: 'Apacha Cocina Consciente',
+  title: 'Apacha Cocina',
   description: 'Tienda online de alimentos nutritivos, sin gluten y a base de plantas.',
-  keywords: ['plant based', 'gluten free', 'comida saludable', 'alimentación consciente', 'catering vegano', 'apacha'],
+  keywords: ['apacha', 'apacha cocina', 'plant based', 'gluten free', 'comida saludable', 'alimentación consciente', 'catering vegano'],
   openGraph: {
-    title: 'Apacha Cocina Consciente',
+    title: 'Apacha Cocina',
     description: 'Tienda online de alimentos nutritivos, sin gluten y a base de plantas.',
     url: 'https://www.apachacocina.com.uy',
     siteName: 'Apacha Cocina',
@@ -55,7 +55,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <title>Apacha Cocina</title>
+        <meta name="description" content="Tienda online de alimentos nutritivos, sin gluten y a base de plantas." />
         <Script strategy='afterInteractive' src="https://www.googletagmanager.com/gtag/js?id=G-EN7BQS5265" />
         <Script  id="ga-init" strategy="afterInteractive">
          {` window.dataLayer = window.dataLayer || [];

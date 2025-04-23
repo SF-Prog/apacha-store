@@ -19,7 +19,7 @@ const ScrollAnimatedBackground: React.FC<ScrollAnimatedBackgroundProps> = ({ chi
     offset: ['start end', 'end start']
   })
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0])
+  const opacity = useTransform(scrollYProgress, [0, 0.5, .7], [0, .7, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 1, 1.2])
   const yPosition = useTransform(scrollYProgress, [0, 1], [0, containerHeight * 0.3])
 

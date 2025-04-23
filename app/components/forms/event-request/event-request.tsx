@@ -212,7 +212,7 @@ export function EventInfoRequestModal({
       <DialogTrigger asChild>
         <Button
           variant={buttonVariant}
-          className="bg-white text-apacha_purple-100 hover:bg-white/90 text-lg px-8 py-6 rounded-full shadow-lg group"
+          className="bg-white text-beige-100 hover:bg-white/90 text-lg px-8 py-6 rounded-full shadow-lg group"
           size={buttonSize}
         >
           <CalendarDays className="mr-2 h-4 w-4 group-hover:animate-pulse" />
@@ -380,7 +380,7 @@ export function EventInfoRequestModal({
                     <Button
                       type="button"
                       variant={formValues.contactPreference === "email" ? "default" : "outline"}
-                      className={`flex items-center ${formValues.contactPreference === "email" ? "bg-apacha_purple-100" : ""}`}
+                      className={`flex items-center ${formValues.contactPreference === "email" ? "bg-beige-100" : ""}`}
                       onClick={() => handleSelectChange("contactPreference", "email")}
                     >
                       <Mail className="mr-2 h-4 w-4" />
@@ -390,7 +390,7 @@ export function EventInfoRequestModal({
                     <Button
                       type="button"
                       variant={formValues.contactPreference === "whatsapp" ? "default" : "outline"}
-                      className={`flex items-center ${formValues.contactPreference === "whatsapp" ? "bg-apacha_purple-100" : ""}`}
+                      className={`flex items-center ${formValues.contactPreference === "whatsapp" ? "bg-beige-100" : ""}`}
                       onClick={() => handleSelectChange("contactPreference", "whatsapp")}
                     >
                       <MessageSquare className="mr-2 h-4 w-4" />
@@ -400,7 +400,7 @@ export function EventInfoRequestModal({
                     <Button
                       type="button"
                       variant={formValues.contactPreference === "call" ? "default" : "outline"}
-                      className={`flex items-center ${formValues.contactPreference === "call" ? "bg-apacha_purple-100" : ""}`}
+                      className={`flex items-center ${formValues.contactPreference === "call" ? "bg-beige-100" : ""}`}
                       onClick={() => handleSelectChange("contactPreference", "call")}
                     >
                       <Phone className="mr-2 h-4 w-4" />
@@ -422,7 +422,7 @@ export function EventInfoRequestModal({
                   </Button>
                   <Button
                     type="submit"
-                    className="bg-apacha_purple-100 hover:bg-apacha_purple-100/90"
+                    className="bg-beige-100 hover:bg-beige-100/90"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

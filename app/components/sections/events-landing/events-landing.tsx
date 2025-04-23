@@ -66,7 +66,7 @@ export function EventsLanding() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="bg-apacha-beige w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-apacha_purple-100">
+                <div className="bg-apacha-beige w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-beige-100">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
@@ -76,7 +76,7 @@ export function EventsLanding() {
           </div>
         </div>
       </section>
-      <section className="py-16 bg-apacha_purple-100/10">
+      <section className="py-16 bg-beige-100/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="md:flex items-center gap-12">
             <div className="md:w-1/2 mb-8 md:mb-0">
@@ -108,21 +108,21 @@ export function EventsLanding() {
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start">
-                  <Users className="h-6 w-6 text-apacha_purple-100 mr-3 mt-1" />
+                  <Users className="h-6 w-6 text-beige-100 mr-3 mt-1" />
                   <div>
                     <h3 className="font-semibold text-lg">Experiencia personalizada</h3>
                     <p className="text-gray-600 text-m">Consideramos tus preferencias y te ayudamos a que tu evento sea único e inolvidable.</p>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <Leaf className="h-6 w-6 text-apacha_purple-100 mr-3 mt-1" />
+                  <Leaf className="h-6 w-6 text-beige-100 mr-3 mt-1" />
                   <div>
                     <h3 className="font-semibold text-lg">Menú a base de plantas y sin gluten</h3>
                     <p className="text-gray-600 text-m">Ofrecemos un menú inclusivo para que todos y todas puedan disfrutar.</p>
                   </div>
                 </li>
                 <li className="flex items-start">
-                  <Clock className="h-12 w-12 text-apacha_purple-100 mr-3 mt-1" />
+                  <Clock className="h-12 w-12 text-beige-100 mr-3 mt-1" />
                   <div>
                     <h3 className="font-semibold text-lg">Servicio completo</h3>
                     <p className="text-gray-600 text-m">Nos aseguramos de que la mesa quede armada acompañando la estética del evento y que los invitados puedan disfrutar de la experiencia con todos sus sentidos.</p>
@@ -134,7 +134,7 @@ export function EventsLanding() {
         </div>
       </section>
 
-      <section className="py-16 bg-gradient-to-r from-apacha_purple-100 to-apacha_purple-100/80 text-white">
+      <section className="py-16 bg-gradient-to-r from-beige-100 to-beige-100/80 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
