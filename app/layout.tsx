@@ -57,6 +57,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <title>Apacha Cocina</title>
+        <meta name="google-site-verification" content="sNdXsuP_XwVXpWCe0piY6vvmyR05jCzkWPuHyMAvwCk" />
         <meta name="description" content="Tienda online de alimentos nutritivos, sin gluten y a base de plantas." />
         <Script strategy='afterInteractive' src="https://www.googletagmanager.com/gtag/js?id=G-EN7BQS5265" />
         <Script  id="ga-init" strategy="afterInteractive">
