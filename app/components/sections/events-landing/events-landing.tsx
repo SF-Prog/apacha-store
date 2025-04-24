@@ -1,32 +1,10 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Badge } from "@/components/ui/badge"
 import { Sunrise, Cake, Building2, Coffee, Leaf, Clock, Users } from 'lucide-react'
 import { EventInfoRequestModal } from "@/components/forms/event-request/event-request"
-
-const testimonials = [
-  {
-    id: 1,
-    quote: "Apacha transformó mi rutina alimenticia con sus platos personalizados. ¡Nunca había comido tan bien!",
-    author: "María G.",
-    role: "Cliente Mensual"
-  },
-  {
-    id: 2,
-    quote: "La variedad y calidad de los ingredientes es impresionante. Cada comida es una experiencia única.",
-    author: "Carlos R.",
-    role: "Cliente Semanal"
-  },
-  {
-    id: 3,
-    quote: "Me encanta que puedo personalizar mi plan según mis necesidades dietéticas. Servicio excepcional.",
-    author: "Laura M.",
-    role: "Cliente Mensual"
-  }
-]
 
 const features = [
   {
@@ -88,7 +66,7 @@ export function EventsLanding() {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/events_table.jpg?width=500&height=400"
+                  src="/events_hummus.jpg?width=500&height=400"
                   alt="Personalización de menús"
                   fill
                   className="object-cover object-bottom"

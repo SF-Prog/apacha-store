@@ -60,7 +60,7 @@ const MakeYourOrder: React.FC = () => {
       })
       .join(", ");
 
-    return `Hola, me interesa ordenar el pack de comida que incluye: ${selectedMealDetails}. El total es $${calculateTotalPrice().toFixed(2)}.`
+    return `Hola, me interesa encargar el pack de viandas que incluye: ${selectedMealDetails}.`
   }
 
   return (
@@ -95,7 +95,7 @@ const MakeYourOrder: React.FC = () => {
                 <CardHeader>
                   <CardTitle className="text-2xl font-semibold text-apacha-brown">{meal.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="flex-grow justify-between">
+                <CardContent className="flex flex-col flex-grow justify-between">
                   <p className="text-apacha-black text-justify mb-4">{meal.description}</p>
                   <div className="space-y-2">
                     <div className="flex justify-between">
@@ -150,7 +150,7 @@ const MakeYourOrder: React.FC = () => {
             }
             disabled={selectedMeals.length === 0}
           >
-            <WhatsappIcon className="mr-2 h-5 w-5" /> Pedir por WhatsApp
+            <WhatsappIcon className="mr-2 h-5 w-5" /> Hacer pedido
           </Button>
         </div>
       </div>

@@ -14,7 +14,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
 import {
   Select,
   SelectContent,
@@ -26,7 +25,6 @@ import { ArrowRight, CalendarDays, Mail, MessageSquare, Phone } from 'lucide-rea
 import { Label } from '@/components/ui/label';
 import { useStore } from '@/app/context/store-context'
 
-// Define form values interface
 interface FormData {
   name: string
   email: string
@@ -38,7 +36,6 @@ interface FormData {
   eventDate?: string
 }
 
-// Define form errors interface
 interface FormErrors {
   name?: string
   email?: string
@@ -79,7 +76,6 @@ export function EventInfoRequestModal({
   const { sendEventRequest } = useStore();
 
 
-  // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormValues(prev => ({
@@ -88,7 +84,6 @@ export function EventInfoRequestModal({
     }))
   }
 
-  // Handle select changes
   const handleSelectChange = (name: string, value: string) => {
     setFormValues(prev => ({
       ...prev,
@@ -97,37 +92,31 @@ export function EventInfoRequestModal({
   }
 
 
-  // Validate form
   const validateForm = (data: FormData): boolean => {
     const newErrors: FormErrors = {}
 
-    // Validate name
     if (!data.name.trim()) {
       newErrors.name = "El nombre es requerido"
     } else if (data.name.trim().length < 2) {
       newErrors.name = "El nombre debe tener al menos 2 caracteres"
     }
 
-    // Validate email
     if (!data.email.trim()) {
       newErrors.email = "El email es requerido"
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
       newErrors.email = "Por favor ingresa un email válido"
     }
 
-    // Validate phone
     if (!data.phone.trim()) {
       newErrors.phone = "El teléfono es requerido"
     } else if (data.phone.trim().length < 8) {
       newErrors.phone = "Por favor ingresa un número de teléfono válido"
     }
 
-    // Validate event type
     if (!data.eventType) {
       newErrors.eventType = "Por favor selecciona un tipo de evento"
     }
 
-    // Validate message
     if (!data.message.trim()) {
       newErrors.message = "El mensaje es requerido"
     } else if (data.message.trim().length < 10) {
@@ -136,15 +125,12 @@ export function EventInfoRequestModal({
       newErrors.message = "Tu mensaje no puede exceder los 500 caracteres"
     }
 
-    // Validate contact preference
     if (!data.contactPreference) {
       newErrors.contactPreference = "Por favor selecciona una preferencia de contacto"
     }
 
-    // Update errors state
     setErrors(newErrors)
 
-    // Return true if no errors
     return Object.keys(newErrors).length === 0
   }
 
@@ -189,7 +175,6 @@ export function EventInfoRequestModal({
     if (!isSubmitting) {
       setOpen(newOpen)
       if (!newOpen) {
-        // Reset form and states when modal is closed
         setTimeout(() => {
           setFormValues({
             name: "",
