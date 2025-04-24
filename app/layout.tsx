@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     type: 'website',
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    icon: '/public/favicon.ico',
+    shortcut: '/public/favicon.ico',
+    apple: '/public/favicon.ico',
   },
   robots: {
     index: true,
