@@ -13,7 +13,6 @@ interface Meal {
   description: string
   image: string
   prices: number[]
-  whatsappLink: string
 }
 
 interface ProductItem {
@@ -124,7 +123,8 @@ interface StoreContextType {
   workshops: Workshop[],
   loadWorkshops: () => void,
   onRegisterToWorkshop: (w: Workshop) => void,
-  sendEventRequest: (data: FormData) => Promise<boolean>
+  sendEventRequest: (data: FormData) => Promise<boolean>,
+  sendWorkshopSubscription: (email: string) => void
 }
 
 // Auth interfaces
