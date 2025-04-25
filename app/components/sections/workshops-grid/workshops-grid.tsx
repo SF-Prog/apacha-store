@@ -123,18 +123,10 @@ export function WorkshopsGrid() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown mb-4">Descubre nuestros talleres de cocina</h1>
-          <p className="text-lg text-justify text-apacha-black mb-6">
+          <p className="text-lg text-justify md:text-center text-apacha-black mb-6">
             Queremos compartir el conocimiento y herramientas que hemos aprendido y adquirido para que puedas disfrutar de cocinar alimentos ricos y nutritivos en tu casa.
           </p>
         </motion.div>
-
-        <Alert className="max-w-3xl border-none mx-auto mb-8 bg-apacha_orange-100 bg-opacity-50">
-          <AlertTitle className="mb-2">¿Cómo participar?</AlertTitle>
-          <AlertDescription className="text-justify">
-            Explora nuestros próximos talleres, elige el que más te inspire y reserva tu lugar. Cada taller es una
-            oportunidad para expandir tus habilidades culinarias y conectar con otros entusiastas de la comida saludable.
-          </AlertDescription>
-        </Alert>
 
         {/* Upcoming Workshops Section */}
         <section className="mb-16">

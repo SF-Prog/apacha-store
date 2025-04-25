@@ -12,7 +12,7 @@ export default function EventsPage() {
       <PageHeader
         title="De la comida nos encargamos nosotros"
         description="Nos aseguramos de que tu evento sea una experiencia única e inigualable."
-        imageSrc="/events_hummus.jpg?height=600px"
+        imageSrc="/events_table.jpg"
       />
       <PageContent>
          <EventsLanding />

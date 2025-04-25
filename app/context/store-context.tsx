@@ -7,6 +7,7 @@ import { sendMenuEmail } from "@/actions/send-weekly-menu";
 import { getProducts } from "@/actions/get-products";
 import { createEventRequest } from "@/actions/create-event-request";
 import { getWorkshops } from "@/actions/get-workshops";
+import { createWorkshopSubscription } from "../actions/create-workshop-subscription";
 
 const StoreContext = createContext<StoreContextType | null>(null)
 
@@ -125,6 +126,18 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     };
   };
 
+  const sendWorkshopSubscription = async (email: string) => {
+    try {
+      setIsLoading(true);
+      await createWorkshopSubscription(email);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      displayToaster(toasterStatus.ERROR, error.details);
+    };
+    
+  };
+
   const onRegisterToWorkshop = (workshop: Workshop) => {
     const whatsappLink = `https://wa.me/59898958230?text=${encodeURIComponent(
       `Hola, estoy interesado/a en: ${workshop.title}, el cual se desarrolla el dia ${workshop.date} a las ${workshop.initial_time} en ${workshop.location}`
@@ -178,7 +191,8 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     workshops,
     loadWorkshops,
     onRegisterToWorkshop,
-    sendEventRequest
+    sendEventRequest,
+    sendWorkshopSubscription
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
