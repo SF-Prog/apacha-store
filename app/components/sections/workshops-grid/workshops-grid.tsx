@@ -70,7 +70,7 @@ export function WorkshopsGrid() {
         />
         <CardHeader>
           <CardTitle className="text-xl font-semibold text-apacha_orange-100">{workshop.title}</CardTitle>
-          <CardDescription className="text-justify">{capitalize(workshop.description)}</CardDescription>
+          <CardDescription className="text-start">{capitalize(workshop.description)}</CardDescription>
         </CardHeader>
         <CardContent className="flex-grow">
           <div className="space-y-2 text-sm text-gray-600">
@@ -123,7 +123,7 @@ export function WorkshopsGrid() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown mb-4">Descubre nuestros talleres de cocina</h1>
-          <p className="text-lg text-justify md:text-center text-apacha-black mb-6">
+          <p className="text-lg text-center text-apacha-black mb-6">
             Queremos compartir el conocimiento y herramientas que hemos aprendido y adquirido para que puedas disfrutar de cocinar alimentos ricos y nutritivos en tu casa.
           </p>
         </motion.div>
