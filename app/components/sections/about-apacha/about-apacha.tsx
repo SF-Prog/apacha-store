@@ -71,7 +71,7 @@ const ApachaStory: React.FC = () => {
                     transition={{ duration: 0.5 }}
                   >
                     <h3 className="text-2xl font-semibold mb-4 text-apacha-brown">{tabContent[activeTab].title}</h3>
-                    <p className="text-justify text-apacha-black leading-relaxed">{tabContent[activeTab].content}</p>
+                    <p className="text-start  text-apacha-black leading-relaxed">{tabContent[activeTab].content}</p>
                   </motion.div>
                 </AnimatePresence>
               </div>
