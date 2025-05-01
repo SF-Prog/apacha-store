@@ -1,10 +1,10 @@
 import { supabase } from '@/lib/supabase/client';
 
-export async function createWorkshopSubscription(email: string) {
+export async function createWorkshopSubscription(phone: string) {
   try {
 
     const { error } = await supabase.from('subscriptions').insert({
-      email,
+      phone,
       type: 'workshops'
     });
 

@@ -13,15 +13,15 @@ import { useStore } from '@/app/context/store-context'
 export default function MenuLanding() {
   const { sendWorkshopSubscription } = useStore();
   const [isRequestWeeklyModalOpen, setIsRequestWeeklyModalOpen] = useState<boolean>(false);
-  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
 
   const handleWorkshopSubscription = () => {
     setIsRequestWeeklyModalOpen(false);
-    sendWorkshopSubscription(email);
-    setEmail('');
+    sendWorkshopSubscription(phone);
+    setPhone('');
   };
 
-  const renderEmailField = () => {
+  const renderPhoneField = () => {
     if (!isRequestWeeklyModalOpen) return;
     return (
       <motion.div
@@ -32,12 +32,12 @@ export default function MenuLanding() {
       >
         <div className="flex w-full max-w-sm items-end space-x-0 gap-2">
           <div className='grid gap-2'>
-            <Label htmlFor="name">Ingresa tu email para recibir noticias</Label>
+            <Label htmlFor="name">Ingresa tu número de telefono para recibir noticias</Label>
             <Input
-              name="name"
-              placeholder="ejemplo@gmail.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="phone"
+              placeholder="098555000"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
           </div>
           <Button className="bg-apacha_purple-100" onClick={handleWorkshopSubscription}>
@@ -55,7 +55,7 @@ export default function MenuLanding() {
         <Button disabled={isRequestWeeklyModalOpen} className="mb-4 bg-apacha_purple-100 hover:bg-apacha_purple-100 " onClick={() => setIsRequestWeeklyModalOpen(true)}>
           <Plus className="mr-2 h-4 w-4" /> Solicitar próximo plan semanal
         </Button>
-        {renderEmailField()}
+        {renderPhoneField()}
       </div>
     );
   };
