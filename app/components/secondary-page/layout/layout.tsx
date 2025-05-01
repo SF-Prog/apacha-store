@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/sheet"
 import { useStore } from '@/app/context/store-context'
 import { FullScreenLoader } from '../../ui/fullscreen-loader'
+import CartWidget from '../../ui/cart-widget'
 
 interface SecondaryPageLayoutProps {
   children: React.ReactNode
@@ -55,12 +56,12 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
         <Link href="/">
           <Image alt="apacha-logo" src="/logo-black.png" width={140} height={50} />
         </Link>
-        <nav className="hidden md:flex space-x-4">
+        <nav className="hidden md:flex space-x-4 mr-28">
           {navPages.map((item, index) => (
             <motion.a
               key={item.label}
               href={item.href}
-              className="text-apacha-brown hover:text-apacha-green transition-colors"
+              className="text-apacha-brown hover:text-apacha-green transition-colors self-center"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -69,6 +70,7 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
             </motion.a>
           ))}
         </nav>
+
         <Sheet open={menuAbierto} onOpenChange={(open) => setMenuAbierto(open)}>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon" className="md:hidden">
@@ -76,19 +78,21 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
               <span className="sr-only">Abrir menú</span>
             </Button>
           </SheetTrigger>
-          <SheetContent className='z-50'>
+          <SheetContent className='z-50 w-full h-[60%]'>
             <SheetHeader className='flex flex-column items-center'>
-              <Image alt="apacha-logo" src="/logo-black.png" width={140} height={50} />
+              <SheetTitle>
+                <Image alt="apacha-logo" src="/logo-black.png" width={140} height={50} />
+              </SheetTitle>
               <SheetDescription>
                 Lo que tenemos para ofrecer
               </SheetDescription>
             </SheetHeader>
-            <nav className="flex flex-col space-y-4 mt-4">
+            <nav className="flex flex-col space-y-4 mt-8">
               {mobileNavPages.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="text-black hover:text-apacha_purple-100 transition-colors py-2"
+                  className="text-black hover:text-apacha_purple-100 transition-colors py-2 border-solid border-b-2 border-r-apacha_purple-100"
                 >
                   {item.label}
                 </Link>
@@ -97,6 +101,8 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
           </SheetContent>
         </Sheet>
       </div>
+
+      <CartWidget />
     </header>
   )
 

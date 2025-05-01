@@ -3,7 +3,6 @@ import ProductGrid from "@/sections/product-grid/product-grid";
 import SecondaryPageLayout from "@/components/secondary-page/layout/layout";
 import PageHeader from "@/components/secondary-page/page-header/page-header";
 import PageContent from "@/components/secondary-page/page-content/page-content"
-import CartWidget from "@/components/ui/cart-widget";
 
 export default function ProductsPage() {
   return (
@@ -16,7 +15,6 @@ export default function ProductsPage() {
       <PageContent>
           
           <ProductGrid />
-        <CartWidget />
       </PageContent>
     </SecondaryPageLayout>
   )

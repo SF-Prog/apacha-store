@@ -17,7 +17,6 @@ export function ProductsPanel() {
     removeProduct,
     addProduct,
     updateProduct,
-    productCategories
   } = useAdmin();
 
   const [showEditProductModal, setShowEditProductModal] = useState(false);
