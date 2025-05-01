@@ -11,7 +11,7 @@ import { useStore } from '@/context/store-context';
 export default function CartWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const { cartItems, total, addCartItem, removeCartItem, onCartCheckout } = useStore();
-
+  
   const totalItems = cartItems.reduce((acc, item) => {
     return acc += item.quantity;
   }, 0);
@@ -20,7 +20,7 @@ export default function CartWidget() {
     if (!isOpen) return;
     return (
 
-      <motion.div
+    <motion.div
       key="checkout-modal"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -116,9 +116,8 @@ export default function CartWidget() {
   };
 
   const renderMobileCart = () => {
-
+    if (window.location.pathname !== '/almacen') return;
     return (
-     
       <motion.div
         key="mobile-cart-widget"
         className="bg-apacha_green-100 text-white p-4 shadow-lg flex items-center justify-between fixed bottom-0 w-[100vw] md:hidden z-48"

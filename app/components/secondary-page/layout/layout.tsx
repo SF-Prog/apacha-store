@@ -78,7 +78,7 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
               <span className="sr-only">Abrir menú</span>
             </Button>
           </SheetTrigger>
-          <SheetContent className='z-50'>
+          <SheetContent className='z-50 w-full h-[60%]'>
             <SheetHeader className='flex flex-column items-center'>
               <SheetTitle>
                 <Image alt="apacha-logo" src="/logo-black.png" width={140} height={50} />
@@ -87,12 +87,12 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
                 Lo que tenemos para ofrecer
               </SheetDescription>
             </SheetHeader>
-            <nav className="flex flex-col space-y-4 mt-4">
+            <nav className="flex flex-col space-y-4 mt-8">
               {mobileNavPages.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="text-black hover:text-apacha_purple-100 transition-colors py-2"
+                  className="text-black hover:text-apacha_purple-100 transition-colors py-2 border-solid border-b-2 border-r-apacha_purple-100"
                 >
                   {item.label}
                 </Link>
