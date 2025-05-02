@@ -116,7 +116,8 @@ export default function CartWidget() {
   };
 
   const renderMobileCart = () => {
-    if (window.location.pathname !== '/almacen') return;
+    if (window?.location?.pathname !== '/almacen') return;
+    
     return (
       <motion.div
         key="mobile-cart-widget"
@@ -153,7 +154,7 @@ export default function CartWidget() {
         key="desktop-widget"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="hidden md:block absolute top-6 right-10 z-49"
+        className="hidden md:block absolute top-6 right-10  z-49"
       >
         <Button
           onClick={() => setIsOpen(true)}
