@@ -12,6 +12,7 @@ import { deleteProductCategory } from '@/actions/delete-product-category';
 import { createWorkshop } from "@/actions/create-workshop";
 import { deleteWorkshop } from "@/actions/delete-workshop";
 import { setWorkshop } from "@/actions/set-workshop";
+import { getSubscriptions } from "@/actions/get-subscriptions";
 import { getEventRequests } from "@/actions/get-event-requests";
 import { displayToaster, parseProductsList } from "@/lib/utils";
 import { toasterStatus } from "@/lib/constants";
@@ -27,6 +28,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [ showCreateWorkshopModal, setShowCreateWorkshopModal ] = useState<boolean>(false);
   const [ showEditWorkshopModal, setShowEditWorkshopModal ] = useState<boolean>(false);
   const [ eventRequests, setEventRequests ] = useState<EventRequest[]>([]);
+  const [ subscriptions, setSubscriptions ] = useState<Subscription[]>([]);
   const { products, loadProducts, isLoading, setIsLoading, workshops, loadWorkshops } = useStore();
 
   useEffect(() => {
@@ -71,6 +73,17 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       if (!categories) return;
 
       setProductCategories(categories);
+    } catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    };
+  }
+
+  const loadSubscriptions = async () => {
+    try {
+      const subscriptions = await getSubscriptions();
+      if (!subscriptions) return;
+      setIsLoading(false);
+      setSubscriptions(subscriptions);
     } catch (error) {
       displayToaster(toasterStatus.ERROR, error.message);
     };
@@ -242,7 +255,10 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     showEditWorkshopModal,
     setShowEditWorkshopModal,
     eventRequests,
-    updateEventRequestStatus
+    updateEventRequestStatus,
+    subscriptions,
+    setSubscriptions,
+    loadSubscriptions
   };
 
   return (
