@@ -6,12 +6,14 @@ import { ShoppingCart, X, ArrowRight, Minus, Plus, ChevronUp } from 'lucide-reac
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { useStore } from '@/context/store-context';
+import { usePathname } from 'next/navigation'
 
 
 export default function CartWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const { cartItems, total, addCartItem, removeCartItem, onCartCheckout } = useStore();
-  
+  const pathname = usePathname();
+
   const totalItems = cartItems.reduce((acc, item) => {
     return acc += item.quantity;
   }, 0);
@@ -116,8 +118,8 @@ export default function CartWidget() {
   };
 
   const renderMobileCart = () => {
-    if (window?.location?.pathname !== '/almacen') return;
-    
+    if (pathname !== '/almacen') return;
+
     return (
       <motion.div
         key="mobile-cart-widget"
