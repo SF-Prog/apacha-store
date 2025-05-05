@@ -5,9 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Menu } from 'lucide-react'
-
-import { Button } from "@/components/ui/button"
-import Footer from "@/sections/footer/footer";
 import {
   Sheet,
   SheetContent,
@@ -16,9 +13,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button"
+import Footer from "@/sections/footer/footer";
+import { FullScreenLoader } from '@/components/ui/fullscreen-loader'
+import CartWidget from '@/components/ui/cart-widget';
 import { useStore } from '@/app/context/store-context'
-import { FullScreenLoader } from '../../ui/fullscreen-loader'
-import CartWidget from '../../ui/cart-widget'
 
 interface SecondaryPageLayoutProps {
   children: React.ReactNode
@@ -78,7 +77,7 @@ const SecondaryPageLayout = ({ children }: SecondaryPageLayoutProps) => {
               <span className="sr-only">Abrir menú</span>
             </Button>
           </SheetTrigger>
-          <SheetContent className='z-50 w-full h-[60%]'>
+          <SheetContent className='z-50 w-full h-auto'>
             <SheetHeader className='flex flex-column items-center'>
               <SheetTitle>
                 <Image alt="apacha-logo" src="/logo-black.png" width={140} height={50} />

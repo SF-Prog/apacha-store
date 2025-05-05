@@ -71,6 +71,11 @@ interface Workshop {
   social_media_link?: string
 }
 
+interface WorkshopSubscription {
+  phone: string,
+  topic: string
+}
+
 interface CartItem extends ProductItem {
   quantity: number
 }
@@ -124,7 +129,8 @@ interface StoreContextType {
   loadWorkshops: () => void,
   onRegisterToWorkshop: (w: Workshop) => void,
   sendEventRequest: (data: FormData) => Promise<boolean>,
-  sendWorkshopSubscription: (email: string) => void
+  sendWorkshopSubscription: (input: WorkshopSubscription) => void
+  sendMenuSubscription: (phone: string) => void
 }
 
 // Auth interfaces
@@ -170,7 +176,10 @@ interface AdminContextType {
   showEditWorkshopModal: boolean,
   setShowEditWorkshopModal: (is: boolean) => void,
   eventRequests: EventRequest[],
-  updateEventRequestStatus: (id: string, status: string) => void
+  updateEventRequestStatus: (id: string, status: string) => void,
+  subscriptions: Subscription[],
+  setSubscriptions: (s: Subscription[]) => void
+  loadSubscriptions: () => void,
 }
 
 interface EventRequest {
@@ -187,4 +196,13 @@ interface EventRequest {
   date: string
 }
 
-type AdminPanelTabItem = 'products' | 'services' | 'product_categories' | 'events' | 'workshops';
+interface Subscription {
+  id: string
+  created_at: string
+  email: string
+  type: string
+  phone: string
+  description: string
+}
+
+type AdminPanelTabItem = 'products' | 'subscriptions'  | 'services' | 'product_categories' | 'events' | 'workshops';

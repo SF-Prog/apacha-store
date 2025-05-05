@@ -11,13 +11,13 @@ import MenuExample from '../menu-example/menu-example'
 import { useStore } from '@/app/context/store-context'
 
 export default function MenuLanding() {
-  const { sendWorkshopSubscription } = useStore();
+  const { sendMenuSubscription } = useStore();
   const [isRequestWeeklyModalOpen, setIsRequestWeeklyModalOpen] = useState<boolean>(false);
   const [phone, setPhone] = useState('');
 
-  const handleWorkshopSubscription = () => {
+  const handleMenuSubscription = () => {
     setIsRequestWeeklyModalOpen(false);
-    sendWorkshopSubscription(phone);
+    sendMenuSubscription(phone);
     setPhone('');
   };
 
@@ -32,28 +32,27 @@ export default function MenuLanding() {
       >
         <div className="flex w-full max-w-sm items-end space-x-0 gap-2">
           <div className='grid gap-2'>
-            <Label htmlFor="name">Ingresa tu número de telefono para recibir noticias</Label>
+            <Label htmlFor="name">Ingresa tu número de telefono para continuar</Label>
             <Input
               name="phone"
-              placeholder="098555000"
+              placeholder="098 555 000"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
           </div>
-          <Button className="bg-apacha_purple-100" onClick={handleWorkshopSubscription}>
+          <Button className="bg-apacha_purple-100" onClick={handleMenuSubscription}>
             <ArrowRight />
           </Button>
         </div>
       </motion.div>
-
-    )
-  }
+    );
+  };
 
   const renderRequestWeeklyMenu = () => {
     return (
       <div className='w-full flex flex-col items-center justify-center gap-2 md:gap-4 mb-8'>
-        <Button disabled={isRequestWeeklyModalOpen} className="mb-4 bg-apacha_purple-100 hover:bg-apacha_purple-100 " onClick={() => setIsRequestWeeklyModalOpen(true)}>
-          <Plus className="mr-2 h-4 w-4" /> Solicitar próximo plan semanal
+        <Button onClick={() => setIsRequestWeeklyModalOpen(true)} disabled={isRequestWeeklyModalOpen} className="mb-4 w-full max-w-[350px] bg-apacha_purple-100 hover:bg-apacha_purple-100 ">
+          <Plus className="mr-2 h-4 w-4" /> Solicitar menu de la semana
         </Button>
         {renderPhoneField()}
       </div>

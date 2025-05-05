@@ -7,9 +7,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button"
 import { Calendar, Clock, MapPin, Users, User } from "lucide-react"
 import { useStore } from "@/app/context/store-context"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Info } from "lucide-react"
 import ScrollAnimatedBackground from "../../landing/scroll-animation/scroll-animation"
+import { WorkshopHighlightsSection } from "../wokshop-highlights/workshop-highlights"
 
 export function WorkshopsGrid() {
   const { workshops, loadWorkshops, onRegisterToWorkshop } = useStore()
@@ -116,17 +115,10 @@ export function WorkshopsGrid() {
       imageSrc="/events-cooking.jpg"
       imageAlt="workshop-background">
       <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="max-w-3xl mx-auto text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown mb-4">Descubre nuestros talleres de cocina</h1>
-          <p className="text-lg text-center text-apacha-black mb-6">
-            Queremos compartir el conocimiento y herramientas que hemos aprendido y adquirido para que puedas disfrutar de cocinar alimentos ricos y nutritivos en tu casa.
-          </p>
-        </motion.div>
+        <WorkshopHighlightsSection
+          title = "Revive nuestros talleres anteriores"
+          description = "Mira los momentos destacados de nuestros talleres culinarios y descubre lo que te espera en los próximos eventos"
+          videoSrc = "/apacha-workshops.mp4" />
 
         {/* Upcoming Workshops Section */}
         <section className="mb-16">
@@ -145,7 +137,7 @@ export function WorkshopsGrid() {
             </div>
           ) : (
             <div className="text-center py-8 bg-apacha_orange-100/60 rounded-lg max-w-3xl mx-auto">
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm md:text-md">
                 No hay talleres programados próximamente. ¡Vuelve pronto para ver nuevas fechas!
               </p>
             </div>

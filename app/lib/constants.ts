@@ -142,6 +142,11 @@ const meals: Meal[] = [
   }
 ];
 
+const subscriptionTypes = {
+  WORKSHOP: 'workshop',
+  MENU: 'menu',
+};
+
 export {
   weeklyMenuExample,
   services,
@@ -149,5 +154,6 @@ export {
   emptyProduct,
   emptyProductCategory,
   mealPacks,
-  meals
+  meals,
+  subscriptionTypes
 };

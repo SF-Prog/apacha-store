@@ -1,13 +1,13 @@
 'use client'
 
 import React, { createContext, useState, useContext, useEffect, ReactNode, useMemo } from "react"
-import { toasterStatus, services, weeklyMenuExample, mealPacks, meals } from "@/app/lib/constants";
+import { toasterStatus, services, weeklyMenuExample, mealPacks, meals, subscriptionTypes } from "@/app/lib/constants";
 import { displayToaster, parseProductsList, sortProductsByPriority, sortWorkshopsByPriority } from "@/app/lib/utils";
 import { sendMenuEmail } from "@/actions/send-weekly-menu";
 import { getProducts } from "@/actions/get-products";
 import { createEventRequest } from "@/actions/create-event-request";
+import { createSubscription } from "../actions/create-subscription";
 import { getWorkshops } from "@/actions/get-workshops";
-import { createWorkshopSubscription } from "../actions/create-workshop-subscription";
 
 const StoreContext = createContext<StoreContextType | null>(null)
 
@@ -126,16 +126,26 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     };
   };
 
-  const sendWorkshopSubscription = async (email: string) => {
+  const sendMenuSubscription = async (phone: string) => {
     try {
       setIsLoading(true);
-      await createWorkshopSubscription(email);
+      await createSubscription({ phone, type: subscriptionTypes.MENU });
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       displayToaster(toasterStatus.ERROR, error.details);
     };
-    
+  };
+
+  const sendWorkshopSubscription = async ({ phone, topic }: WorkshopSubscription) => {
+    try {
+      setIsLoading(true);
+      await createSubscription({ phone, topic, type: subscriptionTypes.MENU });
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      displayToaster(toasterStatus.ERROR, error.details);
+    };
   };
 
   const onRegisterToWorkshop = (workshop: Workshop) => {
@@ -192,6 +202,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     loadWorkshops,
     onRegisterToWorkshop,
     sendEventRequest,
+    sendMenuSubscription,
     sendWorkshopSubscription
   }
 
