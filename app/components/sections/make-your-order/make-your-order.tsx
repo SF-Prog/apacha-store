@@ -144,7 +144,7 @@ const MakeYourOrder: React.FC = () => {
         <div className="text-center">
           <p className="text-2xl font-bold text-apacha-brown mb-4">Total: ${calculateTotalPrice().toFixed(2)}</p>
           <Button
-            className="px-8 py-3 bg-apacha_purple-100 hover:bg-apacha_purple-100/90 text-white transition-all duration-300 transform hover:scale-105"
+            className="px-8 py-3 bg-apacha_purple-100 hover:bg-apacha_purple-100/90 text-white transition-all duration-300 transform hover:scale-105 w-full max-w-[350px]"
             onClick={() =>
               window.open(`https://wa.me/59898958230?text=${encodeURIComponent(generateWhatsAppMessage())}`, "_blank")
             }
