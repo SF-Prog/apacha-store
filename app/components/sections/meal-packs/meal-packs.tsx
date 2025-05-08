@@ -22,7 +22,7 @@ export function MealPacksGrid() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        Nuestros Packs de Comida
+        Armá tu pack
       </motion.h1>
       <div className="max-w-7xl mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {mealPacks.map((pack, index) => (
