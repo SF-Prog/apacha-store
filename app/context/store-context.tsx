@@ -130,6 +130,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     try {
       setIsLoading(true);
       await createSubscription({ phone, type: subscriptionTypes.MENU });
+      displayToaster(toasterStatus.SUCCESS, "Enviamos su solicitud, nos comunicaremos pronto!")
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -141,6 +142,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     try {
       setIsLoading(true);
       await createSubscription({ phone, topic, type: subscriptionTypes.WORKSHOP });
+      displayToaster(toasterStatus.SUCCESS, "Enviamos su solicitud, nos comunicaremos pronto!")
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
