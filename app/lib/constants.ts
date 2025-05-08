@@ -43,7 +43,7 @@ const weeklyMenuExample: WeeklyMenuItem[] = [
 
 const services: Service[] = [
   {
-    title: "Sistema de viandas",
+    title: "Viandas",
     description: "Te ayudamos a organizarte y disfrutar de una alimentación nutritiva durante la semana. Contamos con opciones de desayuno, almuerzo y cena para que tengas cubiertas las comidas de lunes a viernes.",
     image: "/lunch-fridge-2.jpg",
     url: '/viandas'
