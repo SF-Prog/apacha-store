@@ -6,10 +6,14 @@ import Autoplay from "embla-carousel-autoplay"
 import { motion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useIsMobile } from "@/hooks/use-is-mobile";
+import { useRouter } from "next/navigation"
 
 export default function HeroSection() {
   const [api, setApi] = useState<any>(null)
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(0);
+  const isMobile = useIsMobile();
+  const router = useRouter();
 
   useEffect(() => {
     if (api) {
@@ -27,7 +31,10 @@ export default function HeroSection() {
     }
   }, [api])
 
-  const carouselImages = ["/mobile-banner-1.jpg", "/catering-cake.jpg", "/soup-hero.jpg", "/desayunos-producto.png"]
+  const desktopImages = ["/hero-4.jpg", "/catering-cake.jpg", "/soup-hero.jpg", "/desayunos-producto.png"]
+  const mobileImages = ["/mobile-banner-1.jpg", "/catering-cake.jpg", "/soup-hero.jpg", "/desayunos-producto.png"]
+
+  const carouselImages = isMobile ? mobileImages : desktopImages;
 
   const scrollToContent = () => {
     window.scrollTo({
@@ -38,21 +45,21 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-[85vh] md:h-screen">
-      <Carousel opts={{ loop: true }} plugins={[Autoplay({ delay: 5000 })]} setApi={setApi} className="h-full">
+      <Carousel opts={{ loop: true }} plugins={[Autoplay({ delay: isMobile ? 2500 : 4000 })]} setApi={setApi} className="h-full">
         <CarouselContent className="h-full">
-          {carouselImages.map((image, index) => {
-            return (
-              <CarouselItem key={index} className="h-full w-full">
-                <div
-                  className="h-full w-full bg-cover bg-center transition-all duration-700 transform scale-105"
-                  style={{
-                    backgroundImage: `url(${image})`,
-                    transform: current === index ? "scale(1)" : "scale(1.05)",
-                  }}
-                />
-              </CarouselItem>
-            )
-          })}
+            {carouselImages.map((image, index) => {
+              return (
+                <CarouselItem key={index} className="h-full w-full">
+                  <div
+                    className="h-full w-full bg-cover bg-center transition-all duration-700 transform scale-105"
+                    style={{
+                      backgroundImage: `url(${image})`,
+                      transform: current === index ? "scale(1)" : "scale(1.05)",
+                    }}
+                  />
+                </CarouselItem>
+              )
+            })}
         </CarouselContent>
 
         {/* Custom navigation dots for mobile */}
@@ -67,12 +74,6 @@ export default function HeroSection() {
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}
-        </div>
-
-        {/* Hidden on mobile, visible on desktop */}
-        <div className="hidden md:block">
-          <CarouselPrevious className="left-4" />
-          <CarouselNext className="right-4" />
         </div>
       </Carousel>
 
@@ -100,10 +101,11 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 1 }}
           >
             <Button
+            onClick={() => router.push('/almacen')}
               size="lg"
-              className="bg-bone-700 hover:bg-apacha-green/90 text-white font-medium px-8 py-6 rounded-full shadow-lg"
+              className="bg-bone-700 hover:bg-bone-700/90 text-white font-medium px-8 py-6 rounded-full shadow-lg"
             >
-              Explorar Menú
+              Ver Almacén
             </Button>
           </motion.div>
         </div>
