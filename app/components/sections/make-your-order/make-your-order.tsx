@@ -99,7 +99,7 @@ const MakeYourOrder: React.FC = () => {
                   <p className="text-apacha-black text-start mb-4">{meal.description}</p>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span>Precio diario:</span>
+                      <span>Precio individual:</span>
                       <span className="font-bold text-apacha_purple-100">${(meal.prices[0]).toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
