@@ -140,7 +140,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const sendWorkshopSubscription = async ({ phone, topic }: WorkshopSubscription) => {
     try {
       setIsLoading(true);
-      await createSubscription({ phone, topic, type: subscriptionTypes.MENU });
+      await createSubscription({ phone, topic, type: subscriptionTypes.WORKSHOP });
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
