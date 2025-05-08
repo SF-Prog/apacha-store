@@ -24,6 +24,7 @@
       "@/context/*": ["./app/context/*"],
       "@/actions/*": ["./app/actions/*"],
       "@/constants/*": ["app/lib/constants/*"],
+      "@/hooks/*": ["app/hooks/*"],
       "@/lib/*": ["app/lib/*"],
     },
     "plugins": [

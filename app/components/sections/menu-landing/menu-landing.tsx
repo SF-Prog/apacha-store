@@ -1,6 +1,5 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
@@ -8,7 +7,51 @@ import { ArrowRight, Leaf, Plus, Recycle, Truck } from 'lucide-react'
 import ScrollAnimatedBackground from '../../landing/scroll-animation/scroll-animation'
 import MakeYourOrder from '../make-your-order/make-your-order'
 import MenuExample from '../menu-example/menu-example'
-import { useStore } from '@/app/context/store-context'
+import { useStore } from '@/app/context/store-context';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+
+const cards = [
+  {
+    id: "nuestra-cocina",
+    icon: <Leaf className="h-5 w-5" />,
+    title: "Nuestra cocina",
+    content:
+      "Todo lo que elaboramos es con ingredientes naturales a base de plantas (excluimos ingredientes de origen animal) y sin gluten. Es un gran desafío y motivación introducirnos en este tipo de gastronomía, para lograr alimentos inclusivos que la mayoría pueda disfrutar.",
+  },
+  {
+    id: "compromiso-ambiental",
+    icon: <Recycle className="h-5 w-5" />,
+    title: "Compromiso Ambiental",
+    content:
+      "Nuestro proyecto se basa en elaborar y ofrecer productos de alta calidad nutricional y que a la vez estén en armonía con el medio ambiente. Para ello la incorporación de viandas retornables fue clave. Deseamos minimizar los residuos y generar el menor impacto posible en el ambiente.",
+  },
+  {
+    id: "entregas",
+    icon: <Truck className="h-5 w-5" />,
+    title: "Entregas",
+    content: (
+      <>
+        <p className="mb-4">Ofrecemos un menú semanal con solo dos entregas por semana:</p>
+        <ul className="list-disc list-inside mb-4">
+          <li className="mb-2">
+            <strong>Domingo:</strong> Entregamos lo que corresponda al menú de Lunes, Martes y Miércoles
+          </li>
+          <li className="mb-2">
+            <strong>Miércoles:</strong> Entregamos lo que corresponda al menú de Jueves y Viernes
+          </li>
+        </ul>
+        <p className="mb-4">
+          Las entregas se realizan dichos días entre las 17:00 y las 20:00 horas, utilizando nuestro propio método de
+          entrega para garantizar que la comida llegue segura a tu puerta. También puedes retirar el pedido en nuestro
+          local.
+        </p>
+        <p className="font-medium text-apacha_purple-100">
+          Te recordamos que debes hacer tu pedido de forma anticipada.
+        </p>
+      </>
+    ),
+  },
+]
 
 export default function MenuLanding() {
   const { sendMenuSubscription } = useStore();
@@ -59,6 +102,28 @@ export default function MenuLanding() {
     );
   };
 
+  const renderMobileAccordions = () => (
+    <div className="w-full max-w-3xl mx-auto px-4 py-6 space-y-4">
+      {cards.map((card) => (
+        <div key={card.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value={card.id} className="border-none">
+              <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-gray-50">
+                <div className="flex items-center text-apacha_purple-100 text-md md:text-2xl">
+                  <span className="mr-2">{card.icon}</span>
+                  {card.title}
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-6 text-apacha-black">
+                {typeof card.content === "string" ? <p className="text-justify">{card.content}</p> : card.content}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <ScrollAnimatedBackground
       imageSrc="/lunch-table.jpg"
@@ -71,52 +136,13 @@ export default function MenuLanding() {
           className="max-w-4xl mx-auto"
         >
           <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="flex items-center text-2xl text-apacha_purple-100">
-                <Truck className="mr-2" />
-                Entregas
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-apacha-black">
-              <p className="mb-4 text-justify">Ofrecemos un menú semanal con solo dos entregas por semana:</p>
-              <ul className="list-disc list-inside mb-4">
-                <li className="text-justify"><strong>Domingo:</strong> Entregamos lo que corresponda al menú de Lunes, Martes y Miércoles</li>
-                <li className="text-justify"><strong>Miércoles:</strong> Entregamos lo que corresponda al menú de Jueves y Viernes</li>
-              </ul>
-              <p className="text-justify mb-4">Las entregas se realizan dichos días entre las 17:00 y las 20:00 horas, utilizando nuestro propio método de entrega para garantizar que la comida llegue segura a tu puerta. También puedes retirar el pedido en nuestro local.</p>
-              <p className="text-justify mb-4 text-apacha_purple-100">Te recordamos que debes hacer tu pedido de forma anticipada.</p>
-            </CardContent>
-          </Card>
 
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="flex items-center text-2xl text-apacha_purple-100">
-                <Leaf className="mr-2" />
-                Nuestra cocina
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-apacha-black">
-              <p className="text-justify">Todo lo que elaboramos es con ingredientes naturales a base de plantas (excluimos ingredientes de origen animal) y sin gluten. Es un gran desafío y motivación introducirnos en este tipo de gastronomía, para lograr alimentos inclusivos que la mayoría pueda disfrutar.</p>
-            </CardContent>
-          </Card>
-
-          <Card className="mb-8">
-            <CardHeader>
-              <CardTitle className="flex items-center text-2xl text-apacha_purple-100">
-                <Recycle className="mr-2" />
-                Compromiso Ambiental
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-apacha-black">
-              <p className="text-justify">
-                Nuestro proyecto se basa en elaborar y ofrecer productos de alta calidad nutricional y que a la vez estén en armonía con el medio ambiente. Para ello la incorporación de viandas retornables fue clave. Deseamos minimizar los residuos y generar el menor impacto posible en el ambiente.
-              </p>
-            </CardContent>
-          </Card>
+          {renderMobileAccordions()}
 
           <MakeYourOrder />
+
           {renderRequestWeeklyMenu()}
+
           <MenuExample />
         </motion.div>
       </div>
