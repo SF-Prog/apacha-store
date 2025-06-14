@@ -44,26 +44,26 @@ const weeklyMenuExample: WeeklyMenuItem[] = [
 const services: Service[] = [
   {
     title: "Viandas",
-    description: "Te ayudamos a organizarte y disfrutar de una alimentación nutritiva durante la semana. Contamos con opciones de desayuno, almuerzo y cena para que tengas cubiertas las comidas de lunes a viernes.",
+    description: "Recibí en tu casa opciones de desayuno, almuerzo y cena que disfrutes y te nutran. Renovamos el menú semanalmente.",
     image: "/lunch-fridge-2.jpg",
     url: '/viandas'
   },
   {
     title: "Almacén",
-    description: "Contamos con productos que pueden ser grandes aliados para tu rutina, así como para reuniones y otras actividades.",
+    description: "Elegí productos ricos que te acompañen en el día a día.",
     image: "/products-dips-2.jpg",
     url: '/almacen'
   },
   {
     title: "Talleres",
-    description: "Parte de nuestro disfrute es poder compartir el conocimiento y herramientas que hemos aprendido y adquirido en todo este tiempo. Queremos compartirlo para que puedas disfrutar cocinar alimentos ricos y nutritivos en tu casa con tu familia y amigo",
+    description: "Una oportunidad para compartir el conocimiento y herramientas que hemos adquirido durante este tiempo y puedas disfrutar de cocinar alimentos ricos y nutritivos con tu familia o amigos.",
     image: "/workshop-people.png",
     url: '/talleres',
     customStyle: { objectFit: 'cover', objectPosition: 'center center' }
   },
   {
     title: "Caterings y Eventos",
-    description: "Ofrecemos un servicio de catering personalizado y diseñado para cada cliente. Es ideal para agasajar a los invitados con comida deliciosa, novedosa y nutritiva. Al ser sin gluten y sin ingredientes de origen animal también la consideramos inclusiva, ya que todos los invitados podrán disfrutar.",
+    description: "Ideal para agasajar a tus invitados con comida deliciosa, novedosa e inclusiva. Ofrecemos un servicio personalizado y diseñado para cada cliente.",
     image: "/caterings-table.jpg",
     url: "/eventos",
   }
