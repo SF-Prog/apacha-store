@@ -62,7 +62,6 @@ export default function HeroSection() {
             })}
         </CarouselContent>
 
-        {/* Custom navigation dots for mobile */}
         <div className="absolute bottom-24 left-0 right-0 z-20 flex justify-center gap-2">
           {carouselImages.map((_, index) => (
             <button
@@ -85,33 +84,40 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-4 text-shadow-sm">
-              Disfruta de una alimentación nutritiva
+              Disfruta de una alimentación rica y nutritiva
             </h2>
           </motion.div>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.6 }}>
             <p className="text-xl mb-6 md:mb-8 font-sans text-shadow-sm">
-              Todo lo que elaboramos es plant based y gluten free
+              Tu semana resuelta con un menú distinto todos los días
             </p>
           </motion.div>
 
           <motion.div
+          className="flex gap-4 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
             <Button
-            onClick={() => router.push('/almacen')}
+              onClick={() => router.push('/viandas')}
               size="lg"
               className="bg-bone-700 hover:bg-bone-700/90 text-white font-medium px-8 py-6 rounded-full shadow-lg"
             >
-              Ver Almacén
+              Viandas
+            </Button>
+            <Button
+              onClick={() => router.push('/almacen')}
+              size="lg"
+              className="bg-bone-700 hover:bg-bone-700/90 text-white font-medium px-8 py-6 rounded-full shadow-lg"
+            >
+              Almacén
             </Button>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-0 right-0 flex justify-center z-20"
         initial={{ opacity: 0 }}
@@ -130,7 +136,6 @@ export default function HeroSection() {
         </button>
       </motion.div>
 
-      {/* Add text shadow utility class */}
       <style jsx global>{`
         .text-shadow-sm {
           text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
