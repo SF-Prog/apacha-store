@@ -10,8 +10,8 @@ export default function MenuPage() {
   return (
     <SecondaryPageLayout>
       <PageHeader
-        title="Te ayudamos a organizarte en tus comidas diarias"
-        description="Proponemos un menú diferente cada semana para no caer en el aburrimiento y monotonía"
+        title="Solucionamos tus comidas diarias"
+        description="Recibí un menú diferente todas las semanas"
         imageSrc="/menu-hero.jpg"
       />
       <PageContent>

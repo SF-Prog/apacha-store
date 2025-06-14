@@ -73,7 +73,7 @@ const MakeYourOrder: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-2xl md:text-4xl font-bold mb-4">¿Qué estás necesitando?</h2>
-          <p className=" text-l md:text-xl text-apacha-brown text-start max-w-2xl mx-auto">
+          <p className=" text-l md:text-l text-apacha-brown text-center max-w-2xl mx-auto">
             Puedes escribirnos para que te asesoremos y así saber cuál es el pack ideal para ti. Selecciona tus comidas
             y el plan que prefieras.
           </p>
@@ -96,7 +96,10 @@ const MakeYourOrder: React.FC = () => {
                   <CardTitle className="text-2xl font-semibold text-apacha-brown">{meal.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col flex-grow justify-between">
-                  <p className="text-apacha-black text-start mb-4">{meal.description}</p>
+                  <div className='flex flex-col flex-start'>
+                    <p className="text-apacha-black text-start">{meal.description}</p><br/>
+                    <p className="text-apacha_purple-100 text-start mb-4">{meal.benefits}</p>
+                  </div>
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span>Precio individual:</span>

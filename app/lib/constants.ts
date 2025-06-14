@@ -122,21 +122,24 @@ const meals: Meal[] = [
   {
     id: 'breakfast-prod',
     title: "Desayuno",
-    description: "Jugos y licuados a base de frutas y verduras. Es una gran manera de comenzar el día hidratado e incorporando nutrientes, vitaminas y antioxidantes.",
+    description: "Jugos y licuados a base de frutas y verduras.",
+    benefits: "Para comenzar el día hidratado, incorporando nutrientes, vitaminas y antioxidantes.",
     prices: [200, 900, 3400],
     image: "/breakfast-preview.jpg",
   },
   {
     id: 'lunch-prod',
     title: "Almuerzo",
-    description: "El plato principal es una celebración de sabores y nutrición. Desde ensaladas vibrantes hasta guisos reconfortantes, cada opción ofrece un mundo de sabores y nutrientes. Ideales para solucionar tus almuerzos de una manera diferente y así no caer en el aburrimiento y monotonía.",
+    description: "Platos diversos, nutritivos, ricos y balanceados.",
+    benefits: "Para solucionar tus almuerzos de una manera diferente y no caer en el aburrimiento y monotonía.",
     prices: [370, 1750, 6600],
     image: "/lunch-preview.jpg"
   },
   {
     id: 'dinner-prod',
     title: "Cena",
-    description: "Sopa liviana y nutritiva. Al terminar el día y la rutina, muchas veces buscamos opciones prácticas para solucionar la cena. Las distintas variedades de sopas son ideales para incorporar a la rutina nocturna, ya que favorecerá a que te vayas a dormir liviano y de esta manera descansar mejor.",
+    description: "Variedad de sopas.",
+    benefits: "Incorporá una comida caliente y liviana a tu rutina nocturna.",
     prices: [310, 1500, 5800],
     image: "/dinner-preview.jpg"
   }

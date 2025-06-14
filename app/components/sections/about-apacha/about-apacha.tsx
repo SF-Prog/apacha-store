@@ -36,7 +36,7 @@ const ApachaStory: React.FC = () => {
   }
 
   return (
-    <section id="sobre-apacha" className="py-4 md:py-20">
+    <section id="sobre-apacha" className="py-4 md:py-20 mb-4">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-4 md:mb-12 text-apacha-purple-100">Sobre Apacha</h2>
         <Card className="overflow-hidden h-min-[600px]">

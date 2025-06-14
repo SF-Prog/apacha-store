@@ -13,6 +13,7 @@ interface Meal {
   description: string
   image: string
   prices: number[]
+  benefits?: string
 }
 
 interface ProductItem {

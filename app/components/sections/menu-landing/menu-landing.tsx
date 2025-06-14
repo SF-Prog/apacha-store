@@ -103,25 +103,29 @@ export default function MenuLanding() {
   };
 
   const renderMobileAccordions = () => (
-    <div className="w-full max-w-3xl mx-auto px-4 py-6 space-y-4">
-      {cards.map((card) => (
-        <div key={card.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value={card.id} className="border-none">
-              <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-gray-50">
-                <div className="flex items-center text-apacha_purple-100 text-md md:text-2xl">
-                  <span className="mr-2">{card.icon}</span>
-                  {card.title}
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-6 text-apacha-black">
-                {typeof card.content === "string" ? <p className="text-justify">{card.content}</p> : card.content}
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      ))}
-    </div>
+    <>
+      <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
+
+      <div className="w-full max-w-3xl mx-auto px-4 py-6 space-y-4">
+        {cards.map((card) => (
+          <div key={card.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value={card.id} className="border-none">
+                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-gray-50">
+                  <div className="flex items-center text-apacha_purple-100 text-md md:text-2xl">
+                    <span className="mr-2">{card.icon}</span>
+                    {card.title}
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-6 text-apacha-black">
+                  {typeof card.content === "string" ? <p className="text-justify">{card.content}</p> : card.content}
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        ))}
+      </div>
+    </>
   );
 
   return (
@@ -135,15 +139,15 @@ export default function MenuLanding() {
           transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto"
         >
-          <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
 
-          {renderMobileAccordions()}
 
           <MakeYourOrder />
 
-          {renderRequestWeeklyMenu()}
 
           <MenuExample />
+
+          {renderMobileAccordions()}
+          {/* {renderRequestWeeklyMenu()} */}
         </motion.div>
       </div>
     </ScrollAnimatedBackground>
