@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useStore } from '@/context/store-context';
 import Image from 'next/image'
 import Link from 'next/link';
+import { ChevronRight } from 'lucide-react';
 
 
 const OurServices: React.FC = () => {
@@ -45,6 +46,10 @@ const OurServices: React.FC = () => {
                 <div className="p-8 flex flex-col flex-grow">
                   <h3 className="text-2xl font-semibold mb-4 text-apacha-brown">{service.title}</h3>
                   <p className="text-start text-apacha-black text-lg flex-grow">{service.description}</p>
+                </div>
+                <div className='w-full flex justify-end'>
+                  <p className='mr-1 mb-4 md:mb-2'>Ver más</p>
+                  <ChevronRight className='mr-4'/>
                 </div>
               </motion.div>
             </Link>
