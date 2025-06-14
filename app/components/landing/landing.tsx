@@ -14,9 +14,9 @@ export default function Landing() {
     <Layout>
       <HeroSection />
       <ScrollAnimatedBackground imageSrc="/background-mid-section.png" imageAlt="background-mid-section">
+          <OurServices />
           <AboutUs />
           <AboutApacha />
-          <OurServices />
       </ScrollAnimatedBackground>
       <ContactUs />
     </Layout>
