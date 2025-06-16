@@ -7,6 +7,7 @@ import { ProductsPanel } from '@/components/admin-panel//products-panel/products
 import { ProductCategoriesPanel } from '@/components/admin-panel//product-categories-panel/product-categories-panel'
 import { WorkshopsPanel } from '@/components/admin-panel/workshops-panel/workshops-panel'
 import { EventsPanel } from '@/components/admin-panel/events-panel/events-panel'
+import { WeeklyMenuPanel } from '@/components/admin-panel/weekly-menu-panel/weekly-menu-panel'
 import { useAdmin } from '@/app/context/admin-context'
 import { SubscriptionsPanel } from '../subscriptions-panel/subscriptions-panel'
 
@@ -31,6 +32,7 @@ export default function AdminPanel() {
           {activeTab === 'workshops' && <WorkshopsPanel />}
           {activeTab === 'events' && <EventsPanel />}
           {activeTab === 'subscriptions' && <SubscriptionsPanel />}
+          {activeTab === 'weekly-menu' && <WeeklyMenuPanel />}
         </div>
       </main>
     </div>

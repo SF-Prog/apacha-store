@@ -1,5 +1,5 @@
 import { ElementType } from 'react'
-import { Package, Briefcase, Calendar, PackageSearch } from 'lucide-react'
+import { Package, Briefcase, Calendar, PackageSearch, VeganIcon } from 'lucide-react'
 
 interface SidebarProps {
   activeTab: AdminPanelTabItem
@@ -16,12 +16,6 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           isActive={activeTab === 'products'}
           onClick={() => setActiveTab('products')}
         />
-        {/* <SidebarItem
-          icon={Briefcase}
-          text="Services"
-          isActive={activeTab === 'services'}
-          onClick={() => setActiveTab('services')}
-        /> */}
         <SidebarItem
           icon={PackageSearch}
           text="Product Categories"
@@ -45,6 +39,12 @@ export function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           text="Subscriptions"
           isActive={activeTab === 'subscriptions'}
           onClick={() => setActiveTab('subscriptions')}
+        />
+        <SidebarItem
+          icon={VeganIcon}
+          text="Weekly Menu"
+          isActive={activeTab === 'weekly-menu'}
+          onClick={() => setActiveTab('weekly-menu')}
         />
       </nav>
     </aside>
