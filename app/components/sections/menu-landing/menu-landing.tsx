@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
@@ -8,25 +9,28 @@ import ScrollAnimatedBackground from '../../landing/scroll-animation/scroll-anim
 import MakeYourOrder from '../make-your-order/make-your-order'
 import MenuExample from '../menu-example/menu-example'
 import { useStore } from '@/app/context/store-context';
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 const cards = [
   {
     id: "nuestra-cocina",
     icon: <Leaf className="h-5 w-5" />,
     title: "Cocina consciente",
+    image: 'placeholder.svg',
     content: "Todos los platos tienen ingredientes naturales a base de plantas y sin gluten.",
   },
   {
     id: "compromiso-ambiental",
     icon: <Recycle className="h-5 w-5" />,
     title: "Compromiso Ambiental",
+    image: 'placeholder.svg',
     content: "Usamos envases retornables, para minimizar el impacto ambiental",
   },
   {
     id: "entregas",
     icon: <Truck className="h-5 w-5" />,
     title: "Dos entregas semanales",
+    image: 'placeholder.svg',
     content: (
       <>
         <p className="mb-4">Ofrecemos un menú semanal con solo dos entregas por semana:</p>
@@ -89,37 +93,48 @@ export default function MenuLanding() {
     );
   };
 
-  const renderRequestWeeklyMenu = () => {
-    return (
-      <div className='w-full flex flex-col items-center justify-center gap-2 md:gap-4 mb-8'>
-        <Button onClick={() => setIsRequestWeeklyModalOpen(true)} disabled={isRequestWeeklyModalOpen} className="mb-4 w-full max-w-[350px] bg-apacha_purple-100 hover:bg-apacha_purple-100 ">
-          <Plus className="mr-2 h-4 w-4" /> Solicitar menu de la semana
-        </Button>
-        {renderPhoneField()}
-      </div>
-    );
-  };
+  // const renderRequestWeeklyMenu = () => {
+  //   return (
+  //     <div className='w-full flex flex-col items-center justify-center gap-2 md:gap-4 mb-8'>
+  //       <Button onClick={() => setIsRequestWeeklyModalOpen(true)} disabled={isRequestWeeklyModalOpen} className="mb-4 w-full max-w-[350px] bg-apacha_purple-100 hover:bg-apacha_purple-100 ">
+  //         <Plus className="mr-2 h-4 w-4" /> Solicitar menu de la semana
+  //       </Button>
+  //       {renderPhoneField()}
+  //     </div>
+  //   );
+  // };
 
   const renderMobileAccordions = () => (
     <>
       <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
-
       <div className="w-full max-w-3xl mx-auto px-4 py-6 space-y-4">
-        {cards.map((card) => (
+        {cards.map((card, index) => (
           <div key={card.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-            <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value={card.id} className="border-none">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-gray-50">
-                  <div className="flex items-center text-apacha_purple-100 text-md md:text-2xl">
+            <motion.div
+              key={card.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Card
+                className={`bg-apacha_purple-100/10 h-full flex flex-col overflow-hidden transition-all duration-300`}
+              >
+                <div className="relative h-48">
+                  <Image src={card.image || "/placeholder.svg"} alt={card.title} fill style={{ objectFit: "cover" }} />
+                </div>
+                <CardHeader>
+                  <CardTitle className="flex items-center text-apacha_purple-100 text-md md:text-2xl">
                     <span className="mr-2">{card.icon}</span>
                     {card.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col flex-grow justify-between">
+                  <div className='flex flex-col flex-start'>
+                    <p className="text-apacha-black text-start">{card.content}</p><br />
                   </div>
-                </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6 text-apacha-black">
-                  {typeof card.content === "string" ? <p className="text-justify">{card.content}</p> : card.content}
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+                </CardContent>
+              </Card>
+            </motion.div>
           </div>
         ))}
       </div>
@@ -145,7 +160,6 @@ export default function MenuLanding() {
           <MenuExample />
 
           {renderMobileAccordions()}
-          {/* {renderRequestWeeklyMenu()} */}
         </motion.div>
       </div>
     </ScrollAnimatedBackground>
