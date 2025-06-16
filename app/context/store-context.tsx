@@ -8,6 +8,7 @@ import { getProducts } from "@/actions/get-products";
 import { createEventRequest } from "@/actions/create-event-request";
 import { createSubscription } from "../actions/create-subscription";
 import { getWorkshops } from "@/actions/get-workshops";
+import { getWeeklyMenu } from "@/app/actions/get-weekly-menu";
 
 const StoreContext = createContext<StoreContextType | null>(null)
 
@@ -172,6 +173,21 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     };
   };
 
+  const getWeeklyMenuData = async () => {
+    try {
+      setIsLoading(true);
+      const response = await getWeeklyMenu();
+      if (!response?.success) throw new Error("Fallo carga de menu semanal");
+
+      setIsLoading(false);
+      return response.image;
+    } catch (error) {
+      setIsLoading(false);
+      displayToaster(toasterStatus.ERROR, error.message);
+      return false;
+    };
+  };
+
   useEffect(() => {
     updateCartFromStorage();
   }, [])
@@ -205,7 +221,8 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     onRegisterToWorkshop,
     sendEventRequest,
     sendMenuSubscription,
-    sendWorkshopSubscription
+    sendWorkshopSubscription,
+    getWeeklyMenuData
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

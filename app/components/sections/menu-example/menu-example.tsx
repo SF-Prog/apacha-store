@@ -1,11 +1,24 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
 import { Card } from "@/components/ui/card"
+import { useStore } from '@/app/context/store-context';
 
 export default function MenuExample() {
+  const { getWeeklyMenuData, isLoading } = useStore();
+  const [imageSrc, setImageSrc] = useState("/placeholder.svg");
+
+  const loadWeeklyImage = async () => {
+    const weeklyMenu = await getWeeklyMenuData();
+    setImageSrc(weeklyMenu);
+  };
+
+  useEffect(() => {
+    void loadWeeklyImage();
+  }, []);
+
   return (
     <div className="bg-apacha-beige px-0 sm:px-0 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -26,7 +39,7 @@ export default function MenuExample() {
         >
           <Card className="overflow-hidden">
             <Image
-              src="/menu-semanal.png"
+              src={imageSrc}
               alt="Menú semanal de Apacha"
               width={800}
               height={600}

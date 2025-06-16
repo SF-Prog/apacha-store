@@ -131,7 +131,8 @@ interface StoreContextType {
   onRegisterToWorkshop: (w: Workshop) => void,
   sendEventRequest: (data: FormData) => Promise<boolean>,
   sendWorkshopSubscription: (input: WorkshopSubscription) => void
-  sendMenuSubscription: (phone: string) => void
+  sendMenuSubscription: (phone: string) => void,
+  getWeeklyMenuData: () => Promise<string>
 }
 
 // Auth interfaces
@@ -181,6 +182,9 @@ interface AdminContextType {
   subscriptions: Subscription[],
   setSubscriptions: (s: Subscription[]) => void
   loadSubscriptions: () => void,
+  loadWeeklyMenuData: () => void,
+  setWeeklyMenuData: (i: string) => void,
+  weeklyMenuImage: string
 }
 
 interface EventRequest {
@@ -206,4 +210,4 @@ interface Subscription {
   description: string
 }
 
-type AdminPanelTabItem = 'products' | 'subscriptions'  | 'services' | 'product_categories' | 'events' | 'workshops';
+type AdminPanelTabItem = 'products' | 'subscriptions'  | 'services' | 'product_categories' | 'events' | 'workshops' | 'weekly-menu';

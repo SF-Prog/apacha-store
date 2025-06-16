@@ -14,30 +14,28 @@ const cards = [
   {
     id: "nuestra-cocina",
     icon: <Leaf className="h-5 w-5" />,
-    title: "Nuestra cocina",
-    content:
-      "Todo lo que elaboramos es con ingredientes naturales a base de plantas (excluimos ingredientes de origen animal) y sin gluten. Es un gran desafío y motivación introducirnos en este tipo de gastronomía, para lograr alimentos inclusivos que la mayoría pueda disfrutar.",
+    title: "Cocina consciente",
+    content: "Todos los platos tienen ingredientes naturales a base de plantas y sin gluten.",
   },
   {
     id: "compromiso-ambiental",
     icon: <Recycle className="h-5 w-5" />,
     title: "Compromiso Ambiental",
-    content:
-      "Nuestro proyecto se basa en elaborar y ofrecer productos de alta calidad nutricional y que a la vez estén en armonía con el medio ambiente. Para ello la incorporación de viandas retornables fue clave. Deseamos minimizar los residuos y generar el menor impacto posible en el ambiente.",
+    content: "Usamos envases retornables, para minimizar el impacto ambiental",
   },
   {
     id: "entregas",
     icon: <Truck className="h-5 w-5" />,
-    title: "Entregas",
+    title: "Dos entregas semanales",
     content: (
       <>
         <p className="mb-4">Ofrecemos un menú semanal con solo dos entregas por semana:</p>
         <ul className="list-disc list-inside mb-4">
           <li className="mb-2">
-            <strong>Domingo:</strong> Entregamos lo que corresponda al menú de Lunes, Martes y Miércoles
+            <strong>Domingo:</strong> Entregamos lo que corresponda al menú de lunes, martes y miércoles
           </li>
           <li className="mb-2">
-            <strong>Miércoles:</strong> Entregamos lo que corresponda al menú de Jueves y Viernes
+            <strong>Miércoles:</strong> Entregamos lo que corresponda al menú de jueves y viernes
           </li>
         </ul>
         <p className="mb-4">

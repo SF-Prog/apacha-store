@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 import { motion } from "framer-motion"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Vegan, WheatOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useRouter } from "next/navigation"
@@ -95,26 +95,31 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.div
-          className="flex gap-4 justify-center"
+            className="flex flex-col gap-4 items-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
-            <Button
-              onClick={() => router.push('/viandas')}
-              size="lg"
-              className="bg-bone-700 hover:bg-bone-700/90 text-white font-medium px-8 py-6 rounded-full shadow-lg"
-            >
-              Viandas
-            </Button>
-            <Button
-              onClick={() => router.push('/almacen')}
-              size="lg"
-              className="bg-bone-700 hover:bg-bone-700/90 text-white font-medium px-8 py-6 rounded-full shadow-lg"
-            >
-              Almacén
-            </Button>
+              <div className="flex gap-4 justify-center">
+                <Button
+                  onClick={() => router.push('/viandas')}
+                  size="lg"
+                  className="bg-bone-700 hover:bg-bone-700/90 text-white font-medium px-8 py-6 rounded-full shadow-lg"
+                >
+                  Viandas
+                </Button>
+                <Button
+                  onClick={() => router.push('/almacen')}
+                  size="lg"
+                  className="bg-bone-700 hover:bg-bone-700/90 text-white font-medium px-8 py-6 rounded-full shadow-lg"
+                >
+                  Almacén
+                </Button>
+              </div>
+            <WheatOff />
+            <Vegan />
           </motion.div>
+          
         </div>
       </div>
 

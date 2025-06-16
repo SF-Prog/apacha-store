@@ -16,7 +16,9 @@ import { getSubscriptions } from "@/actions/get-subscriptions";
 import { getEventRequests } from "@/actions/get-event-requests";
 import { displayToaster, parseProductsList } from "@/lib/utils";
 import { toasterStatus } from "@/lib/constants";
-import { setEventRequestStatus } from "../actions/set-event-request-status";
+import { setEventRequestStatus } from "@/actions/set-event-request-status";
+import { getWeeklyMenu } from "@/actions/get-weekly-menu";
+import { setWeeklyMenu } from "@/actions/set-weekly-menu";
 
 const AdminContext = createContext<AdminContextType | null>(null)
 
@@ -29,6 +31,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [ showEditWorkshopModal, setShowEditWorkshopModal ] = useState<boolean>(false);
   const [ eventRequests, setEventRequests ] = useState<EventRequest[]>([]);
   const [ subscriptions, setSubscriptions ] = useState<Subscription[]>([]);
+  const [ weeklyMenuImage, setWeeklyMenuImage ] = useState<string>('/placeholder.svg');
   const { products, loadProducts, isLoading, setIsLoading, workshops, loadWorkshops } = useStore();
 
   useEffect(() => {
@@ -36,6 +39,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     void loadProductCategories();
     void loadWorkshops();
     void loadEventRequests();
+    void loadWeeklyMenuData();
   }, []);
 
   useEffect(() => {
@@ -232,6 +236,35 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     };
   };
 
+  const loadWeeklyMenuData = async () => {
+    try {
+      setIsLoading(true);
+      const response = await getWeeklyMenu();
+      if (!response?.success) throw new Error("Fallo carga de menu semanal");
+      setIsLoading(false);
+      setWeeklyMenuImage(response.image);
+    } catch (error) {
+      setIsLoading(false);
+      displayToaster(toasterStatus.ERROR, error.message);
+      return false;
+    };
+  };
+  
+  const setWeeklyMenuData = async (image: string) => {
+    try {
+      setIsLoading(true);
+      const response = await setWeeklyMenu({ image });
+      if (!response.success) throw new Error("Something went wrong");
+
+      setIsLoading(false);
+      return response.image;
+    } catch (error) {
+      setIsLoading(false);
+      displayToaster(toasterStatus.ERROR, error.message);
+      return false;
+    };
+  };
+
   const value = {
     productsList,
     addProduct,
@@ -258,7 +291,10 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     updateEventRequestStatus,
     subscriptions,
     setSubscriptions,
-    loadSubscriptions
+    loadSubscriptions,
+    loadWeeklyMenuData,
+    setWeeklyMenuData,
+    weeklyMenuImage
   };
 
   return (

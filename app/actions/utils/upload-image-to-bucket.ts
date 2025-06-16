@@ -2,7 +2,6 @@ import { getStorageClient } from '@/app/lib/supabase/client';
 import base64ToFile from './base64-to-file';
 import { getExtensionFromBase64 } from './get-base64-file-extension';
 import { isBase64Image } from './is-base-64';
-import deleteImageFromBucket from './delete-image-from-bucket';
 
 interface Payload {
   base64Image: string,
