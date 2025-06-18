@@ -9,6 +9,7 @@ import { createEventRequest } from "@/actions/create-event-request";
 import { createSubscription } from "../actions/create-subscription";
 import { getWorkshops } from "@/actions/get-workshops";
 import { getWeeklyMenu } from "@/app/actions/get-weekly-menu";
+import { getProductCategories } from "@/actions/get-product-categories";
 
 const StoreContext = createContext<StoreContextType | null>(null)
 
@@ -18,6 +19,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [total, setTotal] = useState<number>(0);
   const [products, setProducts] = useState<ProductsByCategory[]>([]);
+  const [ productCategories, setProductCategories ] = useState<ProductCategory[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const loadProducts = async () => {
@@ -188,8 +190,20 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     };
   };
 
+  const loadProductCategories = async () => {
+    try {
+      const categories = await getProductCategories();
+      if (!categories) return;
+
+      setProductCategories(categories);
+    } catch (error) {
+      displayToaster(toasterStatus.ERROR, error.message);
+    };
+  }
+
   useEffect(() => {
     updateCartFromStorage();
+    void loadProductCategories();
   }, [])
 
   useEffect(() => {
@@ -222,7 +236,8 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     sendEventRequest,
     sendMenuSubscription,
     sendWorkshopSubscription,
-    getWeeklyMenuData
+    getWeeklyMenuData,
+    productCategories,
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import { ArrowRight, Leaf, Plus, Recycle, Truck } from 'lucide-react'
+import { ArrowRight, Leaf, Recycle, Truck } from 'lucide-react'
 import ScrollAnimatedBackground from '../../landing/scroll-animation/scroll-animation'
 import MakeYourOrder from '../make-your-order/make-your-order'
 import MenuExample from '../menu-example/menu-example'
@@ -16,24 +16,23 @@ const cards = [
     id: "nuestra-cocina",
     icon: <Leaf className="h-5 w-5" />,
     title: "Cocina consciente",
-    image: 'placeholder.svg',
+    image: '/banner-cocina-consciente.jpeg',
     content: "Todos los platos tienen ingredientes naturales a base de plantas y sin gluten.",
   },
   {
     id: "compromiso-ambiental",
     icon: <Recycle className="h-5 w-5" />,
     title: "Compromiso Ambiental",
-    image: 'placeholder.svg',
+    image: '/banner-compromiso-ambiental.jpeg',
     content: "Usamos envases retornables, para minimizar el impacto ambiental",
   },
   {
     id: "entregas",
     icon: <Truck className="h-5 w-5" />,
     title: "Dos entregas semanales",
-    image: 'placeholder.svg',
+    image: '/banner-delivery.jpeg',
     content: (
       <>
-        <p className="mb-4">Ofrecemos un menú semanal con solo dos entregas por semana:</p>
         <ul className="list-disc list-inside mb-4">
           <li className="mb-2">
             <strong>Domingo:</strong> Entregamos lo que corresponda al menú de lunes, martes y miércoles
@@ -42,14 +41,6 @@ const cards = [
             <strong>Miércoles:</strong> Entregamos lo que corresponda al menú de jueves y viernes
           </li>
         </ul>
-        <p className="mb-4">
-          Las entregas se realizan dichos días entre las 17:00 y las 20:00 horas, utilizando nuestro propio método de
-          entrega para garantizar que la comida llegue segura a tu puerta. También puedes retirar el pedido en nuestro
-          local.
-        </p>
-        <p className="font-medium text-apacha_purple-100">
-          Te recordamos que debes hacer tu pedido de forma anticipada.
-        </p>
       </>
     ),
   },
@@ -107,28 +98,29 @@ export default function MenuLanding() {
   const renderMobileAccordions = () => (
     <>
       <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
-      <div className="w-full max-w-3xl mx-auto px-4 py-6 space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 md:h-[450px]">
         {cards.map((card, index) => (
           <div key={card.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
             <motion.div
               key={card.id}
+              className='h-full'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card
-                className={`bg-apacha_purple-100/10 h-full flex flex-col overflow-hidden transition-all duration-300`}
+                className={`bg-apacha_purple-100/10 h-[450px] flex flex-col overflow-hidden transition-all duration-300 ring-apacha_purple-100`}
               >
-                <div className="relative h-48">
+                <div className="relative h-72">
                   <Image src={card.image || "/placeholder.svg"} alt={card.title} fill style={{ objectFit: "cover" }} />
                 </div>
                 <CardHeader>
-                  <CardTitle className="flex items-center text-apacha_purple-100 text-md md:text-2xl">
+                  <CardTitle className="flex items-center text-apacha_purple-100 text-md md:text-l">
                     <span className="mr-2">{card.icon}</span>
                     {card.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="flex flex-col flex-grow justify-between">
+                <CardContent className="flex flex-col flex-grow justify-between h-full">
                   <div className='flex flex-col flex-start'>
                     <p className="text-apacha-black text-start">{card.content}</p><br />
                   </div>
