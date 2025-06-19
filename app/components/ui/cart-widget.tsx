@@ -151,6 +151,7 @@ export default function CartWidget() {
   };
 
   const renderDesktopCart = () => {
+    if (pathname !== '/almacen') return;
     return (
       <motion.div
         key="desktop-widget"
