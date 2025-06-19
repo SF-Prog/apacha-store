@@ -35,10 +35,10 @@ const cards = [
       <>
         <ul className="list-disc list-inside mb-4">
           <li className="mb-2">
-            <strong>Domingo:</strong> Entregamos lo que corresponda al menú de lunes, martes y miércoles
+            <u>Domingo:</u> Entregamos lo que corresponda al menú de lunes, martes y miércoles
           </li>
           <li className="mb-2">
-            <strong>Miércoles:</strong> Entregamos lo que corresponda al menú de jueves y viernes
+            <u>Miércoles:</u> Entregamos lo que corresponda al menú de jueves y viernes
           </li>
         </ul>
       </>
@@ -115,14 +115,14 @@ export default function MenuLanding() {
                   <Image src={card.image || "/placeholder.svg"} alt={card.title} fill style={{ objectFit: "cover" }} />
                 </div>
                 <CardHeader>
-                  <CardTitle className="flex items-center text-apacha_purple-100 text-md md:text-l">
+                  <CardTitle className="flex items-center text-apacha_purple-100 text-[18px] md:text-l">
                     <span className="mr-2">{card.icon}</span>
                     {card.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col flex-grow justify-between h-full">
                   <div className='flex flex-col flex-start'>
-                    <p className="text-apacha-black text-start">{card.content}</p><br />
+                    <p className="text-apacha-black font-normal text-start">{card.content}</p><br />
                   </div>
                 </CardContent>
               </Card>
