@@ -10,7 +10,7 @@ const APACHA_COCINA_EMAIL = "apachacocina@gmail.com";
 
 export default function ContactUs() {
   return (
-    <footer id="contactanos" className=" py-20 relative overflow-hidden">
+    <footer id="contactanos" className="pt-20 pb-0 relative overflow-hidden">
       <motion.div
         className="absolute inset-0 z-0"
         initial={{ opacity: 0 }}
@@ -85,6 +85,10 @@ export default function ContactUs() {
             </Link>
           </motion.div>
         </div>
+      <div className="container mx-auto px-8 text-center mt-20 text-gray-500 pb-10">
+        <p>&copy; 2024/25 Apacha Cocina Consciente. Todos los derechos reservados.</p>
+      </div>
+
       </div>
     </footer>
   )
