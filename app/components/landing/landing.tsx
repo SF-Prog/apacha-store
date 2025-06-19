@@ -18,7 +18,6 @@ export default function Landing() {
           <AboutUs />
           <AboutApacha />
       </ScrollAnimatedBackground>
-      <ContactUs />
     </Layout>
   )
 }
