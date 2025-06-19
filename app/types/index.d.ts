@@ -132,7 +132,8 @@ interface StoreContextType {
   sendEventRequest: (data: FormData) => Promise<boolean>,
   sendWorkshopSubscription: (input: WorkshopSubscription) => void
   sendMenuSubscription: (phone: string) => void,
-  getWeeklyMenuData: () => Promise<string>
+  getWeeklyMenuData: () => Promise<string>,
+  productCategories: ProductCategory[]
 }
 
 // Auth interfaces

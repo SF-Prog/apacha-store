@@ -19,18 +19,18 @@ const ApachaStory: React.FC = () => {
 
   const tabContent: Record<TabKey, TabContent> = {
     origin: {
-      title: "Nuestro Origen",
-      content: "La palabra Apacha viene de 'apapachar', la cual tiene un origen náhuatl que significa acariciar o abrazar con el alma. En definitiva, el alimento para nosotrxs es eso.",
+      title: "Origen",
+      content: "La palabra Apacha - de 'apapachar'- proviene del náhuatl y significa acariciar o abrazar con el alma. En definitiva, el alimento y la cocina para nosotrxs es eso.",
       icon: Heart
     },
     family: {
-      title: "Nuestra Familia",
-      content: "Venimos de una familia en donde el alimento ocupa un espacio importante a la hora de transmitir cariño, agasajar o disfrutar momentos en conjunto. Tenemos muchos recuerdos amorosos y de disfrute con la comida como centro o parte fundamental de esos momentos, cocinando y compartiendo con nuestra abuela, tías, padres y hermanxs.",
+      title: "Familia",
+      content: "Venimos de una familia en donde el alimento ocupa un espacio importante a la hora de transmitir cariño, agasajar o disfrutar momentos en conjunto. Tenemos muchos recuerdos amorosos y de disfrute con la comida como centro o parte fundamental de esos momentos, cocinando y compartiendo con nuestras abuelas, tías, padres y hermanxs. Lo vivimos en definitiva, como una gran forma de apapachar.",
       icon: Users
     },
     philosophy: {
-      title: "Nuestra Filosofía",
-      content: "Partimos de la premisa de que un plato de comida está hecho por alguien y para alguien, con manos y afectos impregnados de tradición y creación; entonces tiene que ver con que todo lo que sale de nuestra cocina acaricie un poco el alma de quienes lo prueben.",
+      title: "Filosofía",
+      content: "Partimos de la premisa de que un plato de comida está hecho por alguien y para alguien, con manos y afectos impregnados de tradición y creación. Aspiramos a que todo lo que  sale de nuestra cocina acaricie un poco el alma de quienes lo prueben.",
       icon: Utensils
     }
   }

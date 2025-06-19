@@ -104,20 +104,22 @@ export default function HeroSection() {
                 <Button
                   onClick={() => router.push('/viandas')}
                   size="lg"
-                  className="bg-bone-700 hover:bg-bone-700/90 text-white font-medium px-8 py-6 rounded-full shadow-lg"
+                  className="bg-bone-700 hover:bg-bone-700/90 text-black font-medium px-8 py-6 rounded-full shadow-lg"
                 >
                   Viandas
                 </Button>
                 <Button
                   onClick={() => router.push('/almacen')}
                   size="lg"
-                  className="bg-bone-700 hover:bg-bone-700/90 text-white font-medium px-8 py-6 rounded-full shadow-lg"
+                  className="bg-bone-700 hover:bg-bone-700/90 text-black font-medium px-8 py-6 rounded-full shadow-lg"
                 >
                   Almacén
                 </Button>
               </div>
-            <WheatOff />
-            <Vegan />
+              <div className="flex flex-row gap-2">
+                <WheatOff />
+                <Vegan />
+              </div>
           </motion.div>
           
         </div>
