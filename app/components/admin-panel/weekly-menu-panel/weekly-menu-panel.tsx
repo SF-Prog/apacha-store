@@ -44,13 +44,11 @@ export function WeeklyMenuPanel() {
     const file = event.target.files?.[0]
     if (!file) return
 
-    // Validate file type
     if (!file.type.startsWith("image/")) {
       setUploadError("Por favor selecciona un archivo de imagen válido")
       return
     }
 
-    // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
       setUploadError("El archivo es demasiado grande. Máximo 5MB permitido")
       return
@@ -60,7 +58,6 @@ export function WeeklyMenuPanel() {
     setUploadError(null)
     setUploadSuccess(false)
 
-    // Create preview URL
     const url = URL.createObjectURL(file)
     setPreviewUrl(url)
   }
@@ -132,14 +129,12 @@ export function WeeklyMenuPanel() {
         </div>
       </div>
 
-      {/* Success Alert */}
       {uploadSuccess && (
         <Alert className="border-green-200 bg-green-50">
           <AlertDescription className="text-green-800">¡Imagen del menú actualizada exitosamente!</AlertDescription>
         </Alert>
       )}
 
-      {/* Error Alert */}
       {uploadError && (
         <Alert className="border-red-200 bg-red-50">
           <AlertDescription className="text-red-800">{uploadError}</AlertDescription>
@@ -147,7 +142,6 @@ export function WeeklyMenuPanel() {
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Current Menu Image */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -198,7 +192,6 @@ export function WeeklyMenuPanel() {
           </CardContent>
         </Card>
 
-        {/* Upload New Image */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -216,12 +209,11 @@ export function WeeklyMenuPanel() {
                 accept="image/*"
                 onChange={handleFileSelect}
                 ref={fileInputRef}
-                className="cursor-pointer"
+                className="cursor-pointer bg-apacha_orange-100/30"
               />
               <p className="text-xs text-gray-500">Formatos soportados: JPG, PNG, GIF. Tamaño máximo: 5MB</p>
             </div>
 
-            {/* Preview of selected file */}
             {selectedFile && previewUrl && (
               <div className="space-y-3">
                 <div className="relative">
@@ -278,7 +270,6 @@ export function WeeklyMenuPanel() {
         </Card>
       </div>
 
-      {/* Usage Instructions */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">

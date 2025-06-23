@@ -85,10 +85,9 @@ export default function ContactUs() {
             </Link>
           </motion.div>
         </div>
-      <div className="container mx-auto px-8 text-center mt-20 text-gray-500 pb-10">
-        <p>&copy; 2024/25 Apacha Cocina Consciente. Todos los derechos reservados.</p>
+      <div className="container mx-auto px-2 md:px-8 mt-20 text-gray-500 pb-10 text-left md:text-center">
+        <p>&copy; 2025/26 Apacha Cocina Consciente. Todos los derechos reservados.</p>
       </div>
-
       </div>
     </footer>
   )
