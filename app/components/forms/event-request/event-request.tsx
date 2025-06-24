@@ -146,11 +146,11 @@ export function EventInfoRequestModal({
 
     if (!validateForm(formValues)) return;
 
+    setIsSubmitting(true);
     try {
       const response = await sendEventRequest(formDataToSend);
       if (!response) throw new Error('Algo salio mal');
 
-      setIsSubmitting(true);
       setIsSuccess(true);
       setTimeout(() => {
         setFormValues({
@@ -168,6 +168,8 @@ export function EventInfoRequestModal({
       }, 3000);
     } catch (error) {
       setIsSuccess(false);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
