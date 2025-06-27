@@ -28,7 +28,7 @@ export default function MenuExample() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Te compartimos un ejemplo del menú
+          Mirá el menú de la semana
         </motion.h2>
 
         <motion.div

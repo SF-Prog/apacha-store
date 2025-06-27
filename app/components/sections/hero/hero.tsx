@@ -31,8 +31,8 @@ export default function HeroSection() {
     }
   }, [api])
 
-  const desktopImages = ["/hero-4.jpg", "/catering-cake.jpg", "/soup-hero.jpg", "/desayunos-producto.png"]
-  const mobileImages = ["/hero-4.jpg", "/catering-cake.jpg", "/soup-hero.jpg", "/desayunos-producto.png"]
+  const desktopImages = ["/mobile-banner-1.jpg", "/catering-cake.jpg", "/soup-hero.jpg", "/desayunos-producto.png"]
+  const mobileImages = ["/mobile-banner-1.jpg", "/catering-cake.jpg", "/soup-hero.jpg", "/desayunos-producto.png"]
 
   const carouselImages = isMobile ? mobileImages : desktopImages;
 

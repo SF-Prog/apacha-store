@@ -84,18 +84,7 @@ export default function MenuLanding() {
     );
   };
 
-  // const renderRequestWeeklyMenu = () => {
-  //   return (
-  //     <div className='w-full flex flex-col items-center justify-center gap-2 md:gap-4 mb-8'>
-  //       <Button onClick={() => setIsRequestWeeklyModalOpen(true)} disabled={isRequestWeeklyModalOpen} className="mb-4 w-full max-w-[350px] bg-apacha_purple-100 hover:bg-apacha_purple-100 ">
-  //         <Plus className="mr-2 h-4 w-4" /> Solicitar menu de la semana
-  //       </Button>
-  //       {renderPhoneField()}
-  //     </div>
-  //   );
-  // };
-
-  const renderMobileAccordions = () => (
+  const HowItWorks = () => (
     <>
       <h1 className="text-2xl md:text-4xl font-bold text-apacha-brown text-center mb-8">¿Cómo es el sistema?</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 md:h-[450px]">
@@ -151,7 +140,7 @@ export default function MenuLanding() {
 
           <MenuExample />
 
-          {renderMobileAccordions()}
+          <HowItWorks />
         </motion.div>
       </div>
     </ScrollAnimatedBackground>
