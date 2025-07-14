@@ -190,6 +190,7 @@ export function ProductForm(props: ProductFormProps) {
             type="button"
             onClick={() => imageInputRef.current?.click()}
             variant="outline"
+            className='bg-apacha_green-100'
           >
             Choose File
           </Button>

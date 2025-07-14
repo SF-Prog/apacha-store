@@ -195,7 +195,7 @@ export function EventInfoRequestModal({
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
+    <Dialog  open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button
           variant={buttonVariant}

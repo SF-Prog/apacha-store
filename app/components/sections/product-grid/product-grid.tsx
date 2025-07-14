@@ -10,6 +10,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { useStore } from "@/context/store-context";
 import { useEffect } from "react"
 import { capitalize } from "@/app/lib/utils"
+import { DoubleArrowRightIcon } from "@radix-ui/react-icons"
 
 
 const ProductGrid: React.FC = () => {
@@ -27,6 +28,7 @@ const ProductGrid: React.FC = () => {
       <div className="w-full mb-8 bg-white rounded-lg shadow-sm border border-gray-100 p-4">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-apacha-brown">Categorías</h3>
+          <DoubleArrowRightIcon />
         </div>
 
         <ScrollArea className="w-full whitespace-nowrap">

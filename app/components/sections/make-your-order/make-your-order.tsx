@@ -56,11 +56,11 @@ const MakeYourOrder: React.FC = () => {
       .map((mealId) => {
         const meal = meals.find((m) => m.id === mealId)
         const planType = selectedPlans[mealId] || "daily"
-        return `${meal?.title} (Plan ${planType === "daily" ? "Diario" : planType === "weekly" ? "Semanal" : "Mensual"})`
+        return `${meal?.title} (Plan ${planType === "daily" ? "Individual" : planType === "weekly" ? "Semanal" : "Mensual"})`
       })
       .join(", ");
 
-    return `Hola, me interesa encargar el pack de viandas que incluye: ${selectedMealDetails}.`
+    return `Hola, me interesa recibir más información sobre el pack de viandas que incluye: ${selectedMealDetails}.`
   }
 
   return (
@@ -123,7 +123,7 @@ const MakeYourOrder: React.FC = () => {
                     onValueChange={(value) => handlePlanChange(meal.id, value)}
                   >
                     <TabsList className="grid grid-cols-3 w-full">
-                      <TabsTrigger value="daily">Diario</TabsTrigger>
+                      <TabsTrigger value="daily">Individual</TabsTrigger>
                       <TabsTrigger value="weekly">Semanal</TabsTrigger>
                       <TabsTrigger value="monthly">Mensual</TabsTrigger>
                     </TabsList>

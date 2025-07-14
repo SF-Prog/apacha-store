@@ -155,7 +155,7 @@ export const StoreProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const onRegisterToWorkshop = (workshop: Workshop) => {
     const whatsappLink = `https://wa.me/59898958230?text=${encodeURIComponent(
-      `Hola, estoy interesado/a en: ${workshop.title}, el cual se desarrolla el dia ${workshop.date} a las ${workshop.initial_time} en ${workshop.location}`
+      `Hola, estoy interesado/a en recibir más información sobre el Taller: ${workshop.title}.`
     )}`;
     window.open(whatsappLink);
   };

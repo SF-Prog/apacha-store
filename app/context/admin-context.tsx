@@ -257,7 +257,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({ children }) =
       if (!response.success) throw new Error("Something went wrong");
 
       setIsLoading(false);
-      return response.image;
+      return response.path;
     } catch (error) {
       setIsLoading(false);
       displayToaster(toasterStatus.ERROR, error.message);

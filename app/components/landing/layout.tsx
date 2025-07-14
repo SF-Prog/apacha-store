@@ -15,6 +15,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import Footer from '@/sections/footer/footer';
+import { WhatsAppFloat } from '../ui/whatsapp-floating-icon'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -103,6 +104,7 @@ export function Layout({ children }: LayoutProps) {
         {children}
 
         <Footer />
+        <WhatsAppFloat />
       </div>
     </motion.div>
   )

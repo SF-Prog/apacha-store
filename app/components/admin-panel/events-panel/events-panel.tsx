@@ -109,8 +109,8 @@ export const EventsPanel = () => {
                 <TableHead>Teléfono</TableHead>
                 <TableHead>Tipo de Evento</TableHead>
                 <TableHead>Preferencia</TableHead>
-                <TableHead>Newsletter</TableHead>
                 <TableHead>Estado</TableHead>
+                <TableHead>Ver</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

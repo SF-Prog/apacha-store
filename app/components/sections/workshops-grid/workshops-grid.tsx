@@ -27,7 +27,8 @@ export function WorkshopsGrid() {
   const pastWorkshops = workshops.filter((workshop) => hasAlreadyHappened(workshop))
 
   const renderActionButton = (workshop: Workshop) => {
-    const isOld = hasAlreadyHappened(workshop)
+    const isOld = hasAlreadyHappened(workshop);
+
 
     const label = !isOld ? "Reserva tu lugar" : "Ver detalles"
     const action = !isOld ? onRegisterToWorkshop : () => window.open(workshop.social_media_link, "_blank")
@@ -90,13 +91,14 @@ export function WorkshopsGrid() {
                 {workshop.initial_time} - {workshop.finalization_time}
               </span>
             </div>
+            {/*  is old  */}
+            {!hasAlreadyHappened(workshop) ?? <div className="flex items-center"> 
+              <Users className="mr-2 h-4 w-4" />
+              <span>Cupos disponibles: {workshop.capacity}</span>
+            </div>}
             <div className="flex items-center">
               <MapPin className="mr-2 h-4 w-4" />
               <span>{workshop.location}</span>
-            </div>
-            <div className="flex items-center">
-              <Users className="mr-2 h-4 w-4" />
-              <span>Capacidad: {workshop.capacity} personas</span>
             </div>
             <div className="flex items-center">
               <User className="mr-2 h-4 w-4" />
