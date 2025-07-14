@@ -13,11 +13,12 @@ import { WorkshopHighlightsSection } from "../wokshop-highlights/workshop-highli
 export function WorkshopsGrid() {
   const { workshops, loadWorkshops, onRegisterToWorkshop } = useStore()
 
-  const hasAlreadyHappened = (w: Workshop) => {
-    const now = new Date()
-    const eventDate = new Date(w.date)
-    return eventDate < now
-  }
+  const hasAlreadyHappened = (w: Workshop): boolean => {
+    const now = new Date();
+    const eventDate = new Date(w.date);
+    return eventDate < now;
+  };
+
   useEffect(() => {
     loadWorkshops();
   }, []);
@@ -36,13 +37,12 @@ export function WorkshopsGrid() {
     const handleClick = (e: SyntheticEvent) => {
       e.preventDefault()
       action(workshop)
-    }
+    };
 
     return (
       <Button
         onClick={handleClick}
-        className={`w-full ${!isOld ? "bg-apacha_orange-100/70 hover:bg-apacha_orange-100/60" : "bg-gray-500 hover:bg-gray-600"}`}
-      >
+        className={`w-full ${!isOld ? "bg-apacha_orange-100/70 hover:bg-apacha_orange-100/60" : "bg-gray-500 hover:bg-gray-600"}`} >
         {label}
       </Button>
     )
@@ -91,11 +91,12 @@ export function WorkshopsGrid() {
                 {workshop.initial_time} - {workshop.finalization_time}
               </span>
             </div>
-            {/*  is old  */}
-            {!hasAlreadyHappened(workshop) ?? <div className="flex items-center"> 
-              <Users className="mr-2 h-4 w-4" />
-              <span>Cupos disponibles: {workshop.capacity}</span>
-            </div>}
+            {!hasAlreadyHappened(workshop) && (
+              <div className="flex items-center">
+                <Users className="mr-2 h-4 w-4" />
+                <span>Cupos disponibles: {workshop.capacity}</span>
+              </div>
+            )}
             <div className="flex items-center">
               <MapPin className="mr-2 h-4 w-4" />
               <span>{workshop.location}</span>
