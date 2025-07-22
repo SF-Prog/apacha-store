@@ -60,7 +60,7 @@ export default function ContactUs() {
             whileTap={{ scale: 0.95 }}
           >
             <Phone className="w-5 h-5" />
-            <Link target="_blank" href="https://wa.me/59898958230?text=Quiero%20saber%20mas%20sobre%20sus%20productos">
+            <Link target="_blank" href="https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}?text=Quiero%20saber%20mas%20sobre%20sus%20productos">
               <span>+598 098 958 230</span>
             </Link>
           </motion.div>

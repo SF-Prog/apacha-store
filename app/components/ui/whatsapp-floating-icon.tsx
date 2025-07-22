@@ -37,8 +37,8 @@ export function WhatsAppFloat({
   }, [showTooltip])
 
   const handleWhatsAppClick = () => {
-    const message = "Hola";
-;    const encodedMessage = encodeURIComponent(message)
+    const message = "Hola! Cómo están? \n\nLlegué a ustedes por la página web. Me gustaría recibir más información sobre lo que ofrecen. \n\nGracias";
+    const encodedMessage = encodeURIComponent(message)
     const whatsappUrl = `https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}?text=${encodedMessage}`
     window.open(whatsappUrl, "_blank")
   }
@@ -108,7 +108,7 @@ export function WhatsAppFloat({
             className={`absolute ${position === "bottom-right" ? "right-16" : "left-16"} bottom-2`}
           >
             <div className="bg-gray-900 text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap relative">
-              ¿Necesitas ayuda? ¡Escríbenos!
+              ¿Necesitas ayuda? Escribinos!
               <div
                 className={`absolute top-1/2 transform -translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45 ${
                   position === "bottom-right" ? "-right-1" : "-left-1"

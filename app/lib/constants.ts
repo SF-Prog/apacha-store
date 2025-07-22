@@ -97,7 +97,7 @@ const mealPacks: MealPack[] = [
     weeklyPrice: 2600,
     monthlyPrice: 9800,
     color: "#8B5C8B",
-    whatsappLink: `https://wa.me/59898958230?text=Hola%21%20Me%20interesa%20recibir%20más%20información%20sobre%20el%20Pack%20Desayuno%20y%20Almuerzo`
+    whatsappLink: `https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}?text=Hola%21%20Me%20interesa%20recibir%20más%20información%20sobre%20el%20Pack%20Desayuno%20y%20Almuerzo`
   },
   {
     id: '2',
@@ -105,7 +105,7 @@ const mealPacks: MealPack[] = [
     weeklyPrice: 3150,
     monthlyPrice: 12000,
     color: "#F4A460",
-    whatsappLink: `https://wa.me/59898958230?text=Hola%21%20Me%20interesa%20recibir%20más%20información%20sobre%20el%20Pack%20Almuerzo%20y%20Cena`
+    whatsappLink: `https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}?text=Hola%21%20Me%20interesa%20recibir%20más%20información%20sobre%20el%20Pack%20Almuerzo%20y%20Cena`
   },
   {
     id: '3',
@@ -113,7 +113,7 @@ const mealPacks: MealPack[] = [
     weeklyPrice: 4100,
     monthlyPrice: 15200,
     color: "#8B9D8B",
-    whatsappLink: `https://wa.me/59898958230?text=Hola%21%20Me%20interesa%20recibir%20más%20información%20sobre%20el%20Pack%20Desayuno,%20Almuerzo%20y%20Cena`
+    whatsappLink: `https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}?text=Hola%21%20Me%20interesa%20recibir%20más%20información%20sobre%20el%20Pack%20Desayuno,%20Almuerzo%20y%20Cena`
   }
 ];
 

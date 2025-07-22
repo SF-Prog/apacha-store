@@ -149,7 +149,7 @@ const MakeYourOrder: React.FC = () => {
           <Button
             className="px-8 py-3 bg-apacha_purple-100 hover:bg-apacha_purple-100/90 text-white transition-all duration-300 transform hover:scale-105 w-full max-w-[350px]"
             onClick={() =>
-              window.open(`https://wa.me/59898958230?text=${encodeURIComponent(generateWhatsAppMessage())}`, "_blank")
+              window.open(`https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}?text=${encodeURIComponent(generateWhatsAppMessage())}`, "_blank")
             }
             disabled={selectedMeals.length === 0}
           >
