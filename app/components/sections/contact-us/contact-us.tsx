@@ -41,7 +41,7 @@ export default function ContactUs() {
         ))}
       </motion.div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative">
         <h2 className="text-3xl font-bold text-left md:text-center mb-12">Contáctanos</h2>
         <div className="flex flex-col xl:flex-row justify-start xl:justify-center items-start md:items-center xl:space-x-8 space-y-6 xl:space-y-0">
           <motion.div
@@ -60,7 +60,7 @@ export default function ContactUs() {
             whileTap={{ scale: 0.95 }}
           >
             <Phone className="w-5 h-5" />
-            <Link target="_blank" href="https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}?text=Quiero%20saber%20mas%20sobre%20sus%20productos">
+            <Link target="_blank" href={`https://wa.me/${process.env.NEXT_PUBLIC_CONTACT_PHONE}?text=Quiero%20saber%20mas%20sobre%20sus%20productos`}>
               <span>+598 098 958 230</span>
             </Link>
           </motion.div>
