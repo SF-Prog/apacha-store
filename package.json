@@ -29,7 +29,7 @@
     "embla-carousel-react": "^8.3.0",
     "framer-motion": "^11.11.8",
     "lucide-react": "^0.452.0",
-    "next": "^15.2.3",
+    "next": "15.2.8",
     "next-auth": "^4.24.11",
     "nodemailer": "^6.9.16",
     "pg": "^8.13.1",
